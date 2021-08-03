@@ -63,6 +63,8 @@ export const logout = next => {
 };
 
 export const isAuthenticated = () => {
+    // TODO: revert temporary change with implementation
+    return {user: {_id: '1234', name: 'Sabbib', balance: '1 Billion'}};
     if (typeof window == 'undefined') {
         return false;
     }
