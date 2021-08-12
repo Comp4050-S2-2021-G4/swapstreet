@@ -48,11 +48,10 @@
 #
 >myJobPage:  contains files for applying for job
 
-userProfile: 	    changeInfo.js
-					userProfile.js
+
 |   Sub-folder   |   Contents    |
 |----------------|---------------|
-| userProfile ▶ |changeInfo.js  |
+| userProfile ▶  |changeInfo.js  |
 |                |userProfile.js |
 
 >dataRouter.js: Routes data based on isAuthenticated()
