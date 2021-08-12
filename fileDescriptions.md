@@ -2,8 +2,11 @@
 
 ## Main Folders
 >Auth
+
 >components
+
 >resources
+
 >user
 
 
@@ -25,9 +28,11 @@
 				isAuthenticated() ? user_authenticated : Redirect "/login"
 				
 
-#### components folder: 
+### components folder 
 
->dashboard folder
+	components ▶ Sub-folders
+
+	components ▶ dashboard folder
 
 |   File           |Description                               			 	|
 |------------------|--------------------------------------------------------|
@@ -38,23 +43,18 @@
 |info.js 		   | returns user name, balance, rating  				    |
 #
 
-### components ▶ Sub-folders
-
->datafill: contains files to create and update jobs forms
+	components ▶ datafill: contains files to create and update jobs forms
 #
->homePage: contains files to display jobs + job filter 
+	components ▶ homePage: contains files to display jobs + job filter 
 #
->jobPage: contains files for setting job details 
+	components ▶ jobPage: contains files for setting job details 
 #
->myJobPage:  contains files for applying for job
-
-
-|   Sub-folder   |   Contents    |
-|----------------|---------------|
-| userProfile ▶  |changeInfo.js  |
-|                |userProfile.js |
-
->dataRouter.js: Routes data based on isAuthenticated()
+	components ▶ myJobPage:  contains files for applying for job
+#
+	components ▶ userProfile ▶  changeInfo.js
+				    userProfile.js
+#
+	components ▶ dataRouter.js: Routes data based on isAuthenticated()
 
 ####  resources folder:
 		 Contains misc files 
