@@ -1,4 +1,4 @@
-# App sample deployed in herokuapp.com/
+# App sample deployed in herokuapp.com
 
 [SwapStreet Client App](https://swap-street-client.herokuapp.com)
 
