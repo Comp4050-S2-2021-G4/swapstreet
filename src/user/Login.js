@@ -20,23 +20,23 @@ const Login = () => {
         setValues({ ...values, error: false, [name]: event.target.value });
     }
 
-    const clickSubmit = event => {
+    const clickSubmit = async event =>  {
         // prevent browser from reloading
         event.preventDefault();
         setValues({ ...values, error: false, loading: true });
-        login({email, password})
-        .then(data => {
-            if(data.error) {
-                setValues({...values, error: data.error, loading: false})
-            } else {
-                authenticate(data, () => {
-                    setValues({
-                        ...values,
-                        redirectToReferrer: true
-                    })
+        const loginResult = await login({email, password});
+        if(loginResult.error) {
+            setValues({...values, error: loginResult.error, loading: false})
+        } else {
+            authenticate(loginResult.user, () => {
+                values.email = loginResult.user.email
+                values.name = loginResult.user.name
+                setValues({
+                    ...values,
+                    redirectToReferrer: true
                 })
-            }
-        })
+            })
+        }
     };
 
 
