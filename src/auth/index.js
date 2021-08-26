@@ -1,11 +1,12 @@
 import { API } from '../config'
-import bcyrpt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 
-
-export const register = (user) => {
+export const register = async(user) => {
+    const salt = await bcrypt.genSalt(10);
     // console.log(name, email, password);
-    return (
-        fetch(`${API}/register`, {
+    const hashedPassword = await bcrypt.hash(user.password,salt);
+    user.password = hashedPassword;
+    const result = await fetch(`${API}/register`,{
         method: "POST",
         headers: {
             Accept: 'application/json',
@@ -13,13 +14,13 @@ export const register = (user) => {
         },
         body: JSON.stringify(user)
         })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    )
+    try{
+        console.log("Checking password")
+        console.log(user)
+        return user;
+    } catch{
+        return {error : "Try again"}
+    }
 }
 
 export const login = async (user) => {
@@ -32,7 +33,7 @@ export const login = async (user) => {
         body: JSON.stringify(user)
     })
     const resultData = await result.json();
-    const isCorrectPassword = await bcyrpt.compare(user.password, resultData.password)
+    const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
     if (isCorrectPassword) {
         return { user: resultData, error: undefined }
     } else {
