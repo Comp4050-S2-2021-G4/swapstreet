@@ -16,6 +16,7 @@ import Register from '../user/Register';
 import Login from '../user/Login';
 import PrivateRoute from '../auth/PrivateRoute'
 import { isAuthenticated } from "../auth/index";
+import { API, secret } from '../config';
 
 
 class dataRouter extends Component {
@@ -52,7 +53,7 @@ class dataRouter extends Component {
     }
 
     updateJobs(){
-        fetch('http://localhost:3200/jobs?fetch=true')
+        fetch(`${API}/getJobs${secret}`)
             .then( resp => resp.json())
             .then((data)=> {
                 this.setState({
