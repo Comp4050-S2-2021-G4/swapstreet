@@ -1,10 +1,44 @@
-import React from 'react'
+import React, { useState } from "react";
 import "./changeInfo.css"
 import { Link } from "react-router-dom";
-import { Component } from 'react';
 
-class changeInfo extends Component{
-  render(){
+const ChangeInfo = ({updateInfo}) => {
+  
+    const initialState = {email: '', password: '', address: ''}
+
+    const [formInfo, setFormInfo] = useState(initialState)
+
+    const updateField = (event) => {
+      // which input element is this
+      const name = event.target.attributes.name.value
+      console.log(name, event.target.value)
+      if (name === "email") {
+          setFormInfo({...formInfo, email: event.target.value})
+      } else if (name === "password") {
+        setFormInfo({...formInfo, password: event.target.value})
+      } else if (name === "address") {
+        setFormInfo({...formInfo, address: event.target.value})
+      }
+      
+  }
+
+  
+    const formHandler = (event) => {
+      event.preventDefault()
+      console.log("Form submitted: ", formInfo)
+      updateInfo(formInfo)
+      setFormInfo(initialState)
+      
+      fetch('http://localhost:3200/jobs?fetch=true&_id=')
+        .then( resp => resp.json())
+        .then((data)=> {
+          console.log("ENTER: ")
+                this.setState({
+                    job: data
+                })
+        })
+    }
+
     return (
       <div className="changeAddress-Page">
 
@@ -14,18 +48,19 @@ class changeInfo extends Component{
             Change Personal Information
           </div>
           <div className="card-body">
-          <form classname="addressform">
+
+          <form classname="addressform" onSubmit={formHandler}>
             <div className="form-group">
-              <label >New Email address</label>
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+              <label htmlFor="email" >New Email address</label>
+              <input type="email" className="form-control" name="email" onChange={updateField} aria-describedby="emailHelp" placeholder="Enter email"/>
             </div>
             <div className="form-group">
-              <label >New Password</label>
-              <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+              <label htmlFor="password">New Password</label>
+              <input type="password" className="form-control" name="password" onChange={updateField} id="exampleInputPassword1" placeholder="Password"/>
             </div>
             <div className="form-group">
-              <label >New Address</label>
-              <input type="text" className="form-control" />
+              <label htmlFor="address">New Address</label>
+              <input type="text" className="form-control" name="address" onChange={updateField}/>
             </div>
                 <Link to="/profile">
                   <button type="submit" className="btn btn-primary submit-btn">
@@ -33,11 +68,12 @@ class changeInfo extends Component{
                   </button>
                 </Link>
             </form>
+            
           </div>
         </div>
       </div>
     )
-  }
+  
 }
 
-export default changeInfo
+export default ChangeInfo

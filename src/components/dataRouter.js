@@ -76,7 +76,7 @@ class dataRouter extends Component {
                 <div className="app"> 
                     <Switch>
                         <Route path="/changeinfo">
-                            <ChangeInfo/>
+                            <ChangeInfo />
                         </Route>
 
                         <Route path="/datafill">
