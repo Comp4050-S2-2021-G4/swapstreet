@@ -38,7 +38,7 @@ class info extends Component {
             this.setState({rating : response.total})
         
         })
-
+        
     }
 
     render() {

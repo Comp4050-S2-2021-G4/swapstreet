@@ -7,6 +7,7 @@ import ActiveListings from './activeListings';
 import CurrentJobs from './currentJobs';
 import History from './history';
 import Info from './info';
+import changeInfo from '../userProfile/changeInfo';
 //import Datafill from '../dataFill/dataFillPage';
 //import { isAuthenticated } from "../../auth/index";
 
@@ -55,6 +56,7 @@ class dashboard extends Component {
                         <div class="col-lg">
                             <Link to={{pathname: "/add", state: {prevLocation : "/dashboard"}}}><button className="btn btn-success btn-lg active">Create A New Job</button></Link>
                             <Info uID = {this.props.userID}/>
+                            <changeInfo />
                             <CurrentJobs jobs={myJobs} userID={this.props.userID}/>
                             <ActiveListings jobs={activeJobs} userID={this.props.userID}/>
                             <History jobs={pastJobs} userID={this.props.userID}/>
