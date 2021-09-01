@@ -23,6 +23,28 @@ export const register = async(user) => {
     }
 }
 
+export const update = async(user) => {
+    const salt = await bcrypt.genSalt(10);
+    // console.log(email, password, address);
+    const hashedPassword = await bcrypt.hash(user.password,salt);
+    user.password = hashedPassword;
+    const result = await fetch(`${API}/updateUser`,{
+        method: "POST",
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+        })
+    try{
+        console.log("Authenticating...")
+        console.log(user)
+        return user;
+    } catch{
+        return {error : "Try again"}
+    }
+}
+
 export const login = async (user) => {
     const result = await fetch(`${API}/login`, {
         method: "POST",
