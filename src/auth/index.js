@@ -15,8 +15,6 @@ export const register = async(user) => {
         body: JSON.stringify(user)
         })
     try{
-        console.log("Checking password")
-        console.log(user)
         return user;
     } catch{
         return {error : "Try again"}
