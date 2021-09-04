@@ -10,24 +10,26 @@ import {logout, isAuthenticated} from '../auth/index'
 
 const HeadingBar = ({ history }) => (
     // TODO: add logo here
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-black">
         <div className="logoDiv">
             <a className="logoDiv navbar-brand" href="/">
-                SwapStreet
+                 <img src="./../logo512.png" width="70" height="50" class="d-inline-block align-top" alt=""></img>
+                  SwapStreet
             </a>
         </div>
         <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-                <Link to="/">
+                <li classname = "home-nav">
                     <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
-                </Link>
-    
-                <Link to="/profile">
+                </li>
+
+                <li classname= "profile-nav">
                     <a className="nav-link" href="/profile">My Profile</a>
-                </Link>
-                <Link to="/dashboard">
+                </li>
+
+                <li classname = "dashboard">
                     <a className="nav-link" href="/profile">My Dashboard</a>
-                </Link>
+                </li>
 
                 
             </ul>
@@ -36,7 +38,7 @@ const HeadingBar = ({ history }) => (
         {!isAuthenticated() && (
             <div className="nav-link">
                 <Link to='/register'>
-                <button className="btn btn-light my-2 my-sm-0 border border-dark" type="submit">Register</button>
+                <button className="btn btn-warning my-2 my-sm-0 border border-dark" type="submit">Register</button>
                 </Link>
             </div>         
         )}
@@ -44,7 +46,7 @@ const HeadingBar = ({ history }) => (
         {!isAuthenticated() && (
             <div className="nav-link">
                 <Link to='/login'>
-                <button className="btn btn-light my-2 my-sm-0 border border-dark" type="submit">Login</button>
+                <button className="btn btn-warning my-2 my-sm-0 border border-dark" type="submit">Login</button>
                 </Link>
             </div>
         )}
@@ -54,7 +56,7 @@ const HeadingBar = ({ history }) => (
                 <Link onClick={() => logout(() => {
                     history.push('/')
                 })}>
-                    <button className="btn btn-light my-2 my-sm-0 border border-dark" type="submit">Logout</button>
+                    <button className="btn btn-warning my-2 my-sm-0 border border-dark" type="submit">Logout</button>
                 </Link>
             </div>
         )}

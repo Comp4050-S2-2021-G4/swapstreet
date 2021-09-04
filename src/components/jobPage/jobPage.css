@@ -1,3 +1,14 @@
+.container{
+    background-color: white;
+}
+
+.body-img{
+    display: block;
+    width: 1800px; /* Width of background image */
+    height: 800px; /* Height of background image */
+    opacity: 0.5;
+    position: fixed;
+    }
 
 .jobImage {
     width: 300px;

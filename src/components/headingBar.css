@@ -1,7 +1,47 @@
 .header {
     height: 100px;
 }
+.logoDiv{
+    color :yellow;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:  rgb(23, 23, 23);
+  }
 
+  .home-nav a{
+    color:rgb(221, 175, 25);
+  }
+  
+  li {
+    float: left;
+  }
+  li a {
+    display: block;
+    text-align: center;
+    color:rgb(221, 175, 25);
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111; 
+    font-size: large;
+  }  
+  .active {
+    background-color: #04AA6D;
+  }
+
+  nav{
+    background-color: rgb(23, 23, 23);
+    text-decoration: none;
+
+  }
+  a{
+      color :rgb(235, 195, 64);
+  }
 .userCoinsIcon{
     margin: -2px 3px 0 5px;
     height: 100%;
@@ -22,6 +62,7 @@
 
 .logoDiv{
     fill:  rgb(235, 195, 64);
+    color :rgb(221, 175, 25);
 }
 
 .logoDiv:hover{
@@ -47,8 +88,9 @@
 .footer{
     margin-top: 1rem;
     padding: 1rem;
-    background-color: rgb(235, 195, 64);
-    position: fixed;
+    color:aliceblue;
+    background-color: #aa001e;
+    position:fixed;
     bottom: 0;
     left: 0;
     width: 100%;
