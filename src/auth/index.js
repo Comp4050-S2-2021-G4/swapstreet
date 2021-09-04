@@ -24,6 +24,7 @@ export const register = async(user) => {
 }
 
 export const login = async (user) => {
+    const loginError = { error: 'Incorrect email or password' };
     const result = await fetch(`${API}/login`, {
         method: "POST",
         headers: {
@@ -33,11 +34,15 @@ export const login = async (user) => {
         body: JSON.stringify(user)
     })
     const resultData = await result.json();
-    const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
-    if (isCorrectPassword) {
-        return { user: resultData, error: undefined }
+    if (resultData === null) {
+        return loginError
     } else {
-        return { error: 'Incorrect email or password' }
+        const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
+        if (isCorrectPassword) {
+            return { user: resultData, error: undefined }
+        } else {
+            return loginError
+        }
     }
 }
 
