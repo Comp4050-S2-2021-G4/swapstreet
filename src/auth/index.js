@@ -33,9 +33,8 @@ export const login = async (user) => {
         body: JSON.stringify(user)
     })
     const resultData = await result.json();
-    const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
-    if (isCorrectPassword) {
-        return { user: resultData, error: undefined }
+    if (resultData === null) {
+        return loginError
     } else {
         const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
         if (isCorrectPassword) {
