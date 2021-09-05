@@ -14,13 +14,12 @@ export const register = async(user) => {
         },
         body: JSON.stringify(user)
         })
-    try{
-        console.log("Checking password")
-        console.log(user)
-        return user;
-    } catch{
-        return {error : "Try again"}
-    }
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
 export const login = async (user) => {
@@ -34,8 +33,9 @@ export const login = async (user) => {
         body: JSON.stringify(user)
     })
     const resultData = await result.json();
-    if (resultData === null) {
-        return loginError
+    const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
+    if (isCorrectPassword) {
+        return { user: resultData, error: undefined }
     } else {
         const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
         if (isCorrectPassword) {

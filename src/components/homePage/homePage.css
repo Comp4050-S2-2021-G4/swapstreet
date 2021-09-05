@@ -1,5 +1,9 @@
-.homePage {
- background-color: grey;
+.body-img{
+  display: block;
+  width: 1200px; /* Width of background image */
+  height: 800px; /* Height of background image */
+  opacity: 0.5;
+  position: fixed;
 }
 
 .dropdown{
@@ -9,10 +13,12 @@
 .homeContainer {
   padding: 15px;
   width: 100%;
-
   display: flex;
   justify-content: space-around;
   justify-items: center;
+  background-color: black;
+  opacity: 0.8;
+
 }
 
 .homeCard {
@@ -26,14 +32,15 @@
   margin-right: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
-  background: white;
+  background: black;
 }
 
 .homeCard:hover {
-  background: #e8e8e8;
+  background: grey;
 }
 
 .homeCardBody {
+  background: green;
   margin: 15px;
 }
 

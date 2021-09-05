@@ -1,6 +1,7 @@
 import React, { Component , useState} from '../../../node_modules/react';
 import {Link} from "react-router-dom";
 import './homePage.css';
+import authenticate from "./../../auth/index"
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
@@ -53,6 +54,8 @@ class HomePage extends Component {
       };
     }
  
+    // takes care of listing jobs when user is logged in
+    // joblists consists of user jobs
     let jobList = this.state.searchResults.map(job => {
       return (job.userID != this.props.userID && job.jobStatus !== 4 &&
         <Link className="job" to={{pathname: "/job", state: {job: job, prevLocation : "/"}}}>
@@ -69,10 +72,10 @@ class HomePage extends Component {
         </Link>
       );
     })
-    
+    // homepage 
+    // row class is completely assigned to jobLists
     return (
       <div className= "homePage">
-        
         <form className="form-inline">
           <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
             id="Search"
@@ -81,11 +84,11 @@ class HomePage extends Component {
         </form>
       <div className="homeContainer">
         <div className="row">
-            {jobList}
+            {jobList ? '' :''} 
         </div>
       </div>
       </div>
-
+    
     )
   }
 
