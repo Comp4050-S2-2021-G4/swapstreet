@@ -5,6 +5,10 @@
   opacity: 0.5;
   position: fixed;
 }
+.homePage{
+  background-image: url("../../Assets/community.jpg");
+  background-size:cover;
+}
 
 .dropdown{
   padding: 10px;
@@ -45,13 +49,13 @@
 }
 
 .homeJobLocation {
-  color: black;
+  color: white;
   margin-bottom: 5px;
 
 }
 
 .homeJobCost {
-  color: black;
+  color: white;
 }
 
 .job:hover {
