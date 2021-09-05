@@ -1,5 +1,6 @@
-import { API } from '../config'
+import { API, ACCESS_TOKEN_SECRET } from '../config'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 export const register = async(user) => {
     const salt = await bcrypt.genSalt(10);
@@ -38,7 +39,12 @@ export const login = async (user) => {
     } else {
         const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
         if (isCorrectPassword) {
-            return { user: resultData, error: undefined }
+            const token = jwt.sign(resultData, ACCESS_TOKEN_SECRET, { expiresIn: '2d'})
+            return {
+                user: resultData,
+                token: token,
+                error: undefined
+            }
         } else {
             return loginError
         }
@@ -60,7 +66,7 @@ export const logout = next => {
             method: 'GET'
         })
             .then(response => {
-                console.log('signout', response);
+                console.log('signout success');
             })
             .catch(err => console.log(err));
     }
@@ -72,7 +78,12 @@ export const isAuthenticated = () => {
     }
     if (localStorage.getItem('jwt')) {
         const item = JSON.parse(localStorage.getItem('jwt'));
-        return { user: item };
+        try {
+            return { user : jwt.verify(item, ACCESS_TOKEN_SECRET) }
+        } catch (e) {
+            localStorage.removeItem('jwt')
+            return false
+        }
     } else {
         return false;
     }
