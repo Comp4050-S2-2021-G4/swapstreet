@@ -1,7 +1,7 @@
 import React, { Component, useState } from '../../../node_modules/react';
 import { Link } from "react-router-dom";
 import './homePage.css';
-import authenticate from "./../../auth/index"
+import {isAuthenticated } from "./../../auth/index"
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
@@ -84,7 +84,8 @@ class HomePage extends Component {
         </form>
         <div className="homeContainer">
           <div className="row">
-            {jobList}
+            {isAuthenticated() && jobList}
+            
           </div>
         </div>
       </div>
