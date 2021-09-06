@@ -61,6 +61,8 @@ export const authenticate = (data, next) => {
 export const logout = next => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem('jwt');
+        window.location.reload();
+        window.location.href = "/";
         next();
         return fetch(`${API}/logout`, {
             method: 'GET'
