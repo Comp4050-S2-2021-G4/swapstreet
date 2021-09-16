@@ -12,7 +12,7 @@ const ChangeInfo = ({id, name}) => {
       password: '', 
       address: '', 
       error: '',
-      success: false
+      success: true
     }
 
     const [formInfo, setFormInfo] = useState(initialState)
@@ -55,7 +55,7 @@ const ChangeInfo = ({id, name}) => {
       update({email, password, address})
       .then(data => {
           if(data.error) {
-            setFormInfo({...formInfo, error: data.error, success: false})
+            setFormInfo({...formInfo, error: data.error, success: true})
           } else {
             setFormInfo({
                   ...formInfo,

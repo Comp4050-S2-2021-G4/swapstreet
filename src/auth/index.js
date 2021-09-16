@@ -28,7 +28,8 @@ export const update = async(user) => {
     // console.log(email, password, address);
     const hashedPassword = await bcrypt.hash(user.password,salt);
     user.password = hashedPassword;
-    const result = await fetch(`${API}/updateUser`,{
+    const result = await fetch(`${API}/changeinfo`,
+        {
         method: "POST",
         headers: {
             Accept: 'application/json',
