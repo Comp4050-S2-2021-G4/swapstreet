@@ -10,6 +10,7 @@ import {logout, isAuthenticated} from '../auth/index'
 
 const HeadingBar = ({ history }) => (
     // TODO: add logo here
+
     <nav className="navbar navbar-expand-lg navbar-dark bg-black">
         <div className="logoDiv">
             <a className="logoDiv navbar-brand" href="/">
