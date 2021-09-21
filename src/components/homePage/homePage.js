@@ -2,9 +2,9 @@ import React, { Component, useState } from '../../../node_modules/react';
 import { Link } from "react-router-dom";
 import './homePage.css';
 import {isAuthenticated } from "./../../auth/index"
-
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
+import {Jumbotron} from "react-bootstrap";
 
 class HomePage extends Component {
   constructor(props) {
@@ -76,19 +76,57 @@ class HomePage extends Component {
     // row class is completely assigned to jobLists
     return (
       <div className="homePage">
-        <form className="form-inline">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-            id="Search"
-            onChange={this.searchData}
-          />
-        </form>
+        <div className = "about-section">
+        <Jumbotron> 
+        <h1> Welcome to SwapStreet </h1>
+        <h5> Platform to bring community together</h5>
+        </Jumbotron>
         <div className="homeContainer">
           <div className="row">
             {isAuthenticated() && jobList}
-            
-          </div>
+           </div>
         </div>
+        </div>
+      <div class="row">
+      <div class="col-sm-4">
+      <div class="card border-warning mb-3">
+      <div class="card-body1">
+        <h4 class="card-title">Locations</h4>
+        <p class="card-text">Currently hosting in the following locations.</p>
+        <ul>
+          <li>Sydney </li> 
+          <li>Melbourne </li>
+          <li>Canberra </li>
+        </ul>
       </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card border-warning mb-3">
+      <div class="card-body2">
+        <h4 class="card-title">Services</h4>
+        <p class="card-text"> The services we offer range from .</p>
+        <ul>
+          <li> Garderning </li> 
+          <li> Plumbing </li>
+          <li> Care-Taker </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card border-warning mb-3">
+      <div class="card-body3">
+        <h4 class="card-title">Coins </h4>
+        <p class="card-text">Coins are exchanged for the services offered.</p>
+        <p> 
+          Offer services and collect coins. 
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
 
     )
   }

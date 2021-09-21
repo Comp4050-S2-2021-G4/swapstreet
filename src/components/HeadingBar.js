@@ -7,7 +7,6 @@ import {
 
 import {logout, isAuthenticated} from '../auth/index'
 
-
 const HeadingBar = ({ history }) => (
     // TODO: add logo here
 
@@ -31,7 +30,6 @@ const HeadingBar = ({ history }) => (
                 <li classname = "dashboard">
                     <a className="nav-link" href="/profile">My Dashboard</a>
                 </li>
-
                 
             </ul>
         </div>

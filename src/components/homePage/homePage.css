@@ -1,17 +1,48 @@
-.body-img{
-  display: block;
-  width: 1200px; /* Width of background image */
-  height: 800px; /* Height of background image */
-  opacity: 0.5;
-  position: fixed;
+.jumbotron {
+  position: relative;
+  background:none;
 }
-.homePage{
-  background-image: url("../../Assets/community.jpg");
-  background-size:cover;
+.jumbotron:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../../Assets/image.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+    opacity : 0.4;
+    z-index: -1;
+}
+.card{
+  left: 40px;
+  top : 70px;
+  width : 80%;
+  height: 100%;
+  background-color : rgb(221, 175, 25,0.7);
+  
 }
 
+.about-section{
+  position : relative;
+  overflow : hidden;
+  animation-iteration-count: 1;
+  animation: showup 7s normal;
+}
+@keyframes showup {
+  0% {opacity:0;}
+  20% {opacity:1;}
+  80% {opacity:1;}
+  100% {opacity:0;}
+}
 .dropdown{
   padding: 10px;
+}
+.card-title{
+ 
 }
 
 .homeContainer {
@@ -20,9 +51,11 @@
   display: flex;
   justify-content: space-around;
   justify-items: center;
-  background-color: black;
   opacity: 0.8;
+}
 
+.form-inline{
+  position:right;
 }
 
 .homeCard {
@@ -30,13 +63,10 @@
   min-height: 18vh;
   border: 2px solid gray;
   border-radius: 5px;
-
-
   margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
-  background: black;
 }
 
 .homeCard:hover {
