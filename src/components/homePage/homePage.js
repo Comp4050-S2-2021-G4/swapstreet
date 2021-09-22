@@ -76,19 +76,36 @@ class HomePage extends Component {
     // row class is completely assigned to jobLists
     return (
       <div className="homePage">
-        <div className = "about-section">
         <Jumbotron> 
+        <div className = "about-section">
+        <div className = "img1"> </div>
+        <div className = "animate-slide-1">
+        <br> 
+        </br>
         <h1> Welcome to SwapStreet </h1>
         <h5> Platform to bring community together</h5>
-        </Jumbotron>
+        </div>
+        <br> 
+        </br>
+        <br> 
+        </br>
+        <div className = "animate-slide-2">
+          <h5> We help connect you closer to your neighbourhood </h5>
+          <h5> Join our community now! </h5>
+         </div> 
+         <br></br>
+         <div className = "button-register">
+         <a class="btn btn-warning" href="/register" role="button" style = {{left: "100px"}}>Become a Swapstreet Member</a>
+        </div>
         <div className="homeContainer">
           <div className="row">
             {isAuthenticated() && jobList}
            </div>
         </div>
         </div>
+        </Jumbotron>
       <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
       <div class="card border-warning mb-3">
       <div class="card-body1">
         <h4 class="card-title">Locations</h4>
@@ -101,7 +118,7 @@ class HomePage extends Component {
       </div>
     </div>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="card border-warning mb-3">
       <div class="card-body2">
         <h4 class="card-title">Services</h4>
@@ -114,7 +131,7 @@ class HomePage extends Component {
       </div>
     </div>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="card border-warning mb-3">
       <div class="card-body3">
         <h4 class="card-title">Coins </h4>
@@ -122,6 +139,14 @@ class HomePage extends Component {
         <p> 
           Offer services and collect coins. 
         </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card border-warning mb-3">
+      <div class="card-body2">
+        <h4 class="card-title">Join Our Community</h4>
+        <p class="card-text"> Register now! .</p>
       </div>
     </div>
   </div>
