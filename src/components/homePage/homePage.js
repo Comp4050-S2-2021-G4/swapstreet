@@ -76,8 +76,8 @@ class HomePage extends Component {
     // row class is completely assigned to jobLists
     return (
       <div className="homePage">
-        <Jumbotron> 
         <div className = "about-section">
+        <Jumbotron> 
         <div className = "img1"> </div>
         <div className = "animate-slide-1">
         <br> 
@@ -102,8 +102,8 @@ class HomePage extends Component {
             {isAuthenticated() && jobList}
            </div>
         </div>
-        </div>
         </Jumbotron>
+        </div>
       <div class="row">
       <div class="col-sm-3">
       <div class="card border-warning mb-3">

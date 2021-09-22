@@ -19,11 +19,16 @@
 }
 .card{
   left: 40px;
-  top : 165px;
+  top : 105px;
   width : 80%;
-  height: 170px;
-  background-color : rgb(221, 175, 25,0.7);
-  
+  height: 160px;
+  background-color : rgb(221, 175, 25,0.7);  
+  text-align: center;
+}
+
+.card :hover{
+  color:rgb(221, 175, 25); ;
+  background-color: rgb(10,10,10);
 }
 .button-register{
   text-align:center;
@@ -31,7 +36,7 @@
   display:flex;
   display:grid;
   width : 20%;
-  animation: showup 13s normal;
+  animation: showup 9s normal;
 }
 .card-img-bottom{
   background-image: url("./../../Assets/location.jpg");
@@ -39,12 +44,10 @@
   height:70%;
   width : 70%;
   position: center;
-  
 }
 .about-section{
 overflow : hidden;
 }
-
 .animate-slide-1{
   font-size:large;
   font-style: bold;
