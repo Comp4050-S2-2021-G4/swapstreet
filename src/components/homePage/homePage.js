@@ -56,7 +56,7 @@ class HomePage extends Component {
     const array1 = [1]
     let hpage = array1.map(_ => {
       return (
-        <div>
+        <div className = "homepage-elements">
         <Jumbotron>
         <div className= "about">   
         <div className = "animate-slide-1">

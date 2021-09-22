@@ -24,7 +24,7 @@
 .about{
   background-repeat: no-repeat;
 }
-.card{
+.homepage-elements .card{
   left: 40px;
   top : 200px;
   width : 80%;
@@ -32,7 +32,7 @@
   background-color : rgb(221, 175, 25,0.7);  
   text-align: center;
 }
-.card :hover{
+.homepage-elements .card :hover{
   color:rgb(221, 175, 25); ;
   background-color: rgb(10,10,10);
 }
