@@ -53,6 +53,82 @@ class HomePage extends Component {
         searchResults: this.props.jobs
       };
     }
+    const array1 = [1]
+    let hpage = array1.map(_ => {
+      return (
+        <div>
+        <Jumbotron>
+        <div className= "about">   
+        <div className = "animate-slide-1">
+        <br> 
+        </br>
+        <h1> Welcome to SwapStreet </h1>
+        <h5> Platform to bring community together</h5>
+        </div>
+        <br> 
+        </br>
+        <br> 
+        </br>
+        <div className = "animate-slide-2">
+          <h5> We help connect you closer to your neighbourhood </h5>
+          <h5> Join our community now! </h5>
+         </div> 
+         <br></br>
+         <div className = "button-register">
+         <a class="btn btn-warning" href="/register" role="button" style = {{left: "100px"}}>Become a Swapstreet Member</a>
+        </div>
+        </div>
+        </Jumbotron>
+              <div class="row">
+              <div class="col-sm-3">
+              <div class="card border-warning mb-3">
+              <div class="card-body1">
+                <h4 class="card-title">Locations</h4>
+                <p class="card-text">Currently hosting in the following locations.</p>
+                <ul>
+                  <li>Sydney </li> 
+                  <li>Melbourne </li>
+                  <li>Canberra </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card border-warning mb-3">
+              <div class="card-body2">
+                <h4 class="card-title">Services</h4>
+                <p class="card-text"> The services we offer range from .</p>
+                <ul>
+                  <li> Garderning </li> 
+                  <li> Plumbing </li>
+                  <li> Care-Taker </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card border-warning mb-3">
+              <div class="card-body3">
+                <h4 class="card-title">Coins </h4>
+                <p class="card-text">Coins are exchanged for the services offered.</p>
+                <p> 
+                  Offer services and collect coins. 
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card border-warning mb-3">
+              <div class="card-body2">
+                <h4 class="card-title">Join Our Community</h4>
+                <p class="card-text"> Register now! .</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>  
+      );
+    })
 
     // takes care of listing jobs when user is logged in
     // joblists consists of user jobs
@@ -72,86 +148,18 @@ class HomePage extends Component {
         </Link>
       );
     })
+    
     // homepage 
     // row class is completely assigned to jobLists
     return (
       <div className="homePage">
-        <div className = "about-section">
-        <Jumbotron> 
-        <div className = "img1"> </div>
-        <div className = "animate-slide-1">
-        <br> 
-        </br>
-        <h1> Welcome to SwapStreet </h1>
-        <h5> Platform to bring community together</h5>
-        </div>
-        <br> 
-        </br>
-        <br> 
-        </br>
-        <div className = "animate-slide-2">
-          <h5> We help connect you closer to your neighbourhood </h5>
-          <h5> Join our community now! </h5>
-         </div> 
-         <br></br>
-         <div className = "button-register">
-         <a class="btn btn-warning" href="/register" role="button" style = {{left: "100px"}}>Become a Swapstreet Member</a>
-        </div>
+        {!isAuthenticated() && hpage}
         <div className="homeContainer">
           <div className="row">
             {isAuthenticated() && jobList}
            </div>
         </div>
-        </Jumbotron>
-        </div>
-      <div class="row">
-      <div class="col-sm-3">
-      <div class="card border-warning mb-3">
-      <div class="card-body1">
-        <h4 class="card-title">Locations</h4>
-        <p class="card-text">Currently hosting in the following locations.</p>
-        <ul>
-          <li>Sydney </li> 
-          <li>Melbourne </li>
-          <li>Canberra </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card border-warning mb-3">
-      <div class="card-body2">
-        <h4 class="card-title">Services</h4>
-        <p class="card-text"> The services we offer range from .</p>
-        <ul>
-          <li> Garderning </li> 
-          <li> Plumbing </li>
-          <li> Care-Taker </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card border-warning mb-3">
-      <div class="card-body3">
-        <h4 class="card-title">Coins </h4>
-        <p class="card-text">Coins are exchanged for the services offered.</p>
-        <p> 
-          Offer services and collect coins. 
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card border-warning mb-3">
-      <div class="card-body2">
-        <h4 class="card-title">Join Our Community</h4>
-        <p class="card-text"> Register now! .</p>
-      </div>
-    </div>
-  </div>
 </div>
-        </div>
 
     )
   }
