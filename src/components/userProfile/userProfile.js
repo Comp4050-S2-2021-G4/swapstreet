@@ -13,7 +13,7 @@ import { isAuthenticated } from "../../auth/index";
 
 const Profile = () => {
   const {
-    user: { _id, name, email, address, Coins, about, role }
+    user: { _id, name, email, address, coins, about, role}
   } = isAuthenticated();
 
   let rating = 0;
@@ -83,7 +83,7 @@ const Profile = () => {
                             <div className="card-body">
                                 <blockquote className="blockquote mb-0">
                                     <p> Your Rating : {}</p>
-                                    <p> Balance : {Coins}</p>
+                                    <p> Balance : {coins}</p>
                                 </blockquote>
                             </div>
                         </div>
@@ -101,7 +101,6 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         </div>

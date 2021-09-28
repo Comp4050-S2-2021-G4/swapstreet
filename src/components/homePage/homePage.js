@@ -150,7 +150,24 @@ class HomePage extends Component {
     })
     
     // homepage 
-    // row class is completely assigned to jobLists
+    /* 
+    Search bar 
+            <form className="form-inline">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            id="Search"
+            onChange={this.searchData}
+          />
+        </form>
+
+
+        <div className = "search-bar"> 
+        <form class="form-inline d-flex justify-content-center md-form form-sm">
+        <i class="fas fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+            </input>
+        </form>   
+        </div>
+    */
     return (
       <div className="homePage">
         {!isAuthenticated() && hpage}
