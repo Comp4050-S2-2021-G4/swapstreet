@@ -4,12 +4,11 @@ import {
     Link,
     withRouter
 } from "react-router-dom";
-
 import {logout, isAuthenticated} from '../auth/index'
+
 
 const HeadingBar = ({ history }) => (
     // TODO: add logo here
-
     <nav className="navbar navbar-expand-lg navbar-dark bg-black">
         <div className="logoDiv">
             <a className="logoDiv navbar-brand" href="/">
@@ -28,7 +27,7 @@ const HeadingBar = ({ history }) => (
                 </li>
 
                 <li classname = "dashboard">
-                    <a className="nav-link" href="/profile">My Dashboard</a>
+                    <a className="nav-link" href="/dashboard">My Dashboard</a>
                 </li>
                 
             </ul>
@@ -59,8 +58,7 @@ const HeadingBar = ({ history }) => (
                 </Link>
             </div>
         )}
-
-        
+       
     </nav>
 );
 
