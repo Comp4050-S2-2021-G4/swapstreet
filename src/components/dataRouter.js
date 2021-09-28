@@ -43,9 +43,6 @@ class dataRouter extends Component {
                 jobs: []
             };
         }
-
-
-
     }
 
     componentDidMount() {
