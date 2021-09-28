@@ -54,6 +54,10 @@
 .about-section{
 overflow : hidden;
 }
+.searchbar{
+  margin-right: 500px;
+}
+
 .animate-slide-1{
   font-size:large;
   font-style: bold;

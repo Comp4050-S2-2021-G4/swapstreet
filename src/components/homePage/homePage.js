@@ -54,6 +54,7 @@ class HomePage extends Component {
       };
     }
     const array1 = [1]
+    const array2 = [1,2]
     let hpage = array1.map(_ => {
       return (
         <div className = "homepage-elements">
@@ -149,30 +150,20 @@ class HomePage extends Component {
       );
     })
     
-    // homepage 
-    /* 
-    Search bar 
-            <form className="form-inline">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-            id="Search"
-            onChange={this.searchData}
-          />
-        </form>
-
-
-        <div className = "search-bar"> 
-        <form class="form-inline d-flex justify-content-center md-form form-sm">
-        <i class="fas fa-search" aria-hidden="true"></i>
-          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
-            </input>
-        </form>   
-        </div>
-    */
     return (
       <div className="homePage">
         {!isAuthenticated() && hpage}
         <div className="homeContainer">
           <div className="row">
+          {isAuthenticated() &&
+          <div className = "searchbar">
+          <form className="form-inline">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            id="Search"
+          onChange={this.searchData}
+          />
+           </form>
+           </div>}
             {isAuthenticated() && jobList}
            </div>
         </div>
