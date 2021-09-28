@@ -69,6 +69,7 @@ class dataRouter extends Component {
 
     render() {
         return (
+            
             <BrowserRouter>
                 <Header userID={this.state.userID} name={this.state.name} balance={this.state.balance}/>
                 <div className="app"> 

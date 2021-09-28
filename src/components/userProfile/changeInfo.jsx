@@ -8,11 +8,18 @@ import { update} from "../../auth/index"
 const ChangeInfo = ({id, name}) => {
 
   console.log("ID = ", {id});
+  console.log("Session Storage ", sessionStorage.getItem('Name'));
+  // const newName = sessionStorage.getItem('name');
 
     const initialState = {
+      newName: sessionStorage.getItem('Name'),
       email: '', 
       password: '', 
       address: '', 
+      jobs: '',
+      rating: '',
+      role: sessionStorage.getItem('Role'),
+      balance: sessionStorage.getItem('Balance'),
       error: '',
       success: true
     }
@@ -33,7 +40,7 @@ const ChangeInfo = ({id, name}) => {
       
   }
   
-  const { email, address, password, success, error } = formInfo;
+  const { newName, email, address, password, jobs, rating, role, balance, success, error } = formInfo;
 
     const formHandler = (event) => {
       console.log("Form submitted: ")
@@ -47,7 +54,7 @@ const ChangeInfo = ({id, name}) => {
       console.log("Form submitted: ", formInfo)
       event.preventDefault();
       setFormInfo({ ...formInfo, error: false });
-      update({email, password, address})
+      update({newName, email, password, address, jobs, rating, role, balance})
       .then(data => {
           if(data.error) {
             setFormInfo({...formInfo, error: data.error, success: true})
@@ -57,6 +64,10 @@ const ChangeInfo = ({id, name}) => {
                   email: '',
                   password: '',
                   address:'',
+                  jobs: '',
+                  rating: '',
+                  role: '',
+                  balance: '',
                   error: '',
                   success: true
               })
