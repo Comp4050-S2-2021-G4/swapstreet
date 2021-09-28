@@ -7,6 +7,8 @@ import { update} from "../../auth/index"
 
 const ChangeInfo = ({id, name}) => {
 
+  console.log("ID = ", {id});
+
     const initialState = {
       email: '', 
       password: '', 
@@ -33,13 +35,6 @@ const ChangeInfo = ({id, name}) => {
   
   const { email, address, password, success, error } = formInfo;
 
-  /*
-  fetch('http://localhost:3000/rating?total=true&chosenUserID=' + id)
-  .then( resp => resp.json())
-  .then((data)=> {
-    console.log("Response,", data)
-  })*/
-  
     const formHandler = (event) => {
       console.log("Form submitted: ")
       // event.preventDefault()
@@ -69,7 +64,7 @@ const ChangeInfo = ({id, name}) => {
       })
   };
 
-    
+
     return (
       <div className="changeAddress-Page">
 
