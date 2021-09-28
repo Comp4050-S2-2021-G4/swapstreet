@@ -72,12 +72,13 @@ class dataRouter extends Component {
 
     render() {
         return (
+            
             <BrowserRouter>
                 <Header userID={this.state.userID} name={this.state.name} balance={this.state.balance} />
                 <div className="app">
                     <Switch>
                         <Route path="/changeinfo">
-                            <ChangeInfo />
+                            <ChangeInfo id={this.state.userID} name={this.state.name}/>
                         </Route>
 
                         <Route path="/datafill">
