@@ -28,7 +28,7 @@ const Login = () => {
         if(loginResult.error) {
             setValues({...values, error: loginResult.error, loading: false})
         } else {
-            authenticate(loginResult.user, () => {
+            authenticate(loginResult.token, () => {
                 values.email = loginResult.user.email
                 values.name = loginResult.user.name
                 setValues({

@@ -3,7 +3,7 @@ import {
     BrowserRouter,
     Switch,
     Route
-  } from "react-router-dom"; 
+} from "react-router-dom";
 
 import UserProfile from "./userProfile/userProfile";
 import Header from "./HeadingBar";
@@ -16,22 +16,23 @@ import Register from '../user/Register';
 import Login from '../user/Login';
 import PrivateRoute from '../auth/PrivateRoute'
 import { isAuthenticated } from "../auth/index";
+import { API, secret } from '../config';
 
 
 class dataRouter extends Component {
 
     constructor(props) {
         super(props);
-        if(isAuthenticated()){
+        if (isAuthenticated()) {
             const {
                 user: { _id, name, email, address, balance, about, role }
-              } = isAuthenticated();
+            } = isAuthenticated();
             this.state = {
-              location: null,
-              userID: _id,
-              name: name,
-              balance: balance,
-              jobs: []
+                location: null,
+                userID: _id,
+                name: name,
+                balance: balance,
+                jobs: []
             };
         } else {
             this.state = {
@@ -40,29 +41,28 @@ class dataRouter extends Component {
                 name: null,
                 balance: null,
                 jobs: []
-              };
+            };
         }
-        
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.updateJobs()
     }
 
-    updateJobs(){
-        fetch('http://localhost:3200/jobs?fetch=true')
-            .then( resp => resp.json())
-            .then((data)=> {
+    updateJobs() {
+        fetch(`${API}/getJobs${secret}`)
+            .then(resp => resp.json())
+            .then((data) => {
                 this.setState({
                     jobs: data
                 })
-        })
+            })
     }
 
 
     handleSelect(e) {
         console.log(e);
-        this.setState({location : e})
+        this.setState({ location: e })
     }
 
     /* */
@@ -71,33 +71,33 @@ class dataRouter extends Component {
         return (
             
             <BrowserRouter>
-                <Header userID={this.state.userID} name={this.state.name} balance={this.state.balance}/>
-                <div className="app"> 
+                <Header userID={this.state.userID} name={this.state.name} balance={this.state.balance} />
+                <div className="app">
                     <Switch>
                         <Route path="/changeinfo">
-                            <ChangeInfo id={this.state.userID} name={this.state.name}/>
+                        <ChangeInfo id={this.state.userID} name={this.state.name}/>
                         </Route>
 
                         <Route path="/datafill">
-                            <JobDataFill/>
+                            <JobDataFill />
                         </Route>
 
-                        <Route path='/login' exact component={Login}/>
-                        <Route path='/register' exact component={Register}/>
+                        <Route path='/login' exact component={Login} />
+                        <Route path='/register' exact component={Register} />
                         <PrivateRoute component={UserProfile} path="/profile" exact />
 
 
-                        <Route exact path = "/add" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
+                        <Route exact path="/add" render={(props) => <JobDataFill {...props} userID={this.state.userID} />} />
 
-                        <Route exact path = "/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID}/> }/>
+                        <Route exact path="/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID} />} />
 
                         <PrivateRoute component={Dashboard} path="/dashboard" jobs={this.state.jobs} userID={this.state.userID} exact />
-                    
 
-                        <Route exact path = "/job" render={(props) => <JobPage {...props} userID={this.state.userID}/> }/>
+
+                        <Route exact path="/job" render={(props) => <JobPage {...props} userID={this.state.userID} />} />
 
                         <Route path="/">
-                            <HomePage jobs={this.state.jobs} userID={this.state.userID}/>
+                            <HomePage jobs={this.state.jobs} userID={this.state.userID} />
                         </Route>
                     </Switch>
                 </div>
