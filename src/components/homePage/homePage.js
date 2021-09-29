@@ -1,9 +1,10 @@
 /* 
 ==========================================
-Title:  Homepage Component (UserProfile, JobsDisplay)
-Author and Co-Authors: Jayakrithi Shivakumar 
-Last updated: 29 Sept 2021 10:23PM
-;==========================================
+
+ Title:  Homepage Component (Homepage, UserProfile, JobsDisplay)
+ Author and Co-Authors: Jayakrithi Shivakumar 
+ Last updated: 29 Sept 2021 12:55PM
+==========================================
 */
 
 import React, { Component, useState } from '../../../node_modules/react';
@@ -63,17 +64,23 @@ class HomePage extends Component {
     }
     const array1 = [1]
     let jobsHeader = array1.map(_ => {
-      return (
-        <div className="searchbar">
-          <Jumbotron>
-            <form className="form-inline">
-              <input type="search" placeholder="Search" aria-label="Search"
-                id="Search" onChange={this.searchData}
-              />
-            </form>
-          </Jumbotron>
-        </div>
-      );
+
+      return(
+      <div className = "searchbar">
+        <Jumbotron>
+          <div className = "jobHeader">
+          <h1> Jobs </h1>
+          </div>
+          <div className="form-outline">
+          <div class="form-group w-75">
+          <input class = "form-control" type="search" placeholder="Search" aria-label="Search" 
+           id="Search" onChange ={this.searchData}
+          />
+          </div>
+          </div>
+           </Jumbotron>
+           </div>  
+      );    
     })
 
     let hpage = array1.map(_ => {
@@ -152,24 +159,20 @@ class HomePage extends Component {
       );
     })
 
-    // takes care of listing jobs when user is logged in
-    // joblists consists of user jobs
     let jobList = this.state.searchResults.map(job => {
       return (job.userID != this.props.userID && job.jobStatus !== 4 &&
-        <div className="jobs-display">
-          <div className="job-card">
-            <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
-              <div className="homeCard border-dark mb-3">
-                <div className="homeCardBody text-dark">
-                  <h5 className="card-title">{job.title}</h5>
-                  <p className="card-text">{job.description}</p>
-                </div>
-                <div className="card-footer bg-transparent border-dark">
-                  <p className="homeJobLocation">Location: {job.location}</p>
-                  <p className="homeJobCost">Cost: {job.price}</p>
-                </div>
-              </div>
-            </Link>
+        <div className= "jobs-display">
+        <div className = "job-card">
+        <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
+          <div className="homeCard border-dark mb-3">
+            <div className="homeCardBody text-dark">
+              <h5 className="card-title">{job.title} </h5>
+              <p className="card-text">{job.description}</p>
+            </div>
+            <div className="card-footer bg-transparent border-dark">
+              <p className="homeJobLocation">Location: {job.location}</p>
+              <p className="homeJobCost"> <b> ${job.price} </b></p>
+            </div>
           </div>
         </div>
       );

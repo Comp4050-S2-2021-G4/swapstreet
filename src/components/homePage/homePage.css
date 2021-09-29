@@ -22,29 +22,26 @@
     z-index: -1;
 }
 
-.jobs-header .jumbotron{
-  margin:auto; 
-  width: 100%;
-  height: 0px; 
-  background:none;
-  background-repeat: no-repeat;
-  display:inline;
-  background-color: aqua;
-}
-.jobs-header{
-  width: 100%;
-  height: 100px;
-}
-.jobs-header .jumbotron::after{
-  margin:auto; 
-  width: 100%;
-  height: 100px; 
-  background:none;
-  background-repeat: no-repeat;
-  display:inline;
-  
+.searchbar{
+  position: center;
+  margin-right: 500px;
+  height: 250px; 
+  width:100%;
 }
 
+.jobHeader{
+  margin-left: 700px;
+}
+
+.searchbar .jumbotron{
+  background-color : rgba(247, 199, 43, 0.7);  
+}
+
+.form-outline{
+  margin-left:20%;
+  position:center;
+  text-align: center;
+}
 .about{
   background-repeat: no-repeat;
 }
@@ -77,16 +74,6 @@
 }
 .about-section{
 overflow : hidden;
-}
-.searchbar{
-  position: center;
-  background-color: aqua;
-  margin-right: -50px;
-  height: 10%; 
-  width:100%;
-}
-.form-inline{
-  right: 100px;
 }
 .animate-slide-1{
   font-size:large;
@@ -122,6 +109,11 @@ overflow : hidden;
 .homePage{
   background-repeat: no-repeat;
 }
+.jobs-display{
+bottom: 100%;
+position: grid;
+}
+
 .homeContainer {
   padding: 15px;
   width: 100%;
@@ -129,9 +121,6 @@ overflow : hidden;
   justify-content: space-around;
   justify-items: center;
   opacity: 0.8;
-}
-.form-inline{
-  position:right;
 }
 .homeCard {
   width: 23vw;
@@ -145,18 +134,21 @@ overflow : hidden;
 }
 
 .homeCard:hover {
-  background: grey;
+  background: rgb(231, 231, 231);
 }
 .homeCardBody {
   margin: 15px; 
 }
 .homeJobLocation {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color : black;
 }
 .homeJobCost {
+  font-size: x-large;
   color : black;
+  display: inline;
 }
 .job:hover {
   text-decoration: none;
 }
+
