@@ -1,3 +1,11 @@
+/* 
+==========================================
+ Title:  Homepage Component (UserProfile, JobsDisplay)
+ Author and Co-Authors: Jayakrithi Shivakumar 
+ Last updated: 29 Sept 2021 10:23PM
+;==========================================
+*/
+
 import React, { Component, useState } from '../../../node_modules/react';
 import { Link } from "react-router-dom";
 import './homePage.css';
@@ -54,7 +62,20 @@ class HomePage extends Component {
       };
     }
     const array1 = [1]
-    const array2 = [1,2]
+    let jobsHeader = array1.map(_ => {
+      return(
+      <div className = "searchbar">
+        <Jumbotron>
+          <form className="form-inline">
+          <input type="search" placeholder="Search" aria-label="Search"
+            id="Search" onChange ={this.searchData}
+          />
+           </form>
+           </Jumbotron>
+           </div>  
+      );    
+    })
+
     let hpage = array1.map(_ => {
       return (
         <div className = "homepage-elements">
@@ -135,6 +156,8 @@ class HomePage extends Component {
     // joblists consists of user jobs
     let jobList = this.state.searchResults.map(job => {
       return (job.userID != this.props.userID && job.jobStatus !== 4 &&
+        <div className= "jobs-display">
+        <div className = "job-card">
         <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
           <div className="homeCard border-dark mb-3">
             <div className="homeCardBody text-dark">
@@ -147,27 +170,21 @@ class HomePage extends Component {
             </div>
           </div>
         </Link>
+        </div>
+        </div> 
       );
     })
     
     return (
       <div className="homePage">
         {!isAuthenticated() && hpage}
+        {isAuthenticated() && jobsHeader}
         <div className="homeContainer">
           <div className="row">
-          {isAuthenticated() &&
-          <div className = "searchbar">
-          <form className="form-inline">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-            id="Search"
-          onChange={this.searchData}
-          />
-           </form>
-           </div>}
-            {isAuthenticated() && jobList}
+           {isAuthenticated() && jobList}  
            </div>
         </div>
-</div>
+    </div>
 
     )
   }
