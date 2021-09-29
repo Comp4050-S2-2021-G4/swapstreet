@@ -67,7 +67,7 @@ class HomePage extends Component {
       <div className = "searchbar">
         <Jumbotron>
           <div className = "jobHeader">
-          <h1> Jobs Display </h1>
+          <h1> Jobs </h1>
           </div>
           <div className="form-outline">
           <div class="form-group w-75">
