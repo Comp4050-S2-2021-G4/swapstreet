@@ -1,17 +1,117 @@
-.body-img{
-  display: block;
-  width: 1200px; /* Width of background image */
-  height: 800px; /* Height of background image */
-  opacity: 0.5;
-  position: fixed;
+.homepage-elements .jumbotron {
+  margin:auto; 
+  width: 100%;
+  height: 0px; 
+  background:none;
+  background-repeat: no-repeat;
+  display:inline;
 }
-.homePage{
-  background-image: url("../../Assets/community.jpg");
-  background-size:cover;
+.homepage-elements .jumbotron:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../../Assets/image.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+    opacity : 0.4;
+    z-index: -1;
 }
 
+.searchbar{
+  position: center;
+  margin-right: 500px;
+  height: 250px; 
+  width:100%;
+}
+
+.jobHeader{
+  margin-left: 700px;
+}
+
+.searchbar .jumbotron{
+  background-color : rgba(247, 199, 43, 0.7);  
+}
+
+.form-outline{
+  margin-left:20%;
+  position:center;
+  text-align: center;
+}
+.about{
+  background-repeat: no-repeat;
+}
+.homepage-elements .card{
+  left: 40px;
+  top : 200px;
+  width : 80%;
+  height: 100%;
+  background-color : rgb(221, 175, 25,0.7);  
+  text-align: center;
+}
+.homepage-elements .card :hover{
+  color:rgb(221, 175, 25); ;
+  background-color: rgb(10,10,10);
+}
+.button-register{
+  text-align:center;
+  margin:auto;
+  display:flex;
+  display:grid;
+  width : 20%;
+  animation: showup 9s normal;
+}
+.card-img-bottom{
+  background-image: url("./../../Assets/location.jpg");
+  background-size : cover;
+  height:70%;
+  width : 70%;
+  position: center;
+}
+.about-section{
+overflow : hidden;
+}
+.animate-slide-1{
+  font-size:large;
+  font-style: bold;
+  text-align: center;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  margin: auto;
+  position : relative;
+  overflow : hidden;
+  animation: showup 7s normal;
+  background-repeat: no-repeat;
+}
+@keyframes showup {
+  0% {opacity:0;}
+  20% {opacity:1;}
+  80% {opacity:1;}
+  100% {opacity:1;}
+}
+.animate-slide-2{
+  text-align: center;
+  animation: slidein 9s normal;
+  font-style: italic;
+}
+@keyframes slidein {
+  0% { margin-left:-2500px; opacity:0}
+  20% { margin-left:-2200px; opacity:1}
+  35% { margin-left:0px; opacity:1}
+  100% { margin-left:0px; opacity:1}
+}
 .dropdown{
   padding: 10px;
+}
+.homePage{
+  background-repeat: no-repeat;
+}
+.jobs-display{
+bottom: 100%;
+position: grid;
 }
 
 .homeContainer {
@@ -20,44 +120,35 @@
   display: flex;
   justify-content: space-around;
   justify-items: center;
-  background-color: black;
   opacity: 0.8;
-
 }
-
 .homeCard {
   width: 23vw;
   min-height: 18vh;
   border: 2px solid gray;
   border-radius: 5px;
-
-
   margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
-  background: black;
 }
 
 .homeCard:hover {
-  background: grey;
+  background: rgb(231, 231, 231);
 }
-
 .homeCardBody {
-  background: green;
-  margin: 15px;
+  margin: 15px; 
 }
-
 .homeJobLocation {
-  color: white;
-  margin-bottom: 5px;
-
+  margin-bottom: 10px;
+  color : black;
 }
-
 .homeJobCost {
-  color: white;
+  font-size: x-large;
+  color : black;
+  display: inline;
 }
-
 .job:hover {
   text-decoration: none;
 }
+

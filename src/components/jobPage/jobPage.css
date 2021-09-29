@@ -1,5 +1,5 @@
 .container{
-    background-color: white;
+    background-color:white;
 }
 
 .body-img{
@@ -8,7 +8,7 @@
     height: 800px; /* Height of background image */
     opacity: 0.5;
     position: fixed;
-    }
+}
 
 .jobImage {
     width: 300px;
