@@ -131,21 +131,27 @@ position: grid;
   margin-right: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
+  height:250px;
 }
 
 .homeCard:hover {
-  background: grey;
+  background: rgb(231, 231, 231);
 }
 .homeCardBody {
   margin: 15px; 
 }
 .homeJobLocation {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color : black;
 }
 .homeJobCost {
+  margin-top: 400px;
+  font-size: x-large;
   color : black;
+  margin-left: 300px;
+  display: inline;
 }
 .job:hover {
   text-decoration: none;
 }
+

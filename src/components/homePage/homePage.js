@@ -164,12 +164,12 @@ class HomePage extends Component {
         <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
           <div className="homeCard border-dark mb-3">
             <div className="homeCardBody text-dark">
-              <h5 className="card-title">{job.title}</h5>
+              <h5 className="card-title">{job.title} </h5>
               <p className="card-text">{job.description}</p>
             </div>
             <div className="card-footer bg-transparent border-dark">
               <p className="homeJobLocation">Location: {job.location}</p>
-              <p className="homeJobCost">Cost: {job.price}</p>
+              <p className="homeJobCost"> <b> ${job.price} </b></p>
             </div>
           </div>
         </Link>
