@@ -3,7 +3,7 @@
  Title:  Homepage Component (UserProfile, JobsDisplay)
  Author and Co-Authors: Jayakrithi Shivakumar 
  Last updated: 29 Sept 2021 10:23PM
-;==========================================
+==========================================
 */
 
 import React, { Component, useState } from '../../../node_modules/react';
@@ -66,11 +66,16 @@ class HomePage extends Component {
       return(
       <div className = "searchbar">
         <Jumbotron>
-          <form className="form-inline">
-          <input type="search" placeholder="Search" aria-label="Search"
-            id="Search" onChange ={this.searchData}
+          <div className = "jobHeader">
+          <h1> Jobs Display </h1>
+          </div>
+          <div className="form-outline">
+          <div class="form-group w-75">
+          <input class = "form-control" type="search" placeholder="Search" aria-label="Search" 
+           id="Search" onChange ={this.searchData}
           />
-           </form>
+          </div>
+          </div>
            </Jumbotron>
            </div>  
       );    
@@ -152,8 +157,6 @@ class HomePage extends Component {
       );
     })
 
-    // takes care of listing jobs when user is logged in
-    // joblists consists of user jobs
     let jobList = this.state.searchResults.map(job => {
       return (job.userID != this.props.userID && job.jobStatus !== 4 &&
         <div className= "jobs-display">
