@@ -163,7 +163,7 @@ class HomePage extends Component {
       return (job.userID != this.props.userID && job.jobStatus !== 4 &&
         <div className= "jobs-display">
         <div className = "job-card">
-        <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
+        <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" }}}>
           <div className="homeCard border-dark mb-3">
             <div className="homeCardBody text-dark">
               <h5 className="card-title">{job.title} </h5>
@@ -174,6 +174,8 @@ class HomePage extends Component {
               <p className="homeJobCost"> <b> ${job.price} </b></p>
             </div>
           </div>
+          </Link>
+        </div>
         </div>
       );
     })
