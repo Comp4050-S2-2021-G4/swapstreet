@@ -24,12 +24,12 @@ const Profile = () => {
      rating = data.total
   })
 
-//   sessionStorage.setItem('Name', name);
-//   sessionStorage.setItem('Email', email);
-//   sessionStorage.setItem('Address', address);
-//   sessionStorage.setItem('Balance', balance);
-//   sessionStorage.setItem('About', about);
-//   sessionStorage.setItem('Role', role);
+   sessionStorage.setItem('Name', name);
+   sessionStorage.setItem('Email', email);
+   sessionStorage.setItem('Address', address);
+   sessionStorage.setItem('Balance', coins);
+   sessionStorage.setItem('About', about);
+   sessionStorage.setItem('Role', role);
 
   return (
       <div className="Profile-page">
