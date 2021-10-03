@@ -17,7 +17,7 @@ const ChangeInfo = ({id, name}) => {
       password: '', 
       address: '', 
       jobs: '',
-      rating: '',
+      rating: sessionStorage.getItem('Rating'),
       role: sessionStorage.getItem('Role'),
       balance: sessionStorage.getItem('Balance'),
       error: '',

@@ -13,21 +13,16 @@ import { isAuthenticated } from "../../auth/index";
 
 const Profile = () => {
   const {
-    user: { _id, name, email, address, coins, about, role}
+    user: { _id, name, email, address, rating, balance, about, role}
   } = isAuthenticated();
 
-  let rating = 0;
-  
-  fetch('http://localhost:3200/rating?total=true&chosenUserID=' + _id)
-  .then( resp => resp.json())
-  .then((data)=> {
-     rating = data.total
-  })
+ 
 
    sessionStorage.setItem('Name', name);
    sessionStorage.setItem('Email', email);
    sessionStorage.setItem('Address', address);
-   sessionStorage.setItem('Balance', coins);
+   sessionStorage.setItem('Rating', rating);
+   sessionStorage.setItem('Balance', balance);
    sessionStorage.setItem('About', about);
    sessionStorage.setItem('Role', role);
 
@@ -88,8 +83,8 @@ const Profile = () => {
                         <div className="col-sm-6">
                             <div className="card-body">
                                 <blockquote className="blockquote mb-0">
-                                    <p> Your Rating : {}</p>
-                                    <p> Balance : {coins}</p>
+                                    <p> Your Rating : {rating}</p>
+                                    <p> Balance : {balance}</p>
                                 </blockquote>
                             </div>
                         </div>
