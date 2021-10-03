@@ -42,6 +42,7 @@ applyForJob(event) {
                     job: data
                 })
         })
+        .catch((error) => console.log(error))
     }
 )
 }
@@ -73,6 +74,7 @@ acceptChosenUser(event) {
                     job: data
                 })
         })
+        .catch((error) => console.log(error))
     }
 )
 }
@@ -105,6 +107,7 @@ declineChosenUser(event) {
                     job: data
                 })
         })
+        .catch((error) => console.log(error))
     }
 )
 }
@@ -154,6 +157,7 @@ markAsCompleted(event) {
                             })
                     })
                 })
+                .catch((error) => console.log(error))
         })
     })
 
@@ -165,13 +169,13 @@ markAsCompleted(event) {
             .then( resp => resp.json())
             .then((data)=> {
                 this.setState({name : data[0].name})
-        })
+        }).catch((error) => console.log(error))
 
         fetch('http://localhost:3200/rating?total=true&chosenUserID=' + this.props.location.state.job.userID)
         .then( resp => resp.json())
         .then((data)=> {
             this.setState({rating : data.total})
-        })
+        }).catch((error) => console.log(error))
 
         fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.chosenUserID)
         .then( resp => resp.json())
@@ -179,13 +183,13 @@ markAsCompleted(event) {
             this.setState({chosenName : data[0].name,
             chosenEmail: data[0].email,
             chosenPicture: data[0].picture})
-        })
+        }).catch((error) => console.log(error))
 
         fetch('http://localhost:3200/rating?total=true&chosenUserID=' + this.props.location.state.job.chosenUserID)
         .then( resp => resp.json())
         .then((data)=> {
             this.setState({chosenRating : data.total})
-        })
+        }).catch((error) => console.log(error))
     }
 
 
@@ -215,7 +219,7 @@ markAsCompleted(event) {
                                         <h3 className="card-title">
                                             {job.title}
                                         </h3>
-                                        <div class = "card border-warning mb-3">
+                                        <div class = "card border-warning mb-2">
                                         <div className = "jobcard">
                                         <h5 className="card-subtitle mb-2 text-muted">
                                         <p className="card-header"> Job Location</p>
@@ -223,6 +227,7 @@ markAsCompleted(event) {
                                         <h6>
                                              <i class="glyphicon glyphicon-map-marker"></i> {job.location}
                                         </h6>
+                                        <br></br>
                                         <h5 className="card-subtitle mb-2 text-muted">
                                         <p className="card-header"> Job Price</p>
                                         </h5>
@@ -235,6 +240,7 @@ markAsCompleted(event) {
                                         <h6>
                                         {job.description}
                                         </h6>
+                                        <br></br>
                                         <h5 className="card-subtitle mb-2 text-muted">      
                                         <p className="card-header"> Job Status</p>     
                                         </h5>  
@@ -249,7 +255,7 @@ markAsCompleted(event) {
                                              <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Seller Details</p>     
                                              </h5>  
-                                            <h6 className="card-text">{"Listing by: "+ this.state.name}</h6>
+                                            <h6 className="card-text">{"Listing by: "+ this.state.name}</h6> <br></br>
                                             <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Ratings</p> </h5>
                                             <div className="ratingContainer">
