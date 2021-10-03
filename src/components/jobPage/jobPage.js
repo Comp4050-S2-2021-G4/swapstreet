@@ -253,19 +253,19 @@ markAsCompleted(event) {
                         </button>
                     </Link>
 
-                    {job.userID === this.state.userID && job.jobStatus !== 3 && job.jobStatus !== 4 && <Link to={{pathname: "/edit", state: {job: job}}}>
+                    {job.userID === this.state.userID && job.jobStatus !== 3 && job.jobStatus !== 4 || <Link to={{pathname: "/edit", state: {job: job}}}>
                         <button className="btn btn-primary btn-lg active">
                             Edit
                         </button>
                     </Link>}
                     
-                    {job.jobStatus === 1 && isAuthenticated() && job.userID !== this.state.userID && <Link onClick={e => {this.applyForJob(e)}}>
+                    {job.jobStatus === 1 && isAuthenticated() && job.userID !== this.state.userID || <Link onClick={e => {this.applyForJob(e)}}>
                         <button className="btn btn-primary btn-lg active">
                             Apply for Job
                         </button>
                     </Link>}
 
-                    {job.jobStatus === 3 && job.userID === this.state.userID && <Link onClick={e => {this.markAsCompleted(e)}}>
+                    {job.jobStatus === 3 && job.userID === this.state.userID || <Link onClick={e => {this.markAsCompleted(e)}}>
                         <button className="btn btn-success btn-lg active">
                             Completed
                         </button>
