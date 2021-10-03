@@ -73,9 +73,11 @@ class HomePage extends Component {
           </div>
           <div className="form-outline">
           <div class="form-group w-75">
+            <br/>
           <input class = "form-control" type="search" placeholder="Search" aria-label="Search" 
            id="Search" onChange ={this.searchData}
           />
+          
           </div>
           </div>
            </Jumbotron>

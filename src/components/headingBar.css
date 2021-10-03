@@ -92,6 +92,11 @@
     background-color: #aa001e;
     position:fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
+  }
+
+  .navbar-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
