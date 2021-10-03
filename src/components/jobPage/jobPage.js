@@ -189,20 +189,25 @@ markAsCompleted(event) {
     }
 
 
-  
+  /* 
+  <svg width="1em" height="1em" viewBox="0 0 16 16" className="userCoinsIcon" fill="#17a2b8" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"/>
+</svg>
+  */
   
   render() {
       const job = this.props.location.state.job
       const seller = job.seller
+      console.log("Job status print here ", job.jobStatus);
       return (
             <div className="container">
+                    <link rel="icon" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <div className="card">
                     <div class="row no-gutters">
                         <div className="col-md-4">
                             <img className="jobImage card-img-top"
-                                src={"https://picsum.photos/seed/" + this.state.job._id + "/400/400"} />
+                                />
                         </div>
-
                         <div className="col-md-8">
                             <div className="card-body">
                                 <div className="descriptionContainer">
@@ -210,32 +215,51 @@ markAsCompleted(event) {
                                         <h3 className="card-title">
                                             {job.title}
                                         </h3>
-                                        <h6 className="card-subtitle mb-2 text-muted">
-                                            Location: {job.location}
+                                        <div class = "card border-warning mb-3">
+                                        <div className = "jobcard">
+                                        <h5 className="card-subtitle mb-2 text-muted">
+                                        <p className="card-header"> Job Location</p>
+                                        </h5>
+                                        <h6>
+                                             <i class="glyphicon glyphicon-map-marker"></i> {job.location}
                                         </h6>
-                                        <h6 className="card-subtitle mb-2 text-muted">
-                                            Value: {job.price}
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" className="userCoinsIcon" fill="#17a2b8" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"/>
-                                            </svg>
+                                        <h5 className="card-subtitle mb-2 text-muted">
+                                        <p className="card-header"> Job Price</p>
+                                        </h5>
+                                        <h6>
+                                            Price: ${job.price}
                                         </h6>
+                                        <h5 className="card-subtitle mb-2 text-muted">
+                                        <p className="card-header"> Job Description</p>
+                                        </h5> 
+                                        <h6>
+                                        {job.description}
+                                        </h6>
+                                        <h5 className="card-subtitle mb-2 text-muted">      
+                                        <p className="card-header"> Job Status</p>     
+                                        </h5>  
+                                        <h6>
                                         <p className="card-text">
-                                            {job.description}
+                                            {job.jobStatus == 1 && "Listed Job" || job.jobStatus == 2 && "Applied" ||
+                                            job.jobStatus == 3 && "Active" || job.jobStatus == 4 && "Completed"
+                                            }
                                         </p>
-                                        <p className="card-text">
-                                            Job Status: {job.jobStatus === 1 && "Listed Job"}
-                                            {job.jobStatus === 2 && "Applied"}
-                                            {job.jobStatus === 3 && "Active"}
-                                            {job.jobStatus === 4 && "Completed"}
-                                        </p>
+                                        </h6> 
                                         <div className="sellerDetails">
-                                            <h6 className="sellerName text-muted">{"Listing by: "+ this.state.name}</h6>
+                                             <h5 className="card-subtitle mb-2 text-muted">      
+                                              <p className="card-header"> Seller Details</p>     
+                                             </h5>  
+                                            <h6 className="card-text">{"Listing by: "+ this.state.name}</h6>
+                                            <h5 className="card-subtitle mb-2 text-muted">      
+                                              <p className="card-header"> Ratings</p> </h5>
                                             <div className="ratingContainer">
                                                 <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                                 </svg>
                                                 <h6 className="sellerRating text-muted"> {this.state.rating}</h6>
                                             </div>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
