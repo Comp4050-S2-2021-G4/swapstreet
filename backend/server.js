@@ -23,8 +23,8 @@ app.use(cors());
 app.use(express.json());
 // newly added
 app.use('/auth', require("./routes/auth"));
-//app.use('/jobs', require("./routes/jobs"));
 app.use('/users', usersRouter);
+app.use('/add', jobsRouter);
 app.use('/jobs', jobsRouter);
 
 app.listen(port, ()=>{

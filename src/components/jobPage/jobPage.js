@@ -2,7 +2,7 @@ import React, { Component} from '../../../node_modules/react';
 import './jobPage.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { isAuthenticated } from "../../auth/index";
-
+import jobDataFill from '../dataFill/dataFillPage';
 import {  Link } from "react-router-dom";
 
 class Job extends Component {
@@ -16,8 +16,6 @@ class Job extends Component {
 
 applyForJob(event) {
     event.preventDefault();
-    //this.updateVariables();
-
     var job = this.state.job
     job.jobStatus = 2;
     job.chosenUserID = this.state.userID;
@@ -45,6 +43,7 @@ applyForJob(event) {
         .catch((error) => console.log(error))
     }
 )
+//jobDataFill.updateVariables();
 }
 
 acceptChosenUser(event) {
@@ -160,8 +159,6 @@ markAsCompleted(event) {
                 .catch((error) => console.log(error))
         })
     })
-
-
 }
 
     componentDidMount() {
