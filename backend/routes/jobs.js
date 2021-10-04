@@ -31,6 +31,11 @@ router.route('/count').get((req, res) => {
 router.route('/:_id').get((req, res)=>{
     Jobs.find({_id :req.params._id})
     .then(user => res.json(user))
+=======
+router.route('/').get((req, res)=>{
+    Jobs.find()
+    .then(jobs => res.json(jobs))
+>>>>>>> 9d31fa0... Able to retrieve users and jobs from localhost3200
     .catch(err => res.status(400).json('Error: '+ err));
 });
  */
