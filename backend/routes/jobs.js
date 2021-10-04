@@ -46,11 +46,13 @@ Fix needed : Needs to update JobID and other additional parameters
 as per the Jobs schema onto the Database.
 */
 router.route('/add').post((req, res) => {
-    const job_title = req.body.title;
-    const job_description = req.body.description;
-    const job_price = req.body.price;
-    const job_location = req.body.location;
-
+    const job_id = req.body.job_id;
+    const job_userID = req.body.job_userID;
+    const job_chosenUserID = 0;
+    const job_rating = 0;
+    const job_description = req.body.job_description;
+    const job_price = req.body.job_price;
+    const job_location = req.body.job_location;
 
     const newJob = new Jobs({
         jobID: 0,

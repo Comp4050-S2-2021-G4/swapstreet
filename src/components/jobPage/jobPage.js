@@ -46,7 +46,7 @@ applyForJob(event) {
         .catch((error) => console.log(error))
     }
 )
-
+//jobDataFill.updateVariables();
 }
 
 acceptChosenUser(event) {
