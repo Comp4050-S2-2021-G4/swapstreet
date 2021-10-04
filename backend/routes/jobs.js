@@ -2,24 +2,28 @@ const router = require('express').Router();
 let Jobs = require('../models/jobs.model.js');
 
 router.route('/').get((req, res)=>{
-    jobs.find()
+    Jobs.find()
     .then(jobs => res.json(jobs))
     .catch(err => res.status(400).json('Error: '+ err));
 });
 
 router.route('/add').post((req, res)=>{
-    const job_name = req.body.job_name;
-    const job_posted_date = req.body.job_posted_date;
-    const job_location = req.body.job_location;
+    const job_id = req.body.job_id;
+    const job_userID = req.body.job_userID;
+    const job_chosenUserID = req.body.job_chosenUserID;
+    const job_rating = req.body.job_rating;
     const job_description = req.body.job_description;
     const job_price = req.body.job_price;
+    const job_location = req.body.job_location;
 
     const newJob = new Jobs({
-        job_name,
-        job_posted_date,
-        job_location,
+        job_id,
+        job_userID,
+        job_chosenUserID,
+        job_rating,
         job_description,
-        job_price,
+        job_price ,
+        job_location
     });
 
     newJob.save()
