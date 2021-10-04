@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const jobsRouter = require('./routes/jobs')
+const usersRouter = require('./routes/users')
 require('dotenv').config();
 
 // Connecting to MongoDB
@@ -15,14 +16,16 @@ connection.once('open', ()=> {
 })
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3200;
 
 // Start the Server
 app.use(cors());
 app.use(express.json());
 // newly added
-app.use('/api/auth', require("./routes/auth"));
-//app.use('/jobs', jobsRouter);
+app.use('/auth', require("./routes/auth"));
+app.use('/users', usersRouter);
+app.use('/add', jobsRouter);
+app.use('/jobs', jobsRouter);
 
 app.listen(port, ()=>{
     console.log(`Server running on port: ${port}`);
