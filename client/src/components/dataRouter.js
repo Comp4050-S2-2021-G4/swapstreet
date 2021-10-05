@@ -1,3 +1,11 @@
+/* 
+==========================================
+ Title: datafill
+ Author and Co-Authors: Faiyaz
+ Last updated: 15 Oct 2021
+==========================================
+*/
+
 import React, { Component } from 'react';
 import {
     BrowserRouter,
@@ -31,6 +39,7 @@ class dataRouter extends Component {
                 location: null,
                 userID: _id,
                 name: name,
+                email: email,
                 balance: balance,
                 jobs: []
             };
@@ -39,6 +48,7 @@ class dataRouter extends Component {
                 location: null,
                 userID: null,
                 name: null,
+                email: null,
                 balance: null,
                 jobs: []
             };
@@ -48,9 +58,9 @@ class dataRouter extends Component {
     componentDidMount() {
         this.updateJobs()
     }
-
+  //`${API}/getJobs${secret}`
     updateJobs() {
-        fetch(`${API}/getJobs${secret}`)
+        fetch('http://localhost:3200/jobs')
             .then(resp => resp.json())
             .then((data) => {
                 this.setState({

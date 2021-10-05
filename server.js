@@ -1,3 +1,11 @@
+/* 
+==========================================
+ Title: Express Server
+ Author and Co-Authors: Jayakrithi Shivakumar 
+ Last updated: 10 Oct 2021 12:07AM
+==========================================
+*/
+
 // Loads required packages 
 /* To run the server use nodemon */
 const express = require('express');
@@ -21,11 +29,13 @@ const port = process.env.PORT || 3200;
 // Start the Server
 app.use(cors());
 app.use(express.json());
-// newly added
-app.use('/auth', require("./routes/auth"));
+
+//app.use('/auth', require("./routes/auth"));
 app.use('/users', usersRouter);
-app.use('/add', jobsRouter);
 app.use('/jobs', jobsRouter);
+app.use('/', jobsRouter);
+
+
 
 app.listen(port, ()=>{
     console.log(`Server running on port: ${port}`);
