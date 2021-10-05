@@ -6,7 +6,6 @@
 ==========================================
 */
 const router = require('express').Router();
-const jobsCount = 0;
 let Jobs = require('../models/jobs.model.js');
 let MyUser = require('../models/users.model.js');
 
@@ -16,13 +15,6 @@ router.route('/').get((req, res) => {
         .then(jobs => res.json(jobs))
         .catch(err => res.status(400).json('Error: ' + err));
 });
-router.route('/count').get((req, res) => {
-    Jobs.count()
-        .then(jobsCount = res.json(),
-            jobs => res.json(jobs))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
 // Used for Testing
 // Return one user On Postman : Run it with URL
 // http://localhost:3200/jobs/<ObjectID>
@@ -31,7 +23,6 @@ router.route('/count').get((req, res) => {
 router.route('/:_id').get((req, res)=>{
     Jobs.find({_id :req.params._id})
     .then(user => res.json(user))
-=======
 router.route('/').get((req, res)=>{
     Jobs.find()
     .then(jobs => res.json(jobs))

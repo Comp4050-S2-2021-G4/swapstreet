@@ -24,11 +24,11 @@ class dashboard extends Component {
             user: { _id, name, email, address, balance, role }
         } = isAuthenticated();
     
-        var uID = this.props.userID
-
+        var uID = this.props._id
+        console.log("I am inside Dashboard now",uID);
         var myJobs = this.props.jobs
-        myJobs = this.props.jobs.filter(function (job) {
-           return job.chosenUserID === uID && job.jobStatus !== 4;
+        myJobs = this.props.jobs.filter(function (job) { // job.userID === uID
+           return job.jobStatus == 2;
         });
 
         var activeJobs = this.props.jobs

@@ -11,10 +11,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // chosenUserID : Number 
 const jobsSchema = new Schema({
- //   _id : {type:mongoose.Types.ObjectId},
+    _id : {type:mongoose.Types.ObjectId},
     jobID :{ type: Number},  
-    userID:{ type: Number},  
-    chosenUserID:{ type: String},  
+    userID:{ type: String},  
+    chosenUserID:{ type: String},
     jobStatus:{ type: Number},  
     rating:{ type: String}, 
     title:{ type: String},  
