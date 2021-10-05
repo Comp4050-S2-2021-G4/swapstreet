@@ -13,11 +13,12 @@ import { isAuthenticated } from "../../auth/index";
 
 const Profile = () => {
   const {
-    user: { _id, name, email, address, rating, balance, about, role}
+    user: { _id, name, email, address, rating, balance, about, role, Coins}
   } = isAuthenticated();
 
  
 
+    sessionStorage.setItem('ID', _id);
    sessionStorage.setItem('Name', name);
    sessionStorage.setItem('Email', email);
    sessionStorage.setItem('Address', address);
@@ -84,7 +85,7 @@ const Profile = () => {
                             <div className="card-body">
                                 <blockquote className="blockquote mb-0">
                                     <p> Your Rating : {rating}</p>
-                                    <p> Balance : {balance}</p>
+                                    <p> Balance : {balance} {Coins}</p>
                                 </blockquote>
                             </div>
                         </div>

@@ -31,6 +31,7 @@ class dataRouter extends Component {
                 location: null,
                 userID: _id,
                 name: name,
+                email: email,
                 balance: balance,
                 jobs: []
             };
@@ -39,6 +40,7 @@ class dataRouter extends Component {
                 location: null,
                 userID: null,
                 name: null,
+                email: null,
                 balance: null,
                 jobs: []
             };

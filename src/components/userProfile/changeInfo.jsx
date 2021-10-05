@@ -12,6 +12,8 @@ const ChangeInfo = ({id, name}) => {
   // const newName = sessionStorage.getItem('name');
 
     const initialState = {
+      query: sessionStorage.getItem('Email'),
+      userId: sessionStorage.getItem('ID'),
       newName: sessionStorage.getItem('Name'),
       email: '', 
       password: '', 
@@ -40,7 +42,7 @@ const ChangeInfo = ({id, name}) => {
       
   }
   
-  const { newName, email, address, password, jobs, rating, role, balance, success, error } = formInfo;
+  const {query, userId, newName, email, address, password, jobs, rating, role, balance, success, error } = formInfo;
 
     const formHandler = (event) => {
       console.log("Form submitted: ")
@@ -54,13 +56,14 @@ const ChangeInfo = ({id, name}) => {
       console.log("Form submitted: ", formInfo)
       event.preventDefault();
       setFormInfo({ ...formInfo, error: false });
-      update({newName, email, password, address, jobs, rating, role, balance})
+      update({query, userId, newName, email, password, address, jobs, rating, role, balance})
       .then(data => {
           if(data.error) {
             setFormInfo({...formInfo, error: data.error, success: true})
           } else {
             setFormInfo({
                   ...formInfo,
+                  userId: '',
                   email: '',
                   password: '',
                   address:'',
