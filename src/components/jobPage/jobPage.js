@@ -30,7 +30,7 @@ applyForJob(event) {
     url.searchParams.set("description", job.desc)
     url.searchParams.set("price", job.price)
     url.searchParams.set("location", job.location)
-
+   // this.updateVariables();
     fetch(url.href).then(() =>
     {
         fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
@@ -43,7 +43,7 @@ applyForJob(event) {
         .catch((error) => console.log(error))
     }
 )
-//jobDataFill.updateVariables();
+
 }
 
 acceptChosenUser(event) {
