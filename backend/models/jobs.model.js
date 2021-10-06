@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const jobsSchema = new Schema({
-    job_ID :{ type: Number, required: true},  
+    _id :{type: String, required: true},  
+    jobID :{ type: Number, required: true},  
     user_ID:{ type: Number, required: true},  
     chosenUserID:{ type: Number, required: true},  
     job_status:{ type: String, required: true},  
