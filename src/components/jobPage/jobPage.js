@@ -19,10 +19,11 @@ applyForJob(event) {
     var job = this.state.job
     job.jobStatus = 2;
     job.chosenUserID = this.state.userID;
-
-    let url = new URL("http://localhost:3200/jobs?replace=true")
+    //Needs Fixing
+    let url = new URL("http://localhost:3200/jobs/1")
 
     url.searchParams.set("replaceID", job._id)
+    url.searchParams.set("jobID", job.jobID)
     url.searchParams.set("userID", job.userID)
     url.searchParams.set("jobStatus", 2)
     url.searchParams.set("chosenUserID", job.chosenUserID)
@@ -30,10 +31,12 @@ applyForJob(event) {
     url.searchParams.set("description", job.desc)
     url.searchParams.set("price", job.price)
     url.searchParams.set("location", job.location)
-   // this.updateVariables();
+    //this.updateVariables();
+    // Needs Fixing
     fetch(url.href).then(() =>
     {
-        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
+        console.log("Inside applyJob hello ", job.jobID)
+        fetch('http://localhost:3200/jobs/'+ 1)
         .then( resp => resp.json())
         .then((data)=> {
                 this.setState({
