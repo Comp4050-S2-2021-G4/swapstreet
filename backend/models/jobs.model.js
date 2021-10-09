@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const jobsSchema = new Schema({
+    _id : {type: String},
     jobID :{ type: Number},  
     userID:{ type: Number},  
     chosenUserID:{ type: Number},  

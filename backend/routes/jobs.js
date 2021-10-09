@@ -16,7 +16,7 @@ router.route('/').get((req, res)=>{
     .catch(err => res.status(400).json('Error: '+ err));
 });
 
-/* Used for Testing 
+/* Used for Testing
 // Return one user On Postman : Run it with URL
 // http://localhost:3200/jobs/7  {where 7 is the ID}
 router.route('/:jobID').get((req, res)=>{
@@ -24,7 +24,7 @@ router.route('/:jobID').get((req, res)=>{
     .then(jobs => res.json(jobs))
     .catch(err => res.status(400).json('Error: '+ err));
 });
-*/
+ */
 /* 
 Creates a new Job via Postman 
 URL : http://localhost:3200/jobs/add
@@ -51,6 +51,7 @@ router.route('/add').post((req, res)=>{
 // Used to Apply Jobs
 // Only User Shrek can apply for Jobs
 // Needs fixing (use of jwt to initialise chosenUserId)
+
 router.route('/:jobID').post((req, res)=>{
    if (typeof window !== 'undefined') {
         myData  = localStorage.getItem('jwt');
