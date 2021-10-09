@@ -1,3 +1,11 @@
+/* 
+==========================================
+ Title: Express Server
+ Author and Co-Authors: Jayakrithi Shivakumar 
+ Last updated: 10 Oct 2021 12:07AM
+==========================================
+*/
+
 // Loads required packages 
 /* To run the server use nodemon */
 const express = require('express');
@@ -24,8 +32,9 @@ app.use(express.json());
 // newly added
 app.use('/auth', require("./routes/auth"));
 app.use('/users', usersRouter);
-app.use('/jobs', jobsRouter);
-app.use('/jobs/:jobID', jobsRouter);
+app.use('/jobs/add', jobsRouter);
+app.use('/', jobsRouter);
+app.use('/:jobID', jobsRouter);
 
 
 
