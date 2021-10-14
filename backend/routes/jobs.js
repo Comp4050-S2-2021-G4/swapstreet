@@ -71,8 +71,8 @@ router.route('/add').post((req, res)=>{
         }
 });
 */
-router.route('/:_id/:_pid/:jobStatus').post((req, res)=>{
-    Jobs.updateOne({_id:req.params._id},{jobStatus:jobStatus}, function (err, docs) {
+router.route('/:_id/:_pid/:jobSt').post((req, res)=>{
+    Jobs.updateOne({_id:req.params._id},{jobStatus:req.params.jobSt}, function (err, docs) {
     if (err){
         console.log(err)
     }

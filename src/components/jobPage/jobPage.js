@@ -15,7 +15,7 @@ class Job extends Component {
         jobID:'', 
         chosenUserID: this.props.chosenUserID,  
         jobStatus: this.props.jobStatus,  
-        rating: '', 
+        rating: this.props.rating, 
         title: '',  
         description : '',  
         price: '',    
@@ -50,7 +50,6 @@ applyForJob(event) {
 })
 }
 
-
 acceptChosenUser(event) {
     event.preventDefault();
     //this.updateVariables();
@@ -84,86 +83,60 @@ acceptChosenUser(event) {
 declineChosenUser(event) {
     event.preventDefault();
     //this.updateVariables();
-
     var job = this.state.job
-    job.jobStatus = 1;
-    job.chosenUserID = " ";
-
-    let url = new URL("http://localhost:3200/jobs?replace=true")
-
-    url.searchParams.set("replaceID", job._id)
-    url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", 1)
-    url.searchParams.set("chosenUserID", job.chosenUserID)
-    url.searchParams.set("title", job.title)
-    url.searchParams.set("description", job.desc)
-    url.searchParams.set("price", job.price)
-    url.searchParams.set("location", job.location)
-
-    fetch(url.href).then(() =>
-    {
-        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
-        .then( resp => resp.json())
-        .then((data)=> {
-                this.setState({
-                    job: data
-                })
-        })
-        .catch((error) => console.log(error))
+    job.jobStatus = 2;
+    job.chosenUserID = this.state.userID;
+    var jobID = this.state.job._id;
+    var chosenUserID = this.state.userID;
+    console.log("ACCEPT CHOSEN USER EVENT ",jobID);
+    console.log("users Id = ",chosenUserID);        
+    const declineJob = {
+        jobStatus :2,
+        chosenUserID: this.state.userID
     }
-)
+    this.setState({
+        jobStatus :2,
+        chosenUserID: this.state.userID
+    })
+    // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
+    axios.post(`http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/2`,declineJob)
+    .then( res => console.log(res.data()))
+    .then((data)=> {
+        this.setState({
+            job: data
+        })
+})
 }
-/*
+
 markAsCompleted(event) {
     event.preventDefault();
     //this.updateVariables();
     //http://localhost:3200/rating?rating=true&userID=5f728f406d252648c48c303e&chosenUserID=5f728f406d252648c48c303e&jobID=5f728f406d252648c48c303e&rating=-1
-
     var job = this.state.job
     job.jobStatus = 4;
-
-    let url = new URL("http://localhost:3200/jobs?replace=true")
-
-    url.searchParams.set("replaceID", job._id)
-    url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", 4)
-    url.searchParams.set("chosenUserID", job.chosenUserID)
-    url.searchParams.set("title", job.title)
-    url.searchParams.set("description", job.desc)
-    url.searchParams.set("price", job.price)
-    url.searchParams.set("location", job.location)
-
-    fetch(url.href).then(() =>
-    {
-        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
-        .then( resp => resp.json())
-        .then((data)=> {
-                this.setState({
-                    job: data
-                })
-
-                url = new URL("http://localhost:3200/rating?add=true")
-
-                url.searchParams.set("userID", job.userID)
-                url.searchParams.set("chosenUserID", job.chosenUserID)
-                url.searchParams.set("jobID", job._id)
-                url.searchParams.set("rating", 1)
-            
-                fetch(url.href).then(() =>
-                {
-                    fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
-                    .then( resp => resp.json())
-                    .then((data)=> {
-                            this.setState({
-                                job: data
-                            })
-                    })
-                })
-                .catch((error) => console.log(error))
-        })
+    job.chosenUserID = this.state.userID;
+    var jobID = this.state.job._id;
+    var chosenUserID = this.state.userID;
+    console.log("ACCEPT CHOSEN USER EVENT ",jobID);
+    console.log("users Id = ",chosenUserID);        
+    const completedJob = {
+        jobStatus :4,
+        chosenUserID: this.state.userID
+    }
+    this.setState({
+        jobStatus :4,
+        chosenUserID: this.state.userID
     })
+    // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
+    axios.post(`http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/4`,completedJob)
+    .then( res => console.log(res.data()))
+    .then((data)=> {
+        this.setState({
+            job: data
+        })
+})
 }
-*/
+
     componentDidMount() {
         fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
             .then( resp => resp.json())
