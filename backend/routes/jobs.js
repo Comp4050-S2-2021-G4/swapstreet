@@ -6,6 +6,7 @@
 ==========================================
 */
 const router = require('express').Router();
+const jobsCount = 0;
 let Jobs = require('../models/jobs.model.js');
 let MyUser = require('../models/users.model.js');
 
@@ -15,13 +16,21 @@ router.route('/').get((req, res)=>{
     .then(jobs => res.json(jobs))
     .catch(err => res.status(400).json('Error: '+ err));
 });
+router.route('/count').get((req, res)=>{
+    Jobs.count()
+    .then(jobsCount = res.json(),
+        jobs => res.json(jobs))
+    .catch(err => res.status(400).json('Error: '+ err));
+});
 
-/* Used for Testing
+// Used for Testing
 // Return one user On Postman : Run it with URL
-// http://localhost:3200/jobs/7  {where 7 is the ID}
-router.route('/:jobID').get((req, res)=>{
-    Jobs.find({jobID :req.params.jobID})
-    .then(jobs => res.json(jobs))
+// http://localhost:3200/jobs/<ObjectID>
+
+/*
+router.route('/:_id').get((req, res)=>{
+    Jobs.find({_id :req.params._id})
+    .then(user => res.json(user))
     .catch(err => res.status(400).json('Error: '+ err));
 });
  */
@@ -38,6 +47,7 @@ router.route('/add').post((req, res)=>{
     const job_location = req.body.location;
 
     const newJob = new Jobs({
+        jobID : 2,
         title : job_title,
         description: job_description,
         price : job_price ,
@@ -51,21 +61,32 @@ router.route('/add').post((req, res)=>{
 // Used to Apply Jobs
 // Only User Shrek can apply for Jobs
 // Needs fixing (use of jwt to initialise chosenUserId)
-
-router.route('/:jobID').post((req, res)=>{
-   if (typeof window !== 'undefined') {
-        myData  = localStorage.getItem('jwt');
-        console.log('we are running on the client')
-    } else {
-        console.log('we are running on the server');
-    }
-    Jobs.findOneAndUpdate({jobID:req.params.jobID},{chosenUserId:8},{jobStatus:2}, function (err, docs) {
+/*
+    Jobs.updateOne({jobID:req.params._id},{chosenUserID:req.params._pid},function (err, docs) {
         if (err){
             console.log(err)
         }
         else{
-            console.log("Updated Docs : ", docs);
+            console.log("Updated Docs : ", docs.nModified);
         }
+});
+*/
+router.route('/:_id/:_pid').post((req, res)=>{
+    Jobs.updateOne({_id:req.params._id},{jobStatus:2}, function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated Docs : ", docs);
+    }
+});
+    Jobs.updateOne({_id:req.params._id},{chosenUserID:req.params._pid},function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated Docs : ", docs.nModified);
+    }
 });
 });
 

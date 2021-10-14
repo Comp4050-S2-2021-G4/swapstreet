@@ -7,4 +7,11 @@ router.route('/').get((req, res)=>{
     .catch(err => res.status(400).json('Error: '+ err));
 });
 
+// Finds user by ObjectID
+router.route('/:_id').get((req, res)=>{
+    Users.find({_id :req.params._id})
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json('Error: '+ err));
+});
+
 module.exports = router;
