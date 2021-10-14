@@ -4,13 +4,22 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { isAuthenticated } from "../../auth/index";
 import jobDataFill from '../dataFill/dataFillPage';
 import {  Link } from "react-router-dom";
+const axios = require('axios').default;
 
 class Job extends Component {
   constructor(props) {
     super(props);
     this.state = {
         userID: this.props.userID,
-        job: this.props.location.state.job
+        job: this.props.location.state.job,
+        jobID:'', 
+        chosenUserID: this.props.chosenUserID,  
+        jobStatus: this.props.jobStatus,  
+        rating: '', 
+        title: '',  
+        description : '',  
+        price: '',    
+        location: ''
     }
   }
 
@@ -19,36 +28,29 @@ applyForJob(event) {
     var job = this.state.job
     job.jobStatus = 2;
     job.chosenUserID = this.state.userID;
-    //Needs Fixing
-    let url = new URL("http://localhost:3200/jobs/1")
-
-    url.searchParams.set("replaceID", job._id)
-    url.searchParams.set("jobID", job.jobID)
-    url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", 2)
-    url.searchParams.set("chosenUserID", job.chosenUserID)
-    url.searchParams.set("title", job.title)
-    url.searchParams.set("description", job.desc)
-    url.searchParams.set("price", job.price)
-    url.searchParams.set("location", job.location)
-    //this.updateVariables();
-    // Needs Fixing
-    fetch(url.href).then(() =>
-    {
-        console.log("Inside applyJob hello ", job.jobID)
-        fetch('http://localhost:3200/jobs/'+ 1)
-        .then( resp => resp.json())
-        .then((data)=> {
-                this.setState({
-                    job: data
-                })
-        })
-        .catch((error) => console.log(error))
+    var jobID = this.state.job._id;
+    var chosenUserID = this.state.userID;
+    console.log("jobs object ID ",jobID);
+    console.log("users Id = ",chosenUserID);        
+    const appliedJob = {
+        jobStatus :2,
+        chosenUserID: this.state.userID
     }
-)
-
+    this.setState({
+        jobStatus :2,
+        chosenUserID: this.state.userID
+    })
+    // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
+    axios.post(` http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c`,appliedJob)
+    .then( res => console.log(res.data()))
+    .then((data)=> {
+        this.setState({
+            job: data
+        })
+})
 }
 
+/*
 acceptChosenUser(event) {
     event.preventDefault();
     //this.updateVariables();
@@ -163,7 +165,7 @@ markAsCompleted(event) {
         })
     })
 }
-
+*/
     componentDidMount() {
         fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
             .then( resp => resp.json())
