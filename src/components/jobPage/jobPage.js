@@ -41,7 +41,7 @@ applyForJob(event) {
         chosenUserID: this.state.userID
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(` http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c`,appliedJob)
+    axios.post(` http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/2`,appliedJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
@@ -50,37 +50,35 @@ applyForJob(event) {
 })
 }
 
-/*
+
 acceptChosenUser(event) {
     event.preventDefault();
     //this.updateVariables();
 
+    event.preventDefault();
     var job = this.state.job
     job.jobStatus = 3;
-
-    let url = new URL("http://localhost:3200/jobs?replace=true")
-
-    url.searchParams.set("replaceID", job._id)
-    url.searchParams.set("userID", job.userID)
-    url.searchParams.set("jobStatus", 3)
-    url.searchParams.set("chosenUserID", job.chosenUserID)
-    url.searchParams.set("title", job.title)
-    url.searchParams.set("description", job.desc)
-    url.searchParams.set("price", job.price)
-    url.searchParams.set("location", job.location)
-
-    fetch(url.href).then(() =>
-    {
-        fetch('http://localhost:3200/jobs?fetch=true&_id=' + job._id)
-        .then( resp => resp.json())
-        .then((data)=> {
-                this.setState({
-                    job: data
-                })
-        })
-        .catch((error) => console.log(error))
+    job.chosenUserID = this.state.userID;
+    var jobID = this.state.job._id;
+    var chosenUserID = this.state.userID;
+    console.log("ACCEPT CHOSEN USER EVENT ",jobID);
+    console.log("users Id = ",chosenUserID);        
+    const acceptJob = {
+        jobStatus :3,
+        chosenUserID: this.state.userID
     }
-)
+    this.setState({
+        jobStatus :3,
+        chosenUserID: this.state.userID
+    })
+    // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
+    axios.post(` http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/3`,acceptJob)
+    .then( res => console.log(res.data()))
+    .then((data)=> {
+        this.setState({
+            job: data
+        })
+})
 }
 
 declineChosenUser(event) {
@@ -115,7 +113,7 @@ declineChosenUser(event) {
     }
 )
 }
-
+/*
 markAsCompleted(event) {
     event.preventDefault();
     //this.updateVariables();
@@ -200,7 +198,7 @@ markAsCompleted(event) {
                                                 <path fill-rule="evenodd" d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"/>
 </svg>
   */
-  
+  //  && job.userID === this.state.userID && this.state.chosenName !== null
   render() {
       const job = this.props.location.state.job
       const seller = job.seller
@@ -308,8 +306,8 @@ markAsCompleted(event) {
                 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
-
-                {job.jobStatus === 2 && job.userID === this.state.userID && this.state.chosenName !== null &&
+                
+                {job.jobStatus === 2 &&
                 <div class="card border-dark mb-3 dash-card">
                         <div class="card-body text-dark dash-card-body">
                             <h5 class="card-title">{this.state.chosenName} Has Applied for this Job</h5>
