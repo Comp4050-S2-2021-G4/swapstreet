@@ -30,8 +30,8 @@ applyForJob(event) {
     job.chosenUserID = this.state.userID;
     var jobID = this.state.job._id;
     var chosenUserID = this.state.userID;
-    console.log("jobs object ID ",jobID);
-    console.log("users Id = ",chosenUserID);        
+    var jobStatus = 2;
+    console.log("User name = ?? ",this.state.chosenName);  
     const appliedJob = {
         jobStatus :2,
         chosenUserID: this.state.userID
@@ -41,7 +41,7 @@ applyForJob(event) {
         chosenUserID: this.state.userID
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(` http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/2`,appliedJob)
+    axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,appliedJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
@@ -60,8 +60,8 @@ acceptChosenUser(event) {
     job.chosenUserID = this.state.userID;
     var jobID = this.state.job._id;
     var chosenUserID = this.state.userID;
-    console.log("ACCEPT CHOSEN USER EVENT ",jobID);
-    console.log("users Id = ",chosenUserID);        
+    var jobStatus = 3;
+    console.log("User name = ?? ",this.state.chosenName);        
     const acceptJob = {
         jobStatus :3,
         chosenUserID: this.state.userID
@@ -71,7 +71,7 @@ acceptChosenUser(event) {
         chosenUserID: this.state.userID
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(` http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/3`,acceptJob)
+    axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,acceptJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
@@ -88,6 +88,7 @@ declineChosenUser(event) {
     job.chosenUserID = this.state.userID;
     var jobID = this.state.job._id;
     var chosenUserID = this.state.userID;
+    var jobStatus = 2;
     console.log("ACCEPT CHOSEN USER EVENT ",jobID);
     console.log("users Id = ",chosenUserID);        
     const declineJob = {
@@ -99,7 +100,7 @@ declineChosenUser(event) {
         chosenUserID: this.state.userID
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(`http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/2`,declineJob)
+    axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,declineJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
@@ -117,6 +118,7 @@ markAsCompleted(event) {
     job.chosenUserID = this.state.userID;
     var jobID = this.state.job._id;
     var chosenUserID = this.state.userID;
+    var jobStatus = 4;
     console.log("ACCEPT CHOSEN USER EVENT ",jobID);
     console.log("users Id = ",chosenUserID);        
     const completedJob = {
@@ -128,7 +130,7 @@ markAsCompleted(event) {
         chosenUserID: this.state.userID
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(`http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/4`,completedJob)
+    axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,completedJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
