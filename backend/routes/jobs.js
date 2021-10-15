@@ -47,11 +47,11 @@ router.route('/add').post((req, res)=>{
     const job_location = req.body.location;
 
     const newJob = new Jobs({
-        jobID : 2,
         title : job_title,
         description: job_description,
         price : job_price ,
         location :job_location
+
     });
     newJob.save()
     .then(()=> res.json('new job added!!'))

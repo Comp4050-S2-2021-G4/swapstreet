@@ -40,8 +40,9 @@ applyForJob(event) {
         jobStatus :2,
         chosenUserID: this.state.userID
     })
-    // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(` http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/2`,appliedJob)
+    //axios.post(`http://localhost:3200/jobs/${jobID}/${chosenUserID}/2`,appliedJob)
+    // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c 
+    axios.post(`http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c/2`,appliedJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
