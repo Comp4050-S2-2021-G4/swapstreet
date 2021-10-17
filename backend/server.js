@@ -1,9 +1,18 @@
+/* 
+==========================================
+ Title: Express Server
+ Author and Co-Authors: Jayakrithi Shivakumar 
+ Last updated: 10 Oct 2021 12:07AM
+==========================================
+*/
+
 // Loads required packages 
 /* To run the server use nodemon */
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const jobsRouter = require('./routes/jobs')
+const usersRouter = require('./routes/users')
 require('dotenv').config();
 
 // Connecting to MongoDB
@@ -15,14 +24,19 @@ connection.once('open', ()=> {
 })
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3200;
 
 // Start the Server
 app.use(cors());
 app.use(express.json());
 // newly added
-app.use('/api/auth', require("./routes/auth"));
-//app.use('/jobs', jobsRouter);
+app.use('/auth', require("./routes/auth"));
+app.use('/users', usersRouter);
+app.use('/jobs/add', jobsRouter);
+app.use('/', jobsRouter);
+app.use('/:jobID', jobsRouter);
+
+
 
 app.listen(port, ()=>{
     console.log(`Server running on port: ${port}`);

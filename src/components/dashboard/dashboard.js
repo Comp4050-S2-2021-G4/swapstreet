@@ -8,8 +8,8 @@ import CurrentJobs from './currentJobs';
 import History from './history';
 import Info from './info';
 import changeInfo from '../userProfile/changeInfo';
-//import Datafill from '../dataFill/dataFillPage';
-//import { isAuthenticated } from "../../auth/index";
+import Datafill from '../dataFill/dataFillPage';
+import { isAuthenticated } from "../../auth/index";
 
 
 class dashboard extends Component {
@@ -17,15 +17,13 @@ class dashboard extends Component {
         super(props);
     }
 
-    
 
     render() {
-        /* Get user info if authenticated
+       //  Get user info if authenticated
         const {
             user: { _id, name, email, address, balance, role }
         } = isAuthenticated();
-        */
-
+    
         var uID = this.props.userID
 
         var myJobs = this.props.jobs
@@ -45,7 +43,6 @@ class dashboard extends Component {
 
 
         
-
         return (
             <div>
                 <div class="container">

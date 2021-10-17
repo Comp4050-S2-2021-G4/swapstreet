@@ -50,9 +50,9 @@ class dataRouter extends Component {
     componentDidMount() {
         this.updateJobs()
     }
-
+  //`${API}/getJobs${secret}`
     updateJobs() {
-        fetch(`${API}/getJobs${secret}`)
+        fetch(`${API}/getJobs`)
             .then(resp => resp.json())
             .then((data) => {
                 this.setState({
