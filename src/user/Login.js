@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import Layout from '../components/Layout'
 import {Redirect} from 'react-router-dom'
-import { login, authenticate, isAuthenticated } from '../auth/index'
+import { login, authenticate, isAuthenticated } from '../auth/index';
+import emailjs from 'emailjs-com';
+import{ init } from 'emailjs-com';
+init("user_9f6fIArfxnA0Lmtfo0XIN");
 
 const Login = () => {
 
@@ -37,8 +40,11 @@ const Login = () => {
                 })
             })
         }
-    };
 
+        // send multi-factor authentication
+        emailjs.send("service_3qkms1a","template_091cuh3");
+        console.log("Email sent for Authentication");
+    };
 
     const registerForm = () => (
         <form>
