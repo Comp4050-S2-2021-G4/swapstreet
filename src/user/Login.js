@@ -42,7 +42,7 @@ const Login = () => {
         }
 
         // send multi-factor authentication
-        emailjs.send("service_3qkms1a","template_091cuh3");
+        // emailjs.send("service_3qkms1a","template_091cuh3");
         console.log("Email sent for Authentication");
     };
 
