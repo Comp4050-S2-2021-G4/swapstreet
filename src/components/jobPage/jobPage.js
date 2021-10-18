@@ -264,7 +264,7 @@ markAsCompleted(event) {
                         </button>
                     </Link>}
                     
-                    {job.jobStatus === 1 && isAuthenticated() && job.userID !== this.state.userID || <Link onClick={e => {this.applyForJob(e)}}>
+                    {job.jobStatus === 1 && isAuthenticated() && job.userID !== this.state.userID && <Link onClick={e => {this.applyForJob(e)}}>
                         <button className="btn btn-primary btn-lg active">
                             Apply for Job
                         </button>
