@@ -1,20 +1,40 @@
+/* 
+==========================================
+ Title: datafill
+ Author and Co-Authors: Jayakrithi  
+ Last updated: 15 Oct 2021
+==========================================
+*/
+
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+const axios = require('axios').default;
 
 class jobDataFill extends Component {
-
+    
     constructor(props) {
         super(props);
         this.state = {
-            type: this.props.location.pathname
+            type: this.props.location.pathname,
+            userID: this.props.userID,
+            job: this.props.location.state.job,
+            jobID:'', 
+            chosenUserID: '',  
+            jobStatus: '',  
+            rating: '', 
+            title: '',  
+            description : '',  
+            price: '',    
+            location: ''
         }
-        
+    
+        this.submitData = this.submitData.bind(this);
     }
 
     componentDidMount(){
-        this.state.type === "/edit" ? this.updateVariables() : this.newJob()
+        this.state.type === "/add" ? this.updateVariables() : this.newJob()
     }
 
 
@@ -24,31 +44,19 @@ class jobDataFill extends Component {
     submitData(event) {
         // Might cause an Error
         //console.log(this.jobStatus.value);
-        event.preventDefault();
-
-        let url = new URL("http://localhost:3200/jobs?" + (this.state.type === "/edit" ? "replace" : "add") + "=true")
-        if(this.state.type === "/edit"){
-            url.searchParams.set("replaceID", this.replaceID)
-        }
-        url.searchParams.set("userID", this.props.userID)
-        url.searchParams.set("jobStatus", this.jobStatus.value)
-        url.searchParams.set("chosenUserID", this.chosenUserID.value ? this.chosenUserID.value : "null")
-        url.searchParams.set("title", this.title.value)
-        url.searchParams.set("description", this.desc.value)
-        url.searchParams.set("price", this.price.value)
-        url.searchParams.set("location", this.location.value)
-
-        fetch(url.href).then(() =>
-            {
-                fetch('http://localhost:3200/jobs?fetch=true&userID=' + this.props.userID)
-                .then( resp => resp.json())
-                .then((data)=> {
-                        this.setState({
-                            jobs: data
-                        })
-                })
+        event.preventDefault(); 
+        console.log("inside");
+        const newJob = {
+                title : this.title.value,
+                description: this.desc.value,
+                price : this.price.value,
+                location : this.location.value
             }
-        )
+            console.log(newJob);
+
+        axios.post('http://localhost:3200/jobs/add', newJob)
+        .then( res => console.log("works"))  
+        window.location.href = "/";
     }
 
     newJob(){
@@ -58,13 +66,13 @@ class jobDataFill extends Component {
 
     updateVariables(){
         var job = this.props.location.state.job;
-        this.replaceID = job._id;
-        this.jobStatus.value = job.jobStatus;
-        this.chosenUserID.value = job.chosenUserID;
-        this.title.value = job.title;
-        this.desc.value = job.description;
-        this.price.value = job.price;
-        this.location.value = job.location;
+      //  this.replaceID = job._id;
+      //  this.jobStatus.value = job.jobStatus;
+        // this.chosenUserID.value = job.chosenUserID;
+        // this.title.value = job.title;
+        // this.desc.value = job.description;
+        // this.price.value = job.price;
+        // this.location.value = job.location;
     }
 
 
