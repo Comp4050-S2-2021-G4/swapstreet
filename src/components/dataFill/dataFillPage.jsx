@@ -55,8 +55,13 @@ class jobDataFill extends Component {
             console.log(newJob);
 
         axios.post('http://localhost:3200/jobs/add', newJob)
-        .then( res => console.log("works"))  
-        window.location.href = "/";
+            .then( res => {
+                console.log("works")
+                window.location.href = "/";
+            })
+            .catch(e => {
+                console.log(`dataFillPage#:63`, e);
+            })
     }
 
     newJob(){
