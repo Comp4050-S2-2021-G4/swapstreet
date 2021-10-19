@@ -113,7 +113,7 @@ class jobDataFill extends Component {
                     <div className="form-group">
                         <label>jobStatus</label>
                         <select className="form-control form-control-sm" id="jobStatusInput" ref={(input) => this.jobStatus = input}>
-                            <option>1</option>
+                            <option selected='selected'>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
