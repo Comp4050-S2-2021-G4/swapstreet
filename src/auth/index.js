@@ -1,10 +1,14 @@
 import { API, ACCESS_TOKEN_SECRET } from '../config'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
+const firebaseAuth = () => firebase.auth()
 export const register = async(user) => {
     const salt = await bcrypt.genSalt(10);
     // console.log(name, email, password);
+    console.log('register:', user);
     const hashedPassword = await bcrypt.hash(user.password,salt);
     user.password = hashedPassword;
     const result = await fetch(`${API}/register`,{
@@ -21,6 +25,9 @@ export const register = async(user) => {
         .catch(err => {
             console.log(err);
         })
+    const signUpRes = await firebaseAuth().createUserWithEmailAndPassword(user.email, user.password)
+    console.log(signUpRes);
+    return result
 }
 
 export const update = async(user) => {
@@ -48,6 +55,7 @@ export const update = async(user) => {
 
 export const login = async (user) => {
     const loginError = { error: 'Incorrect email or password' };
+    console.log(user);
     const result = await fetch(`${API}/login`, {
         method: "POST",
         headers: {
@@ -62,6 +70,8 @@ export const login = async (user) => {
     } else {
         const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
         if (isCorrectPassword) {
+            const loggedUser = await firebaseAuth().signInWithEmailAndPassword(user.email, resultData.password)
+            console.log('login:', loggedUser);
             const token = jwt.sign(resultData, ACCESS_TOKEN_SECRET, { expiresIn: '2d'})
             return {
                 user: resultData,
@@ -81,12 +91,13 @@ export const authenticate = (data, next) => {
     }
 };
 
-export const logout = next => {
+export const logout = async next => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem('jwt');
         window.location.reload();
         window.location.href = "/";
         next();
+        await firebaseAuth().signOut()
         return fetch(`${API}/logout`, {
             method: 'GET'
         })

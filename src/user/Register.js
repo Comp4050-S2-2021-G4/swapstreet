@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import Layout from '../components/Layout'
 import {Link} from 'react-router-dom'
-import { register } from '../auth/index';
-import emailjs from 'emailjs-com';
-import{ init } from 'emailjs-com';
-init("user_9f6fIArfxnA0Lmtfo0XIN");
+import { register } from '../auth/index'
 
 const Register = () => {
 
@@ -27,10 +24,9 @@ const Register = () => {
     const clickSubmit = event => {
         // prevent browser from reloading
         event.preventDefault();
-        setValues({ ...values, error: true });
+        setValues({ ...values, error: false });
         register({name, email, address, about, password})
         .then(data => {
-            try {
             if(data.error) {
                 setValues({...values, error: data.error, success: false})
             } else {
@@ -45,17 +41,7 @@ const Register = () => {
                     success: true
                 })
             }
-        }
-        catch {
-            
-        };
         })
-        alert("Verify your email");
-
-        // send multi-factor authentication
-        // emailjs.send("service_3qkms1a","template_091cuh3");
-        console.log("Email sent for Authentication");
-        
     };
 
 

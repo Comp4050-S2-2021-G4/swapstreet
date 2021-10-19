@@ -29,6 +29,10 @@ const HeadingBar = ({ history }) => (
                 <li classname = "dashboard">
                     <a className="nav-link" href="/dashboard">My Dashboard</a>
                 </li>
+
+                <li classname = "messages">
+                    <a className="nav-link" href="/messages">Messages</a>
+                </li>
                 
             </ul>
         </div>
