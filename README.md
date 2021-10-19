@@ -1,6 +1,6 @@
 # App sample deployed in herokuapp.com
 
-[SwapStreet Client App](https://swap-street-client.herokuapp.com)
+[SwapStreet Client App](https://swapstreetclient.herokuapp.com/)
 
 # Getting Started with Create React App
 

@@ -11,25 +11,34 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { isAuthenticated } from "../../auth/index";
 
 
-
 const Profile = () => {
   const {
-    user: { _id, name, email, address, balance, about, role }
+    user: { _id, name, email, address, rating, balance, about, role, Coins}
   } = isAuthenticated();
 
-  let rating = 0;
-  
-  fetch('http://localhost:3200/rating?total=true&chosenUserID=' + _id)
-  .then( resp => resp.json())
-  .then((data)=> {
-     rating = data.total
-  })
+ 
 
+    sessionStorage.setItem('ID', _id);
+   sessionStorage.setItem('Name', name);
+   sessionStorage.setItem('Email', email);
+   sessionStorage.setItem('Address', address);
+   sessionStorage.setItem('Rating', rating);
+   sessionStorage.setItem('Balance', balance);
+   sessionStorage.setItem('About', about);
+   sessionStorage.setItem('Role', role);
 
   return (
       <div className="Profile-page">
-
         <div className="sidebar">
+            <div className = "card">
+            <div className = "card-userProfile">
+            <div className = "d-flex flex-column align-items-center text-center">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"/>
+            <div className = "card-body">
+            <h5 className="card-title">{name}</h5>
+            </div>
+            </div>
+            </div>
             <div className="card-body">
                 <div className="sidebarnav">
                     <Link to='/'>
@@ -48,64 +57,54 @@ const Profile = () => {
                     </Link>
                 </div>
             </div>
+            </div>
         </div>
 
-
         <div className="userinfo">
-            <div className="card">
-                <div className="card-body">
-                    <h5 className="card-title">Hello {name},</h5>
-                    <p className="card-text">View or change your information.</p>
-                </div>
-            </div>
-
             <div className="card-group">
                 <div className="card">
                     <div className="card-header">
-                        Account Information
+                        User Information
                     </div>
                     <div className="row">
                         <div className="col-sm-6">
                             <div className="card-body">
                                 <blockquote className="blockquote mb-0">
-                                    <h5>Contact Information</h5>
-                                    <p>{name}</p>
-                                    <p>{email}</p>
+                                    <p> Full Name : {name}</p>
+                                    <p>Email Address : {email}</p>
+                                    <p> Address : {address}</p>
                                 </blockquote>
                             </div>
-                        </div>  
+                        </div>
+                    </div>
+                    <div className="card-header">
+                            User Swapstreet Information
+                     </div>  
+                     <div className="row">
                         <div className="col-sm-6">
                             <div className="card-body">
                                 <blockquote className="blockquote mb-0">
-                                    <h5>Address</h5>
-                                    <p>{address}</p>
+                                    <p> Your Rating : {rating}</p>
+                                    <p> Balance : {balance} {Coins}</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card-header">
+                            About you
+                     </div> 
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <div className="card-body">
+                                <blockquote className="blockquote mb-0">
+                                    <p> {}</p>
                                 </blockquote>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-            <div class='card'>
-                <div class="card-body">
-                    <h5 clas="card-title">Your Balance</h5>
-                </div>
-                <blockquote className="blockquote balance">
-                    <h5>${balance}</h5>
-                </blockquote>
-
-            </div>
-
-            
-
-         
-
         </div>
-        
-
-
-
         </div>
   )
 }

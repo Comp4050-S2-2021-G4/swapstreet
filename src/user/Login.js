@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import Layout from '../components/Layout'
 import {Redirect} from 'react-router-dom'
-import { login, authenticate, isAuthenticated } from '../auth/index'
+import { login, authenticate, isAuthenticated } from '../auth/index';
+import emailjs from 'emailjs-com';
+import{ init } from 'emailjs-com';
+init("user_9f6fIArfxnA0Lmtfo0XIN");
 
 const Login = () => {
 
@@ -28,7 +31,7 @@ const Login = () => {
         if(loginResult.error) {
             setValues({...values, error: loginResult.error, loading: false})
         } else {
-            authenticate(loginResult.user, () => {
+            authenticate(loginResult.token, () => {
                 values.email = loginResult.user.email
                 values.name = loginResult.user.name
                 setValues({
@@ -37,8 +40,8 @@ const Login = () => {
                 })
             })
         }
+        
     };
-
 
     const registerForm = () => (
         <form>

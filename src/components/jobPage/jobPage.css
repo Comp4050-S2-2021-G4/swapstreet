@@ -1,5 +1,14 @@
 .container{
-    background-color: white;
+    background-color:white;
+}
+
+.card-header{
+    background-color : rgba(247, 199, 43, 0.7);  
+    color:black;
+}
+
+.jobcard{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .body-img{
@@ -8,12 +17,16 @@
     height: 800px; /* Height of background image */
     opacity: 0.5;
     position: fixed;
-    }
+}
 
 .jobImage {
-    width: 300px;
-    height: 300px;
     margin-right: 10px;
+    background-image:url("../../Assets/handshake.png");
+    background-size: contain;
+    width: 360px;
+    height: 360px;
+    resize: both;
+    overflow:hidden;
 }
 
 .btn-toolbar {

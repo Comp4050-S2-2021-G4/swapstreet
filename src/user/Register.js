@@ -5,7 +5,7 @@ import { register } from '../auth/index'
 
 const Register = () => {
 
-    const [values, setValues] = useState({
+     const [values, setValues] = useState({
         name:'NewUser',
         email: 'user@email.com',
         address: '99 Sample Street, Suburb NSW',
