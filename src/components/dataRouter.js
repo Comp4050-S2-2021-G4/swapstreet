@@ -52,7 +52,7 @@ class dataRouter extends Component {
     }
   //`${API}/getJobs${secret}`
     updateJobs() {
-        fetch(`${API}/getJobs`)
+        fetch('http://localhost:3200/jobs')
             .then(resp => resp.json())
             .then((data) => {
                 this.setState({
