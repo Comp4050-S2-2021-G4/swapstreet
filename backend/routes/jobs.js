@@ -1,7 +1,7 @@
 /* 
 ==========================================
  Title: Route File
- Author and Co-Authors: Jayakrithi Shivakumar 
+ Author and Co-Authors: Jayakrithi  
  Last updated: 10 Oct 2021 12:07AM
 ==========================================
 */
@@ -20,6 +20,11 @@ router.route('/count').get((req, res)=>{
     Jobs.count()
     .then(jobsCount = res.json(),
         jobs => res.json(jobs))
+    .catch(err => res.status(400).json('Error: '+ err));
+});
+router.route('/:_id').get((req, res)=>{
+    Jobs.find({_id :req.params._id})
+    .then(jobs => res.json(jobs))
     .catch(err => res.status(400).json('Error: '+ err));
 });
 

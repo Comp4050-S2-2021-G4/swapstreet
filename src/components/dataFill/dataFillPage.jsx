@@ -1,7 +1,7 @@
 /* 
 ==========================================
  Title: datafill
- Author and Co-Authors: Jayakrithi  
+ Author and Co-Authors: Jayakrithi, Faiyaz
  Last updated: 15 Oct 2021
 ==========================================
 */
@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 const axios = require('axios').default;
 
 class jobDataFill extends Component {
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +29,8 @@ class jobDataFill extends Component {
             price: '',    
             location: ''
         }
-        
+    
+        this.submitData = this.submitData.bind(this);
     }
 
     componentDidMount(){
@@ -43,19 +44,19 @@ class jobDataFill extends Component {
     submitData(event) {
         // Might cause an Error
         //console.log(this.jobStatus.value);
-        event.preventDefault(); console.log("inside");
-        
+        event.preventDefault(); 
+        console.log("inside");
         const newJob = {
-                title : this.state.title,
-                description: this.state.description,
-                price : this.state.price,
-                location :this.state.location
+                title : this.title.value,
+                description: this.desc.value,
+                price : this.price.value,
+                location : this.location.value
             }
             console.log(newJob);
-           
 
         axios.post('http://localhost:3200/jobs/add', newJob)
         .then( res => console.log("works"))  
+        window.location.href = "/";
     }
 
     newJob(){
@@ -112,7 +113,7 @@ class jobDataFill extends Component {
                     <div className="form-group">
                         <label>jobStatus</label>
                         <select className="form-control form-control-sm" id="jobStatusInput" ref={(input) => this.jobStatus = input}>
-                            <option>1</option>
+                            <option selected='selected'>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>

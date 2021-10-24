@@ -13,7 +13,7 @@ class Job extends Component {
         userID: this.props.userID,
         job: this.props.location.state.job,
         jobID:'', 
-        chosenUserID: this.props.chosenUserID,  
+        chosenUserID: '' ,  
         jobStatus: this.props.jobStatus,  
         rating: this.props.rating, 
         title: '',  
@@ -22,26 +22,41 @@ class Job extends Component {
         location: ''
     }
   }
-
+  /*
+  getListingsBy(event) { 
+    event.preventDefault();
+    var jobID = this.state.job._id;
+    var userID ="";
+    axios.get(`http://localhost:3200/jobs/${jobID}`)
+    .then( res => console.log(res.data()))
+    .then((data)=> {
+        this.setState({
+            userID: data.userID
+        })
+        console.log("OVER HERERRE", userID);
+        })
+        }
+*/
 applyForJob(event) {
     event.preventDefault();
     var job = this.state.job
     job.jobStatus = 2;
-    job.chosenUserID = this.state.userID;
+ //   job.chosenUserID = this.state.userID;
     var jobID = this.state.job._id;
-    var chosenUserID = this.state.userID;
+    var chosenUserID ="";
     var jobStatus = 2;
-    console.log("User name = ?? ",this.state.chosenName);  
+    console.log("User name = ?? ",this.state.userID);  
+    
     const appliedJob = {
         jobStatus :2,
-        chosenUserID: this.state.userID
-    }
+        chosenUserID: sessionStorage.getItem('_id')
+        }
     this.setState({
         jobStatus :2,
-        chosenUserID: this.state.userID
+        chosenUserID: sessionStorage.getItem('_id')
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,appliedJob)
+    axios.post(`http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,appliedJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
@@ -174,6 +189,7 @@ markAsCompleted(event) {
 </svg>
   */
   //  && job.userID === this.state.userID && this.state.chosenName !== null
+  //this.getListingsBy()
   render() {
       const job = this.props.location.state.job
       const seller = job.seller
@@ -230,7 +246,7 @@ markAsCompleted(event) {
                                              <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Seller Details</p>     
                                              </h5>  
-                                            <h6 className="card-text">{"Listing by: "+ this.state.name}</h6> <br></br>
+                                            <h6 className="card-text">{"Listing by: "+  this.state.name}</h6> <br></br>
                                             <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Ratings</p> </h5>
                                             <div className="ratingContainer">
@@ -282,12 +298,12 @@ markAsCompleted(event) {
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
                 
-                {job.jobStatus === 2 &&
+                {job.jobStatus === 2 && job.userID === this.state.userID &&
                 <div class="card border-dark mb-3 dash-card">
                         <div class="card-body text-dark dash-card-body">
-                            <h5 class="card-title">{this.state.chosenName} Has Applied for this Job</h5>
-                            <p class="card-text">Email: {this.state.chosenEmail}</p>
-                            <p class="card-text">Rating: {this.state.chosenRating}</p>
+                            <h5 class="card-title">{sessionStorage.getItem('Name')} Has Applied for this Job</h5>
+                            <p class="card-text">Email: {sessionStorage.getItem('Email')}</p>
+                            <p class="card-text">Rating: {sessionStorage.getItem('Rating')}</p>
                             <img className="chosenImage card-img-top" src={this.state.chosenPicture} />
                         </div>
                         <div class="card-footer bg-transparent border-dark">
