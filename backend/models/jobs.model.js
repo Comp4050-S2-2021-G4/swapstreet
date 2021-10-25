@@ -13,7 +13,7 @@ const Schema = mongoose.Schema;
 const jobsSchema = new Schema({
     _id : {type:mongoose.Types.ObjectId},
     jobID :{ type: Number},  
-    userID:{ type: Number},  
+    userID:{ type: String},  
     chosenUserID:{ type: String},  
     jobStatus:{ type: Number},  
     rating:{ type: String}, 

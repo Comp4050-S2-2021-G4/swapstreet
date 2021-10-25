@@ -22,11 +22,6 @@ router.route('/count').get((req, res)=>{
         jobs => res.json(jobs))
     .catch(err => res.status(400).json('Error: '+ err));
 });
-router.route('/:_id').get((req, res)=>{
-    Jobs.find({_id :req.params._id})
-    .then(jobs => res.json(jobs))
-    .catch(err => res.status(400).json('Error: '+ err));
-});
 
 // Used for Testing
 // Return one user On Postman : Run it with URL
@@ -60,6 +55,13 @@ router.route('/add').post((req, res)=>{
     });
     newJob.save()
     .then(()=> res.json('new job added!!'))
+    .catch(err => res.status(400).json('Error: '+ err));
+});
+
+router.route('/:_id').get((req, res)=>{
+    console.log("ON THE BACKEND !! RECIEVED THANK YOU")
+    Jobs.find({_id :req.params._id})
+    .then(jobs => res.json(jobs[0]))
     .catch(err => res.status(400).json('Error: '+ err));
 });
 

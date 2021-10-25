@@ -13,50 +13,37 @@ class Job extends Component {
         userID: this.props.userID,
         job: this.props.location.state.job,
         jobID:'', 
-        chosenUserID: '' ,  
+        chosenUserID: this.props.chosenUserID,  
         jobStatus: this.props.jobStatus,  
         rating: this.props.rating, 
         title: '',  
         description : '',  
         price: '',    
-        location: ''
+        location: '',
+        seller :'',
+        chosenUserDetails : ''
     }
   }
-  /*
-  getListingsBy(event) { 
-    event.preventDefault();
-    var jobID = this.state.job._id;
-    var userID ="";
-    axios.get(`http://localhost:3200/jobs/${jobID}`)
-    .then( res => console.log(res.data()))
-    .then((data)=> {
-        this.setState({
-            userID: data.userID
-        })
-        console.log("OVER HERERRE", userID);
-        })
-        }
-*/
+
 applyForJob(event) {
     event.preventDefault();
     var job = this.state.job
     job.jobStatus = 2;
- //   job.chosenUserID = this.state.userID;
+    job.chosenUserID = this.state.userID.$oid;
     var jobID = this.state.job._id;
-    var chosenUserID ="";
+    var chosenUserID = this.state.userID.$oid;
     var jobStatus = 2;
-    console.log("User name = ?? ",this.state.userID);  
-    
+
     const appliedJob = {
         jobStatus :2,
-        chosenUserID: sessionStorage.getItem('_id')
-        }
+        chosenUserID: this.state.userID.$oid.toString()
+    }
     this.setState({
         jobStatus :2,
-        chosenUserID: sessionStorage.getItem('_id')
+        chosenUserID: this.state.userID.$oid
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(`http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,appliedJob)
+    axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,appliedJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
@@ -72,18 +59,15 @@ acceptChosenUser(event) {
     event.preventDefault();
     var job = this.state.job
     job.jobStatus = 3;
-    job.chosenUserID = this.state.userID;
+
     var jobID = this.state.job._id;
-    var chosenUserID = this.state.userID;
-    var jobStatus = 3;
-    console.log("User name = ?? ",this.state.chosenName);        
+    var chosenUserID = this.state.job.chosenUserID;
+    var jobStatus = 3;        
     const acceptJob = {
         jobStatus :3,
-        chosenUserID: this.state.userID
     }
     this.setState({
         jobStatus :3,
-        chosenUserID: this.state.userID
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
     axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,acceptJob)
@@ -99,23 +83,22 @@ declineChosenUser(event) {
     event.preventDefault();
     //this.updateVariables();
     var job = this.state.job
-    job.jobStatus = 2;
-    job.chosenUserID = this.state.userID;
+    job.jobStatus = 1;
     var jobID = this.state.job._id;
-    var chosenUserID = this.state.userID;
-    var jobStatus = 2;
+    var chosenUserID = this.state.job.chosenUserID;
+    var jobStatus = 1;
     console.log("ACCEPT CHOSEN USER EVENT ",jobID);
     console.log("users Id = ",chosenUserID);        
     const declineJob = {
-        jobStatus :2,
-        chosenUserID: this.state.userID
+        jobStatus :1,
+        chosenUserID: ""
     }
     this.setState({
-        jobStatus :2,
-        chosenUserID: this.state.userID
+        jobStatus :1,
+        chosenUserID: ""
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
-    axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,declineJob)
+    axios.post(` http://localhost:3200/jobs/${jobID}/${this.state.job.chosenUserID}/${jobStatus}`,declineJob)
     .then( res => console.log(res.data()))
     .then((data)=> {
         this.setState({
@@ -130,19 +113,19 @@ markAsCompleted(event) {
     //http://localhost:3200/rating?rating=true&userID=5f728f406d252648c48c303e&chosenUserID=5f728f406d252648c48c303e&jobID=5f728f406d252648c48c303e&rating=-1
     var job = this.state.job
     job.jobStatus = 4;
-    job.chosenUserID = this.state.userID;
+    job.chosenUserID = this.state.userID.$oid;
     var jobID = this.state.job._id;
-    var chosenUserID = this.state.userID;
+    var chosenUserID = this.state.userID.$oid;
     var jobStatus = 4;
     console.log("ACCEPT CHOSEN USER EVENT ",jobID);
     console.log("users Id = ",chosenUserID);        
     const completedJob = {
         jobStatus :4,
-        chosenUserID: this.state.userID
+        chosenUserID: this.state.userID.$oid
     }
     this.setState({
         jobStatus :4,
-        chosenUserID: this.state.userID
+        chosenUserID: this.state.userID.$oid
     })
     // http://localhost:3200/jobs/6115056cc99805fb912b84b2/616038d25e3ee61591968a4c
     axios.post(` http://localhost:3200/jobs/${jobID}/${chosenUserID}/${jobStatus}`,completedJob)
@@ -180,6 +163,27 @@ markAsCompleted(event) {
         .then((data)=> {
             this.setState({chosenRating : data.total})
         }).catch((error) => console.log(error))
+
+        fetch('http://localhost:3200/jobs/' + this.state.job._id)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({seller : data})
+         //   console.log("Hello there I am back ", userID)
+        }).catch((error) => console.log(error))
+    
+        fetch('http://localhost:3200/users/' + this.state.job.userID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({seller : data})
+            console.log("Hello there I am back ", this.state.seller.name)
+        }).catch((error) => console.log(error))
+        
+        fetch('http://localhost:3200/users/' + this.state.job.chosenUserID)
+        .then( resp => resp.json())
+        .then((data)=> {
+            this.setState({chosenUserDetails : data})
+            console.log("Hello there I am back ", this.state.chosenUserDetails)
+        }).catch((error) => console.log(error))
     }
 
 
@@ -189,11 +193,14 @@ markAsCompleted(event) {
 </svg>
   */
   //  && job.userID === this.state.userID && this.state.chosenName !== null
-  //this.getListingsBy()
   render() {
       const job = this.props.location.state.job
       const seller = job.seller
-      console.log("Job status print here ", job.jobStatus);
+      console.log("get the state pleaseeee ", (this.state.userID.$oid));
+      console.log("state =  ", job.userID);
+      var blah = this.state.userID.$oid === job.userID
+      console.log("state =  ", blah);
+
       return (
             <div className="container">
                     <link rel="icon" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -246,7 +253,7 @@ markAsCompleted(event) {
                                              <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Seller Details</p>     
                                              </h5>  
-                                            <h6 className="card-text">{"Listing by: "+  this.state.name}</h6> <br></br>
+                                            <h6 className="card-text">{"Listing by: "+ this.state.seller.name}</h6> <br></br>
                                             <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Ratings</p> </h5>
                                             <div className="ratingContainer">
@@ -298,12 +305,12 @@ markAsCompleted(event) {
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
                 
-                {job.jobStatus === 2 && job.userID === this.state.userID &&
+                {job.jobStatus === 2 && blah == true && 
                 <div class="card border-dark mb-3 dash-card">
                         <div class="card-body text-dark dash-card-body">
-                            <h5 class="card-title">{sessionStorage.getItem('Name')} Has Applied for this Job</h5>
-                            <p class="card-text">Email: {sessionStorage.getItem('Email')}</p>
-                            <p class="card-text">Rating: {sessionStorage.getItem('Rating')}</p>
+                            <h5 class="card-title">{this.state.chosenUserDetails.name} Has Applied for this Job</h5>
+                            <p class="card-text">Email: {this.state.chosenUserDetails.email}</p>
+                            <p class="card-text">Rating: {this.state.chosenUserDetails.rating}</p>
                             <img className="chosenImage card-img-top" src={this.state.chosenPicture} />
                         </div>
                         <div class="card-footer bg-transparent border-dark">
