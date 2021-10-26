@@ -1,4 +1,4 @@
-import React, { Component} from '../../../node_modules/react';
+import React, { Component} from 'react';
 import './jobPage.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { isAuthenticated } from "../../auth/index";
