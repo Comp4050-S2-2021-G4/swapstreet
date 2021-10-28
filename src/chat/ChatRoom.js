@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from '../components/Footer'
 import ChatMessage from '../chat/ChatMessage'
 import {useRef, useState} from 'react';
 
