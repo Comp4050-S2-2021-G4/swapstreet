@@ -1,10 +1,10 @@
 import { API, ACCESS_TOKEN_SECRET } from '../config'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+// import firebase from 'firebase/compat/app'
+// import 'firebase/compat/auth'
 
-const firebaseAuth = () => firebase.auth()
+// const firebaseAuth = () => firebase.auth()
 export const register = async(user) => {
     const salt = await bcrypt.genSalt(10);
     // console.log(name, email, password);
@@ -25,8 +25,8 @@ export const register = async(user) => {
         .catch(err => {
             console.log(err);
         })
-    const signUpRes = await firebaseAuth().createUserWithEmailAndPassword(user.email, user.password)
-    console.log(signUpRes);
+    //const signUpRes = await firebaseAuth().createUserWithEmailAndPassword(user.email, user.password)
+    //console.log(signUpRes);
     return result
 }
 
@@ -70,8 +70,8 @@ export const login = async (user) => {
     } else {
         const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
         if (isCorrectPassword) {
-            const loggedUser = await firebaseAuth().signInWithEmailAndPassword(user.email, resultData.password)
-            console.log('login:', loggedUser);
+            //const loggedUser = await firebaseAuth().signInWithEmailAndPassword(user.email, resultData.password)
+            //console.log('login:', loggedUser);
             const token = jwt.sign(resultData, ACCESS_TOKEN_SECRET, { expiresIn: '2d'})
             return {
                 user: resultData,
@@ -97,7 +97,7 @@ export const logout = async next => {
         window.location.reload();
         window.location.href = "/";
         next();
-        await firebaseAuth().signOut()
+        //await firebaseAuth().signOut()
         return fetch(`${API}/logout`, {
             method: 'GET'
         })

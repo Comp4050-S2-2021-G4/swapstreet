@@ -43,9 +43,10 @@ class info extends Component {
 
     render() {
 
-        const name = this.state.username;
-        const balance = this.state.coins;
-        const rating = this.state.rating
+        const name = sessionStorage.getItem("Name");
+        const balance = sessionStorage.getItem("Balance");
+        const rating = this.state.rating;
+        const userRating = sessionStorage.getItem("Rating");
 
         return (
             <div>
@@ -56,7 +57,7 @@ class info extends Component {
                 </p>
                 <h6>Money Remaining:</h6>
                 <p>$ {balance}</p>
-                <h6>Your Rating: {rating}</h6>
+                <h6>Your Rating: {userRating}</h6>
                 <br></br>
             </div>
         );
