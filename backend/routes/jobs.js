@@ -6,7 +6,6 @@
 ==========================================
 */
 const router = require('express').Router();
-const jobsCount = 0;
 let Jobs = require('../models/jobs.model.js');
 let MyUser = require('../models/users.model.js');
 
@@ -16,13 +15,6 @@ router.route('/').get((req, res) => {
         .then(jobs => res.json(jobs))
         .catch(err => res.status(400).json('Error: ' + err));
 });
-router.route('/count').get((req, res) => {
-    Jobs.count()
-        .then(jobsCount = res.json(),
-            jobs => res.json(jobs))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
 // Used for Testing
 // Return one user On Postman : Run it with URL
 // http://localhost:3200/jobs/<ObjectID>
@@ -31,6 +23,10 @@ router.route('/count').get((req, res) => {
 router.route('/:_id').get((req, res)=>{
     Jobs.find({_id :req.params._id})
     .then(user => res.json(user))
+router.route('/').get((req, res)=>{
+    Jobs.find()
+    .then(jobs => res.json(jobs))
+>>>>>>> 9d31fa0... Able to retrieve users and jobs from localhost3200
     .catch(err => res.status(400).json('Error: '+ err));
 });
  */
@@ -41,11 +37,13 @@ Fix needed : Needs to update JobID and other additional parameters
 as per the Jobs schema onto the Database.
 */
 router.route('/add').post((req, res) => {
-    const job_title = req.body.title;
-    const job_description = req.body.description;
-    const job_price = req.body.price;
-    const job_location = req.body.location;
-
+    const job_id = req.body.job_id;
+    const job_userID = req.body.job_userID;
+    const job_chosenUserID = 0;
+    const job_rating = 0;
+    const job_description = req.body.job_description;
+    const job_price = req.body.job_price;
+    const job_location = req.body.job_location;
 
     const newJob = new Jobs({
         jobID: 0,

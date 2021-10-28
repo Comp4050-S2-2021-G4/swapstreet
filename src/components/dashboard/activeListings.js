@@ -9,7 +9,8 @@ class activeListings extends Component {
     }
 
     render() {
-        let jobList = this.props.jobs.map(job => {    
+        let jobList = this.props.jobs.map(job => {
+            console.log("seller details : ", this.state.seller.userID);    
             return (
                 <Link className="job" to={{pathname: "/job", state: {job: job, prevLocation : "/dashboard"}}}>
                     <div class="card border-dark mb-3 dash-card">
@@ -21,7 +22,7 @@ class activeListings extends Component {
                             <p className="jobLocation">Location: {job.location}</p>
                             <p className="jobPrice">Cost: {job.price}</p>
                             
-                            {job.jobStatus === 2 &&
+                            {job.jobStatus === 2 && job.userID === this.state.seller.userID && 
                                 <button className="btn btn-secondary btn-lg active">
                                     Someone Has Applied for this Job
                                 </button>
