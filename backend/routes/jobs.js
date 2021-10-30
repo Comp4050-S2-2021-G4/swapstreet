@@ -10,23 +10,15 @@ let Jobs = require('../models/jobs.model.js');
 let MyUser = require('../models/users.model.js');
 
 // Returns all jobs
-router.route('/').get((req, res) => {
-    Jobs.find()
-        .then(jobs => res.json(jobs))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
+
 // Used for Testing
 // Return one user On Postman : Run it with URL
 // http://localhost:3200/jobs/<ObjectID>
 
 /*
-router.route('/:_id').get((req, res)=>{
-    Jobs.find({_id :req.params._id})
-    .then(user => res.json(user))
 router.route('/').get((req, res)=>{
     Jobs.find()
     .then(jobs => res.json(jobs))
->>>>>>> 9d31fa0... Able to retrieve users and jobs from localhost3200
     .catch(err => res.status(400).json('Error: '+ err));
 });
  */
@@ -38,7 +30,7 @@ as per the Jobs schema onto the Database.
 */
 router.route('/add').post((req, res) => {
     const job_id = req.body.job_id;
-    const job_userID = req.body.job_userID;
+    const job_userID = req.body.userID;
     const job_chosenUserID = 0;
     const job_rating = 0;
     const job_title = req.body.title
@@ -48,8 +40,8 @@ router.route('/add').post((req, res) => {
 
     const newJob = new Jobs({
         jobID: 0,
-        userID: 0,
-        chosenUserID: 0,
+        userID: job_userID,
+        chosenUserID: "",
         jobStatus: 1,
         rating: 5,
         title: job_title,
@@ -57,9 +49,21 @@ router.route('/add').post((req, res) => {
         price: job_price,
         location: job_location
     });
+    console.log("newJob ", newJob)
     newJob.save()
         .then(() => res.json('new job added!!'))
         .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/').get((req, res) => {
+    Jobs.find()
+        .then(jobs => res.json(jobs))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:_id').get((req, res)=>{
+    Jobs.find({_id :req.params._id})
+    .then(user => res.json(user))
 });
 
 // Used to Apply Jobs

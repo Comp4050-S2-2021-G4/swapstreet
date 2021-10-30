@@ -46,7 +46,9 @@ class jobDataFill extends Component {
         //console.log(this.jobStatus.value);
         event.preventDefault(); 
         console.log("inside");
+        console.log(this.state.userID.$oid);
         const newJob = {
+                userID : this.state.userID.$oid,
                 title : this.title.value,
                 description: this.desc.value,
                 price : this.price.value,
@@ -57,6 +59,7 @@ class jobDataFill extends Component {
         axios.post('http://localhost:3200/jobs/add', newJob)
             .then( res => {
                 console.log("works")
+                console.log(this.state.userID);
                 window.location.href = "/";
             })
             .catch(e => {

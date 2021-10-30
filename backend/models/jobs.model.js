@@ -12,9 +12,9 @@ const Schema = mongoose.Schema;
 // chosenUserID : Number 
 const jobsSchema = new Schema({
     // todo remove as not required
-    // _id : {type:mongoose.Types.ObjectId},
+  //  _id : {type:mongoose.Types.ObjectId},
     jobID :{ type: Number},  
-    userID:{ type: Number},
+    userID:{ type: String},
     chosenUserID:{ type: String},
     jobStatus:{ type: Number},  
     rating:{ type: String}, 

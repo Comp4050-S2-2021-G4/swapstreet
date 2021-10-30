@@ -138,6 +138,7 @@ markAsCompleted(event) {
 }
 
     componentDidMount() {
+        console.log("Here I am ")
         fetch('http://localhost:3200/users?fetch=true&_id=' + this.props.location.state.job.userID)
             .then( resp => resp.json())
             .then((data)=> {
@@ -175,14 +176,14 @@ markAsCompleted(event) {
         .then( resp => resp.json())
         .then((data)=> {
             this.setState({seller : data[0]})
-            console.log("Hello there I am back ", this.state.seller.name)
+            console.log("Hello there I am back state userID", data)
         }).catch((error) => console.log(error))
         
         fetch('http://localhost:3200/users/' + this.state.job.chosenUserID)
         .then( resp => resp.json())
         .then((data)=> {
             this.setState({chosenUserDetails : data[0]})
-            console.log("Hello there I am back ", this.state.chosenUserDetails)
+     //       console.log("Hello there I am back ", this.state.chosenUserDetails)
         }).catch((error) => console.log(error))
     }
 
@@ -196,11 +197,11 @@ markAsCompleted(event) {
   render() {
       const job = this.props.location.state.job
       const seller = job.seller
-      console.log("get the state pleaseeee ", (this.state.seller));
-      console.log("state =  ", job.userID);
+  //    console.log("get the state pleaseeee ", (this.state.seller));
+ //     console.log("state =  ", job.userID);
       var blah = this.state.userID.$oid === job.userID
-      console.log("state =  ", blah);
-
+  //    console.log("state =  ", blah);
+      console.log("Hello there I am back state userID", seller)
       return (
             <div className="container">
                     <link rel="icon" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
