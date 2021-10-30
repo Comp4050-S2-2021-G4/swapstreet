@@ -11,9 +11,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // chosenUserID : Number 
 const jobsSchema = new Schema({
-    _id : {type:mongoose.Types.ObjectId},
+    // todo remove as not required
+    // _id : {type:mongoose.Types.ObjectId},
     jobID :{ type: Number},  
-    userID:{ type: String},  
+    userID:{ type: Number},
     chosenUserID:{ type: String},
     jobStatus:{ type: Number},  
     rating:{ type: String}, 
