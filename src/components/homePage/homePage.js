@@ -65,29 +65,29 @@ class HomePage extends Component {
     const array1 = [1]
     let jobsHeader = array1.map(_ => {
 
-      return(
-      <div className = "searchbar">
-        <Jumbotron>
-          <div className = "jobHeader">
-          <h1> Jobs </h1>
-          </div>
-          <div className="form-outline">
-          <div class="form-group w-75">
-            <br/>
-          <input class = "form-control" type="search" placeholder="Search" aria-label="Search" 
-           id="Search" onChange ={this.searchData}
-          />
-          
-          </div>
-          </div>
-           </Jumbotron>
-           </div>  
-      );    
+      return (
+        <div className="searchbar">
+          <Jumbotron>
+            <div className="jobHeader">
+              <h1> Jobs </h1>
+            </div>
+            <div className="form-outline">
+              <div class="form-group w-75">
+                <br />
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                  id="Search" onChange={this.searchData}
+                />
+
+              </div>
+            </div>
+          </Jumbotron>
+        </div>
+      );
     })
 
     let hpage = array1.map(_ => {
       return (
-        <div className="homepage-elements">
+        <div className="homepage-elements" style={{overflow: 'hidden'}}>
           <Jumbotron>
             <div className="about">
               <div className="animate-slide-1">
@@ -157,27 +157,35 @@ class HomePage extends Component {
               </div>
             </div>
           </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       );
     })
 
     let jobList = this.state.searchResults.map(job => {
       return (job.userID != this.props.userID && job.jobStatus !== 4 &&
-        <div className= "jobs-display">
-        <div className = "job-card">
-        <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" }}}>
-          <div className="homeCard border-dark mb-3">
-            <div className="homeCardBody text-dark">
-              <h5 className="card-title">{job.title} </h5>
-              <p className="card-text">{job.description}</p>
-            </div>
-            <div className="card-footer bg-transparent border-dark">
-              <p className="homeJobLocation">Location: {job.location}</p>
-              <p className="homeJobCost"> <b> ${job.price} </b></p>
-            </div>
+        <div className="jobs-display">
+          <div className="job-card">
+            <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
+              <div className="homeCard border-dark mb-3">
+                <div className="homeCardBody text-dark">
+                  <h5 className="card-title">{job.title} </h5>
+                  <p className="card-text">{job.description}</p>
+                </div>
+                <div className="card-footer bg-transparent border-dark">
+                  <p className="homeJobLocation">Location: {job.location}</p>
+                  <p className="homeJobCost"> <b> ${job.price} </b></p>
+                </div>
+              </div>
+            </Link>
           </div>
-          </Link>
-        </div>
         </div>
       );
     })
