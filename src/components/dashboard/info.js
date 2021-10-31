@@ -43,9 +43,9 @@ class info extends Component {
 
     render() {
 
-        const name = this.state.username;
-        const balance = this.state.coins;
-        const rating = this.state.rating
+        const name = sessionStorage.getItem('Name');
+        const balance = sessionStorage.getItem('Balance');
+        const rating = sessionStorage.getItem('Rating');
 
         return (
             <div>
