@@ -86,11 +86,11 @@
 }
 
 .footer{
-    margin-top: 1rem;
+    margin-top: 10%;
     padding: 1rem;
     color:aliceblue;
     background-color: #aa001e;
-    position:fixed;
+    position: sticky;
     bottom: 0;
     width: 100%;
   }
@@ -98,5 +98,11 @@
   .navbar-nav ul {
     list-style-type: none;
     margin: 0;
+    padding: 0;
+  }
+
+  .navbar-admin {
+    list-style-type: none;
+    margin-left:  80%;
     padding: 0;
   }

@@ -16,7 +16,8 @@ const HeadingBar = ({ history }) => (
                   SwapStreet
             </a>
         </div>
-        <div className="collapse navbar-collapse" id="navbarNav">
+
+        {isAuthenticated() && (<div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
                 <li classname = "home-nav">
                     <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
@@ -35,18 +36,14 @@ const HeadingBar = ({ history }) => (
                 </li>
                 
             </ul>
-        </div>
+        </div>)}
 
         {!isAuthenticated() && (
-            <div className="nav-link">
+            <div className="navbar-admin">
                 <Link to='/register'>
                 <button className="btn btn-warning my-2 my-sm-0 border border-dark" type="submit">Register</button>
                 </Link>
-            </div>         
-        )}
 
-        {!isAuthenticated() && (
-            <div className="nav-link">
                 <Link to='/login'>
                 <button className="btn btn-warning my-2 my-sm-0 border border-dark" type="submit">Login</button>
                 </Link>
