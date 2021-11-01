@@ -17,6 +17,7 @@ class jobDataFill extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            firebaseUser: this.props.firebaseUser,
             type: this.props.location.pathname,
             userID: this.props.userID,
             job: this.props.location.state.job,
@@ -29,7 +30,7 @@ class jobDataFill extends Component {
             price: '',    
             location: ''
         }
-    
+        console.log(`dataFillPage#constructor:14`, this.state.firebaseUser.user.uid);
         this.submitData = this.submitData.bind(this);
     }
 
@@ -52,7 +53,8 @@ class jobDataFill extends Component {
                 title : this.title.value,
                 description: this.desc.value,
                 price : this.price.value,
-                location : this.location.value
+                location : this.location.value,
+                firebaseUserId: this.state.firebaseUser.user.uid
             }
             console.log(newJob);
 

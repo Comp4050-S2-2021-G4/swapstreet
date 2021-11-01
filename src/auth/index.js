@@ -1,16 +1,16 @@
-import { API, ACCESS_TOKEN_SECRET } from '../config'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import {ACCESS_TOKEN_SECRET, API} from '../config';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import {FirebaseError} from '@firebase/app';
 
 const firebaseAuth = () => firebase.auth()
 export const register = async(user) => {
     const salt = await bcrypt.genSalt(10);
     // console.log(name, email, password);
     console.log('register:', user);
-    const hashedPassword = await bcrypt.hash(user.password,salt);
-    user.password = hashedPassword;
+    user.password = await bcrypt.hash(user.password, salt);
     const result = await fetch(`${API}/register`,{
         method: "POST",
         headers: {
@@ -32,10 +32,8 @@ export const register = async(user) => {
 
 export const update = async(user) => {
     const salt = await bcrypt.genSalt(10);
-    // console.log(email, password, address);
-    const hashedPassword = await bcrypt.hash(user.password,salt);
-    user.password = hashedPassword;
-    const result = await fetch(`${API}/changeinfo`,
+    user.password = await bcrypt.hash(user.password, salt);
+    await fetch(`${API}/changeinfo`,
         {
         method: "POST",
         headers: {
@@ -55,7 +53,6 @@ export const update = async(user) => {
 
 export const login = async (user) => {
     const loginError = { error: 'Incorrect email or password' };
-    console.log(user);
     const result = await fetch(`${API}/login`, {
         method: "POST",
         headers: {
@@ -65,13 +62,14 @@ export const login = async (user) => {
         body: JSON.stringify(user)
     })
     const resultData = await result.json();
+
     if (resultData === null) {
         return loginError
     } else {
         const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
         if (isCorrectPassword) {
-            const loggedUser = await firebaseAuth().signInWithEmailAndPassword(user.email, resultData.password)
-            console.log('login:', loggedUser);
+            resultData.firebaseUser = await loginToFirebase(user.email, resultData.password)
+            console.log('authIndex:', JSON.stringify(resultData.firebaseUser));
             const token = jwt.sign(resultData, ACCESS_TOKEN_SECRET, { expiresIn: '2d'})
             return {
                 user: resultData,
@@ -82,6 +80,21 @@ export const login = async (user) => {
             return loginError
         }
     }
+}
+
+async function loginToFirebase(email, password) {
+    let firebaseUser;
+    try {
+        firebaseUser = await firebaseAuth().signInWithEmailAndPassword(email, password);
+        console.log('firebase-logged in');
+    } catch (e) {
+        console.log('firebase-login-error:', JSON.stringify(e));
+        if (e instanceof FirebaseError && e.code === 'auth/user-not-found') {
+            firebaseUser = await firebaseAuth().createUserWithEmailAndPassword(email, password);
+            console.log('firebase-login-error:', 'user not found, so created one');
+        }
+    }
+    return firebaseUser
 }
 
 export const authenticate = (data, next) => {
@@ -101,7 +114,7 @@ export const logout = async next => {
         return fetch(`${API}/logout`, {
             method: 'GET'
         })
-            .then(response => {
+            .then(() => {
                 console.log('signout success');
             })
             .catch(err => console.log(err));

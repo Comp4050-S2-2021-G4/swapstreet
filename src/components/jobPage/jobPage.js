@@ -2,7 +2,7 @@ import React, { Component} from '../../../node_modules/react';
 import './jobPage.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { isAuthenticated } from "../../auth/index";
-import jobDataFill from '../dataFill/dataFillPage';
+import chat from '../../chat/chat';
 import {  Link } from "react-router-dom";
 const axios = require('axios').default;
 
@@ -21,8 +21,11 @@ class Job extends Component {
         price: '',    
         location: '',
         seller :'',
-        chosenUserDetails : ''
+        chosenUserDetails : '',
+        firebaseUser: this.props.firebaseUser
     }
+      console.log('props:', props);
+      console.log('jobPage:', this.state.job);
   }
 
 applyForJob(event) {
@@ -187,6 +190,21 @@ markAsCompleted(event) {
         }).catch((error) => console.log(error))
     }
 
+    async chatToJobPoster(event) {
+        event.preventDefault()
+        const userId = this.state.firebaseUser.user.uid;
+        const jobPosterId = this.state.job.firebaseUserId;
+        const doesConversationExist = await chat.doesChatConversationExist(userId, jobPosterId);
+        console.log(`jobPage#chatToJobPoster:198`, doesConversationExist);
+        let messageId = ''
+        if (doesConversationExist.length) {
+            messageId = doesConversationExist[0].id
+        } else {
+            const newConvo = await chat.createChatConversation(userId, jobPosterId)
+            messageId = newConvo.conversationId
+        }
+        window.location.href = "messages/" + messageId
+    }
 
   /* 
   <svg width="1em" height="1em" viewBox="0 0 16 16" className="userCoinsIcon" fill="#17a2b8" xmlns="http://www.w3.org/2000/svg">
@@ -202,6 +220,8 @@ markAsCompleted(event) {
       var blah = this.state.userID.$oid === job.userID
   //    console.log("state =  ", blah);
       console.log("Hello there I am back state userID", seller)
+      console.log('userId:', this.props.userID.$oid, '\tjobPosterId:', job.userID);
+      // console.log("Job status print here ", job.jobStatus);
       return (
             <div className="container">
                     <link rel="icon" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -300,6 +320,9 @@ markAsCompleted(event) {
                         </button>
                     </Link>}
 
+                    {job.firebaseUserId !== this.state.firebaseUser.user.uid && <Link onClick={e => this.chatToJobPoster(e)}>
+                        <button className="btn btn-lg btn-outline-success">Chat</button>
+                    </Link>}
                 </div>
                 
                 
