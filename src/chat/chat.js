@@ -13,7 +13,8 @@ export const firebaseConfig = {
     appId: "1:357664149852:web:c17b5f10bbba9af1477199"
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+console.log(`chat#:17`,app);
 
 const firestore = firebase.firestore();
 
@@ -22,6 +23,39 @@ export const getMessages = () => {
         .orderBy('createdAt')
 }
 
-export const getMessagesCollection = () => firestore.collection('messages')
+export const getMessagesCollection = () => firestore.collection('conversations')
 
-export default { firebaseConfig, getMessages, getMessagesCollection };
+export async function doesChatConversationExist(userId, jobPosterId) {
+    console.log(`chat#doesChatConversationExist:30`,userId, jobPosterId);
+    let query = getMessagesCollection();
+    query = query.where('userId', '==', userId)
+    query = query.where('otherId', '==', jobPosterId)
+    query = query.limit(1)
+    const res = await query.get()
+    const data = res.docs.map(d => {
+        console.log(`chat#:35`, d.id);
+        return { id: d.id, ...d.data() }
+    });
+    return data
+}
+
+export async function createChatConversation(userId, jobPosterId) {
+    console.log(`chat#createChatConversation:38`, userId, jobPosterId);
+    const conversation = await getMessagesCollection().add({
+        userId,
+        otherId: jobPosterId,
+    })
+    const messagesRes = await getMessagesCollection()
+        .doc(conversation.id)
+
+        .collection('messages')
+    return { conversationId: conversation.id, messageId: messagesRes.id }
+}
+
+export default {
+    firebaseConfig,
+    getMessages,
+    getMessagesCollection,
+    doesChatConversationExist,
+    createChatConversation,
+};

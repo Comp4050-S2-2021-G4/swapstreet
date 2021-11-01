@@ -68,7 +68,8 @@ export const login = async (user) => {
     } else {
         const isCorrectPassword = await bcrypt.compare(user.password, resultData.password)
         if (isCorrectPassword) {
-            await loginToFirebase(user.email, resultData.password);
+            resultData.firebaseUser = await loginToFirebase(user.email, resultData.password)
+            console.log('authIndex:', JSON.stringify(resultData.firebaseUser));
             const token = jwt.sign(resultData, ACCESS_TOKEN_SECRET, { expiresIn: '2d'})
             return {
                 user: resultData,
@@ -82,16 +83,18 @@ export const login = async (user) => {
 }
 
 async function loginToFirebase(email, password) {
+    let firebaseUser;
     try {
-        await firebaseAuth().signInWithEmailAndPassword(email, password);
+        firebaseUser = await firebaseAuth().signInWithEmailAndPassword(email, password);
         console.log('firebase-logged in');
     } catch (e) {
         console.log('firebase-login-error:', JSON.stringify(e));
         if (e instanceof FirebaseError && e.code === 'auth/user-not-found') {
-            await firebaseAuth().createUserWithEmailAndPassword(email, password);
+            firebaseUser = await firebaseAuth().createUserWithEmailAndPassword(email, password);
             console.log('firebase-login-error:', 'user not found, so created one');
         }
     }
+    return firebaseUser
 }
 
 export const authenticate = (data, next) => {

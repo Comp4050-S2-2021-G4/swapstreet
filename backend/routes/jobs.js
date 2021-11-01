@@ -38,6 +38,11 @@ router.route('/add').post((req, res) => {
     const job_price = req.body.price;
     const job_location = req.body.location;
 
+    console.log(`jobs#post.add:52`, req.body.firebaseUserId);
+    if (!req.body.firebaseUserId) {
+        res.status(401).json({ error: 'firebaseUserId not found' });
+    }
+
     const newJob = new Jobs({
         jobID: 0,
         userID: job_userID,
@@ -47,7 +52,8 @@ router.route('/add').post((req, res) => {
         title: job_title,
         description: job_description,
         price: job_price,
-        location: job_location
+        location: job_location,
+        firebaseUserId: req.body.firebaseUserId
     });
     console.log("newJob ", newJob)
     newJob.save()
@@ -82,7 +88,7 @@ router.route('/:_id').get((req, res)=>{
 router.route('/:_id/:_pid/:jobSt').post((req, res) => {
     Jobs.updateOne({ _id: req.params._id }, { jobStatus: req.params.jobSt }, function (err, docs) {
         if (err) {
-            console.log(err)
+            console.log(err);
         }
         else {
             console.log("Updated Docs : ", docs);
@@ -90,7 +96,7 @@ router.route('/:_id/:_pid/:jobSt').post((req, res) => {
     });
     Jobs.updateOne({ _id: req.params._id }, { chosenUserID: req.params._pid }, function (err, docs) {
         if (err) {
-            console.log(err)
+            console.log(err);
         }
         else {
             console.log("Updated Docs : ", docs.nModified);

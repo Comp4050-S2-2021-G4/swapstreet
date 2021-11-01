@@ -143,3 +143,22 @@ img {
     border-radius: 50%;
     margin: 2px 5px;
 }
+
+.chatConversationItem {
+    margin: 1vh;
+    border-color: #6f42c1;
+    border-radius: 1vh;
+    border-style: solid;
+}
+
+.chatConversationItem img {
+    float: left;
+    max-width: 60px;
+    margin-top: 10px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.chatConversationItem.p {
+    margin: 20px;
+}
