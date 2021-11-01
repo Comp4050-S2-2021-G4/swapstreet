@@ -30,9 +30,13 @@ export async function doesChatConversationExist(userId, jobPosterId) {
     let query = getMessagesCollection();
     query = query.where('userId', '==', userId)
     query = query.where('otherId', '==', jobPosterId)
+    query = query.limit(1)
     const res = await query.get()
-    const data = res.docs.map(d => d.data());
-    return data.length > 0
+    const data = res.docs.map(d => {
+        console.log(`chat#:35`, d.id);
+        return { id: d.id, ...d.data() }
+    });
+    return data
 }
 
 export async function createChatConversation(userId, jobPosterId) {
@@ -45,7 +49,6 @@ export async function createChatConversation(userId, jobPosterId) {
         .doc(conversation.id)
 
         .collection('messages')
-        .add({})
     return { conversationId: conversation.id, messageId: messagesRes.id }
 }
 

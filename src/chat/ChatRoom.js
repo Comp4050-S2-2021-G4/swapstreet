@@ -11,11 +11,20 @@ import {getMessages, getMessagesCollection} from './chat';
 import './chat.css'
 import './chat'
 
-function ChatRoom() {
-
+function ChatRoom(props) {
     const dummy = useRef();
     const [formValue, setFormValue] = useState('');
-    const [messages] = useCollectionData(getMessages(), { idField: 'id'})
+    let messagesQuery = getMessagesCollection()
+        .doc(props.messageId)
+        .collection('messages')
+
+    const [messages] = useCollectionData(
+        messagesQuery,
+        {
+            snapshotListenOptions: { includeMetadataChanges: true },
+            idField: 'id'
+        }
+    )
 
     const auth = firebase.auth()
 
@@ -24,7 +33,7 @@ function ChatRoom() {
         try {
             const uid = auth.currentUser.uid;
             console.log('sendMessage:', uid);
-            const sentMessage = await getMessagesCollection().add(
+            const sentMessage = await messagesQuery.add(
                 {
                     text: formValue,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),

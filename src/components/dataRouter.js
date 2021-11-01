@@ -48,7 +48,8 @@ class dataRouter extends Component {
                 email: email,
                 balance: balance,
                 jobs: [],
-                firebaseUser
+                firebaseUser,
+                messageId: sessionStorage.getItem('messageId')
             };
         } else {
             this.state = {
@@ -113,6 +114,7 @@ class dataRouter extends Component {
 
                         <Route exact path="/job" render={(props) => <JobPage {...props} userID={this.state.userID} firebaseUser={this.state.firebaseUser}/>} />
                         <Route exact path="/messages" render={(props) => <Conversation firebaseUser={this.state.firebaseUser} username ={this.state.name} />} />
+                        <Route exact path="/messages/:messageId" render={(props) => <ChatRoom messageId={props.match.params.messageId} username ={this.state.name} />} />
 
                         <Route path="/">
                             <HomePage jobs={this.state.jobs} userID={this.state.userID} />

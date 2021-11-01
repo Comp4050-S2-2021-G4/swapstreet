@@ -195,13 +195,15 @@ markAsCompleted(event) {
         const userId = this.state.firebaseUser.user.uid;
         const jobPosterId = this.state.job.firebaseUserId;
         const doesConversationExist = await chat.doesChatConversationExist(userId, jobPosterId);
-        if (doesConversationExist) {
-            console.log(`jobPage#chatToJobPoster:204`, doesConversationExist);
-            // todo: navigate user to conversation
+        console.log(`jobPage#chatToJobPoster:198`, doesConversationExist);
+        let messageId = ''
+        if (doesConversationExist.length) {
+            messageId = doesConversationExist[0].id
         } else {
-            // todo: create conversation
-            await chat.createChatConversation(userId, jobPosterId)
+            const newConvo = await chat.createChatConversation(userId, jobPosterId)
+            messageId = newConvo.conversationId
         }
+        window.location.href = "messages/" + messageId
     }
 
   /* 
