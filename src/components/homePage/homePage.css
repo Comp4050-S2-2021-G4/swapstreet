@@ -72,7 +72,7 @@
   text-align:center;
   margin:auto;
   display:flex;
-  display:grid;
+  /*display:grid;*/
   width : 20%;
   animation: showup 9s normal;
 }

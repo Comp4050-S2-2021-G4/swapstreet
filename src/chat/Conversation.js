@@ -69,7 +69,7 @@ function Conversation(props) {
     }
 
     return (<>
-        <div>
+        <div className='conversation'>
             <h2>Messages</h2>
             <ul>
 

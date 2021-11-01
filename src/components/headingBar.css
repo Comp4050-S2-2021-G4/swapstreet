@@ -107,6 +107,16 @@ a {
   padding: 0;
 }
 
+.footer{
+    margin-top: 10%;
+    padding: 1rem;
+    color:aliceblue;
+    background-color: #aa001e;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 .navbar-admin {
   list-style-type: none;
   margin-left: 70%;
@@ -119,3 +129,13 @@ a {
   margin: 0 auto !important;
   
 }
+
+  .navbar-admin {
+    list-style-type: none;
+    margin-left:  80%;
+    padding: 0;
+  }
+
+  .app {
+      margin-bottom: 20vh;
+  }
