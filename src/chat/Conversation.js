@@ -40,7 +40,7 @@ function Conversation(props) {
         return messages.docs.map((m) => {
             console.log('mData:', m.data());
             console.log('mData:', m.id);
-            return { ...m.data(), id: m.id }
+            return { ...m.data(), id: m.id , conversationId: convos.id}
         })
     }
     useEffect(async () => {
@@ -62,13 +62,19 @@ function Conversation(props) {
         }
     })
 
+    function navigateToChatRoom(event, id) {
+        event.preventDefault()
+        console.log(`Conversation#navigateToChatRoom:66`, id);
+        window.location.href = "messages/" + id
+    }
+
     return (<>
         <div>
             <h2>Messages</h2>
             <ul>
 
                 {conversationLastMessage.length <= 0 ? <li> <p>loading</p> </li> : conversationLastMessage.map(c => (
-                    <li className={'chatConversationItem'} key={c.id}>
+                    <li className={'chatConversationItem'} key={c.id} onClick={e => navigateToChatRoom(e, c.conversationId)}>
                         <img src={ c.photoURL || "https://bootdey.com/img/Content/avatar/avatar7.png"} alt="Admin"
                              className="rounded-circle" width="150"/>
                         <p>{props.username}</p>
