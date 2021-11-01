@@ -196,7 +196,7 @@ class HomePage extends Component {
         {isAuthenticated() && jobsHeader}
         <div className="homeContainer">
           <div className="row">
-            {isAuthenticated() && jobList}
+            {isAuthenticated() && jobList.reverse()}
           </div>
         </div>
       </div>
