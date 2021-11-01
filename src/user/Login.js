@@ -40,6 +40,7 @@ const Login = () => {
             authenticate(loginResult.token, () => {
                 values.email = loginResult.user.email
                 values.name = loginResult.user.name
+                values.firebaseUser = loginResult.firebaseUser
                 setValues({
                     ...values,
                     redirectToReferrer: true

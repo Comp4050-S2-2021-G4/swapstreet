@@ -39,8 +39,6 @@ class dataRouter extends Component {
             const {
                 user: { _id, name, email, address, balance, about, role, firebaseUser }
             } = isAuthenticated();
-            console.log(`dataRouter#constructor:44`, isAuthenticated());
-
             this.state = {
                 location: null,
                 userID: _id,
@@ -51,6 +49,7 @@ class dataRouter extends Component {
                 firebaseUser,
                 messageId: sessionStorage.getItem('messageId')
             };
+
         } else {
             this.state = {
                 location: null,

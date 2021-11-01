@@ -19,7 +19,8 @@ function ChatRoom(props) {
         .collection('messages')
 
     const [messages] = useCollectionData(
-        messagesQuery,
+        messagesQuery
+            .orderBy('createdAt', 'desc'),
         {
             snapshotListenOptions: { includeMetadataChanges: true },
             idField: 'id'
