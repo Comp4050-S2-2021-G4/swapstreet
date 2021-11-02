@@ -22,6 +22,10 @@ const jobsSchema = new Schema({
     description :{ type: String},  
     price:{ type: Number},    // change made from string
     location: {type:String},
+    firebaseUserId: {
+        type: String,
+        required: true
+    }
     
 },{versionKey : false}
 );

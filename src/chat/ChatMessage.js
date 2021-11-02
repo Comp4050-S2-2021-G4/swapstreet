@@ -8,7 +8,7 @@ export default function ChatMessage(props) {
     console.log(props.message);
     return (<>
         <div className={`message ${messageType}`}>
-            <img src={ src } />
+            <img src={ src }  alt='profilePic'/>
             <p className="messageText">{text}</p>
         </div>
     </>)
