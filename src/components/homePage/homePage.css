@@ -130,6 +130,7 @@ overflow : hidden;
 .jobs-display{
 bottom: 100%;
 position: grid;
+  margin: 1rem;
 }
 
 .homeContainer {
@@ -140,19 +141,19 @@ position: grid;
   justify-items: center;
   opacity: 0.8;
 }
-.homeCard {
+.job-card.card.bg-light {
   width: 23vw;
   min-height: 18vh;
-  border: 2px solid gray;
+  border: 1px solid #606060;
   border-radius: 5px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
 }
 
-.homeCard:hover {
-  background: rgb(231, 231, 231);
+.job-card.card.bg-light:hover {
+  border: 2px solid rgb(231, 231, 231) ;
+  background: rgb(231, 231, 231) !important;
+}
+.card-title {
+  color: #0d0d0d;
 }
 .homeCardBody {
   margin: 15px; 

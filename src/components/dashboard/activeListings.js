@@ -39,13 +39,26 @@ class activeListings extends Component {
             );
         })
         return (
-            <div className="container">
-                <h3 className="text-left py-3">Your Active Listings</h3>
-                <div className="row">
-                    {jobList}
+            <div id="accordion">
+                <div className="" id="headingTwo">
+                    <h3 className="text-left btn-link mb-0 py-1" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        Your Active Listings
+                    </h3>
+                </div>
+
+                <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo"
+                     data-parent="#accordion">
+                    <div className="card-body currentJobs">
+                        <div className="container">
+                            <div className="row">
+                                {jobList}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        )
+        );
     }
 
 }

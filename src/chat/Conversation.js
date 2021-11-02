@@ -69,17 +69,22 @@ function Conversation(props) {
     }
 
     return (<>
-        <div className='conversation'>
+        <div className='conversation w-auto col-md-11'>
             <h2>Messages</h2>
             <ul>
 
                 {conversationLastMessage.length <= 0 ? <li> <p>loading</p> </li> : conversationLastMessage.map(c => (
-                    <li className={'chatConversationItem'} key={c.id} onClick={e => navigateToChatRoom(e, c.conversationId)}>
-                        <img src={ c.photoURL || "https://bootdey.com/img/Content/avatar/avatar7.png"} alt="Admin"
-                             className="rounded-circle" width="150"/>
-                        <p>{props.username}</p>
-                        <p>{c.text}</p>
-                    </li>
+                    <div className='card bg-light'>
+
+                        <div className='card-body2 border-danger'>
+                            <li className={'chatConversationItem'} key={c.id} onClick={e => navigateToChatRoom(e, c.conversationId)}>
+                                <img src={ c.photoURL || "https://bootdey.com/img/Content/avatar/avatar7.png"} alt="Admin"
+                                     className="rounded-circle" width="150"/>
+                                <p className='card-title'>{props.username}</p>
+                                <p className='card-text'>{c.text}</p>
+                            </li>
+                        </div>
+                    </div>
                 ))}
                 <li><br/></li>
             </ul>

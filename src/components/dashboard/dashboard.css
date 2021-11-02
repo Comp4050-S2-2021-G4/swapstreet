@@ -29,3 +29,6 @@
     text-decoration: none;
 }
 
+.currentJobs, .pastJobs {
+    padding: 0;
+}

@@ -58,8 +58,13 @@ const Login = () => {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input onChange={handleChange('password')} type="password" className="form-control" value={password} />
+                <label className="text-muted input-group-prepend">Password</label>
+                <div className='input-group' id='show-hide-password'>
+                    <input onChange={handleChange('password')} type="password" className="form-control" value={password} />
+                    <div className="input-group-addon">
+                        <a href=""><i className="fa fa-eye-slash" aria-hidden="true"/></a>
+                    </div>
+                </div>
             </div>
             <button onClick={clickSubmit} className="btn btn-primary">
                 Submit
@@ -91,7 +96,7 @@ const Login = () => {
 
 
     return (
-        <Layout title="Login " description='Welcome Back' className='container col-md-8 offset-md-2'>
+        <Layout title="Login " description='Welcome Back' className='container col-md-8 offset-md-1'>
             {showLoading()}
             {showError()}
             {registerForm()}

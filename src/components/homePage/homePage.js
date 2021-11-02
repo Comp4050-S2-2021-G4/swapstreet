@@ -173,9 +173,9 @@ class HomePage extends Component {
     let jobList = this.state.searchResults.map(job => {
       return (job.userID != this.props.userID && job.jobStatus !== 4 &&
         <div className="jobs-display">
-          <div className="job-card">
+          <div className="job-card card bg-light">
             <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
-              <div className="homeCard border-dark mb-3">
+              <div className="homeCard border-light">
                 <div className="homeCardBody text-dark">
                   <h5 className="card-title">{job.title} </h5>
                   <p className="card-text">{job.description}</p>
@@ -196,7 +196,7 @@ class HomePage extends Component {
         {!isAuthenticated() && hpage}
         {isAuthenticated() && jobsHeader}
         <div className="homeContainer">
-          <div className="row">
+          <div className="row col-lg-10">
             {isAuthenticated() && jobList.reverse()}
           </div>
         </div>

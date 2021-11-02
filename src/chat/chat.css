@@ -146,10 +146,12 @@ img {
 }
 
 .chatConversationItem {
-    margin: 1vh 5rem 1vh 1vh;
-    border-color: #6f42c1;
-    border-radius: 1vh;
-    border-style: solid;
+    padding: 1rem 0 1rem 0;
+}
+
+.chatConversationItem.cardBody2 {
+    margin: 0 5rem 0 0;
+    max-width: 5rem;
 }
 
 .chatConversationItem:hover {
