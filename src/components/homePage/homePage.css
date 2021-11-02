@@ -37,7 +37,8 @@
 }
 
 .searchbar .jumbotron{
-  background-color : rgba(247, 199, 43, 0.7);  
+  background-color : #2791ff;
+  color: white;  
 }
 
 .form-outline{

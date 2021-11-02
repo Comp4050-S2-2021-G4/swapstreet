@@ -14,6 +14,7 @@ import { isAuthenticated } from "./../../auth/index"
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import { Jumbotron } from "react-bootstrap";
+import jobImg from "../../Assets/works.png"
 
 class HomePage extends Component {
   constructor(props) {
