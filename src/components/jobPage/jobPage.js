@@ -12,6 +12,7 @@ class Job extends Component {
     this.state = {
         userID: this.props.userID,
         job: this.props.location.state.job,
+        name: this.props.name,
         jobID:'', 
         chosenUserID: this.props.chosenUserID,  
         jobStatus: this.props.jobStatus,  
@@ -193,14 +194,16 @@ markAsCompleted(event) {
     async chatToJobPoster(event) {
         event.preventDefault()
         const userId = this.state.firebaseUser.user.uid;
+        const name = this.state.name
         const jobPosterId = this.state.job.firebaseUserId;
+        const posterName = this.state.job.posterName;
         const doesConversationExist = await chat.doesChatConversationExist(userId, jobPosterId);
         console.log(`jobPage#chatToJobPoster:198`, doesConversationExist);
         let messageId = ''
         if (doesConversationExist.length) {
             messageId = doesConversationExist[0].id
         } else {
-            const newConvo = await chat.createChatConversation(userId, jobPosterId)
+            const newConvo = await chat.createChatConversation({ userId, name }, { jobPosterId, posterName })
             messageId = newConvo.conversationId
         }
         window.location.href = "messages/" + messageId

@@ -28,8 +28,8 @@ export const getMessagesCollection = () => firestore.collection('conversations')
 export async function doesChatConversationExist(userId, jobPosterId) {
     console.log(`chat#doesChatConversationExist:30`,userId, jobPosterId);
     let query = getMessagesCollection();
-    query = query.where('userId', '==', userId)
-    query = query.where('otherId', '==', jobPosterId)
+    query = query.where('user.userId', '==', userId)
+    query = query.where('other.jobPosterId', '==', jobPosterId)
     query = query.limit(1)
     const res = await query.get()
     const data = res.docs.map(d => {
@@ -39,11 +39,11 @@ export async function doesChatConversationExist(userId, jobPosterId) {
     return data
 }
 
-export async function createChatConversation(userId, jobPosterId) {
-    console.log(`chat#createChatConversation:38`, userId, jobPosterId);
+export async function createChatConversation(user, jobPoster) {
+    console.log(`chat#createChatConversation:38`, user, jobPoster);
     const conversation = await getMessagesCollection().add({
-        userId,
-        otherId: jobPosterId,
+        user,
+        other: jobPoster,
     })
     const messagesRes = await getMessagesCollection()
         .doc(conversation.id)

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import ChatMessage from '../chat/ChatMessage'
 import {useRef, useState} from 'react';
 
@@ -29,6 +29,10 @@ function ChatRoom(props) {
 
     const auth = firebase.auth()
 
+    useEffect(() => {
+        dummy.current.scrollIntoView({ behavior: 'smooth' })
+    })
+
     const sendMessage = async (e) => {
         e.preventDefault()
         try {
@@ -51,7 +55,7 @@ function ChatRoom(props) {
 
     return (<>
         <main>
-            {messages && messages.reverse().map(msg => {
+            {messages && messages.map(msg => {
                 msg.messageType = msg.uid === auth.currentUser.uid ? 'sent' : 'received'
                 return <ChatMessage key={msg.id} message={msg} />
             })}

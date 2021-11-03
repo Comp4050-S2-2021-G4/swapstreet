@@ -53,7 +53,8 @@ router.route('/add').post((req, res) => {
         description: job_description,
         price: job_price,
         location: job_location,
-        firebaseUserId: req.body.firebaseUserId
+        firebaseUserId: req.body.firebaseUserId,
+        posterName: req.body.posterName,
     });
     console.log("newJob ", newJob)
     newJob.save()

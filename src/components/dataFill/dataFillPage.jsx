@@ -18,6 +18,7 @@ class jobDataFill extends Component {
         super(props);
         this.state = {
             firebaseUser: this.props.firebaseUser,
+            name: this.props.name,
             type: this.props.location.pathname,
             userID: this.props.userID,
             job: this.props.location.state.job,
@@ -54,7 +55,8 @@ class jobDataFill extends Component {
                 description: this.desc.value,
                 price : this.price.value,
                 location : this.location.value,
-                firebaseUserId: this.state.firebaseUser.user.uid
+                firebaseUserId: this.state.firebaseUser.user.uid,
+                posterName: this.state.name,
             }
             console.log(newJob);
 
