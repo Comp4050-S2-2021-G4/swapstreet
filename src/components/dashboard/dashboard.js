@@ -1,3 +1,9 @@
+/* 
+==========================================
+ Author and Co-Authors: Faiyaz Rahman
+ Last updated: 1 Nov 2021 04:08 PM
+==========================================
+*/
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';

@@ -2,7 +2,7 @@
 ==========================================
 
  Title:  Homepage Component (Homepage, UserProfile, JobsDisplay)
- Author and Co-Authors: Jayakrithi Shivakumar 
+ Author and Co-Authors: Jayakrithi Shivakumar, Faiyaz Rahman 
  Last updated: 29 Sept 2021 12:55PM
 ==========================================
 */
