@@ -2,7 +2,7 @@
 ==========================================
 
  Title:  Homepage Component (Homepage, UserProfile, JobsDisplay)
- Author and Co-Authors: Jayakrithi Shivakumar 
+ Author and Co-Authors: Jayakrithi Shivakumar, Faiyaz Rahman 
  Last updated: 29 Sept 2021 12:55PM
 ==========================================
 */
@@ -14,6 +14,7 @@ import { isAuthenticated } from "./../../auth/index"
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import { Jumbotron } from "react-bootstrap";
+import jobImg from "../../Assets/works.png"
 
 class HomePage extends Component {
   constructor(props) {
@@ -196,7 +197,7 @@ class HomePage extends Component {
         {isAuthenticated() && jobsHeader}
         <div className="homeContainer">
           <div className="row">
-            {isAuthenticated() && jobList}
+            {isAuthenticated() && jobList.reverse()}
           </div>
         </div>
       </div>

@@ -1,3 +1,10 @@
+/* 
+==========================================
+ Author and Co-Authors: Faiyaz Rahman
+ Last updated: 1 Nov 2021 04:08 PM
+==========================================
+*/
+
 .homepage-elements .jumbotron {
   margin:auto; 
   width: 100%;
@@ -37,7 +44,8 @@
 }
 
 .searchbar .jumbotron{
-  background-color : rgba(247, 199, 43, 0.7);  
+  background-color : #2791ff;
+  color: white;  
 }
 
 .form-outline{

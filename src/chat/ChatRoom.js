@@ -50,7 +50,7 @@ function ChatRoom(props) {
 
     return (<>
         <main>
-            {messages && messages.map(msg => {
+            {messages && messages.reverse().map(msg => {
                 msg.messageType = msg.uid === auth.currentUser.uid ? 'sent' : 'received'
                 return <ChatMessage key={msg.id} message={msg} />
             })}

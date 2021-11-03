@@ -86,7 +86,7 @@ const Profile = () => {
                                 <div className="card-body">
                                     <blockquote className="blockquote mb-0">
                                         <p> Your Rating : {rating}</p>
-                                        <p> Balance : {balance} {Coins}</p>
+                                        <p> Balance : ${balance} {Coins}</p>
                                     </blockquote>
                                 </div>
                             </div>

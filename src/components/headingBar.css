@@ -1,108 +1,121 @@
+/* 
+==========================================
+ Author and Co-Authors: Faiyaz Rahman
+ Last updated: 1 Nov 2021 04:08 PM
+ Comments: CSS to allow themes/colors for website
+==========================================
+*/
 .header {
-    height: 100px;
+  height: 100px;
 }
-.logoDiv{
-    color :yellow;
+.logoDiv {
+  color: yellow;
 }
 .logoDiv ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color:  rgb(23, 23, 23);
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(23, 23, 23);
+}
 
-  .home-nav a{
-    color:rgb(221, 175, 25);
-  }
+.home-nav a {
+  color: rgb(221, 175, 25);
+}
+
+.logoDiv li {
+  float: left;
+}
+li a {
+  display: block;
+  text-align: center;
+  color: rgb(221, 175, 25);
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+  font-size: large;
+}
+.active {
+  background-color: #04aa6d;
+}
+
+nav {
+  background-color: rgb(23, 23, 23);
+  text-decoration: none;
+}
+a {
+  color: rgb(235, 195, 64);
+}
+.userCoinsIcon {
+  margin: -2px 3px 0 5px;
+  height: 100%;
+  width: 18px;
+}
+
+.userProfileIcon {
+  margin: 0 10px 0 10px;
+  height: 3vh;
+  width: 3vh;
+  color: #1e2124;
+}
+
+.userProfileIcon:hover {
+  fill: #17a2b8;
+  cursor: pointer;
+}
+
+.logoDiv {
+  fill: rgb(235, 195, 64);
+  color: rgb(221, 175, 25);
+}
+
+.logoDiv:hover {
+  color: rgb(235, 195, 64) !important;
+}
+
+.coinContainer {
+  margin: 0 20px 0 20px;
+}
+
+.coinsText {
+  margin: 0 5px 0 0px;
+}
+
+.login-button .logout-button .register-button {
+  margin: 0 5px 0 0px;
+}
+
+.mainLogo {
+  margin: 0 10px 0 10px;
+}
+
+.footer {
+  margin-top: 10%;
+  padding: 1rem;
+  color: aliceblue;
+  background-color: #2791ff;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-admin {
+  list-style-type: none;
+  margin-left: 70%;
+  padding: 0;
+}
+
+.themes {
+  color: white !important;
+  justify-content: space-between !important;
+  margin: 0 auto !important;
   
-  .logoDiv li {
-    float: left;
-  }
-  li a {
-    display: block;
-    text-align: center;
-    color:rgb(221, 175, 25);
-  }
-  
-  /* Change the link color to #111 (black) on hover */
-  li a:hover {
-    background-color: #111; 
-    font-size: large;
-  }  
-  .active {
-    background-color: #04AA6D;
-  }
-
-  nav{
-    background-color: rgb(23, 23, 23);
-    text-decoration: none;
-
-  }
-  a{
-      color :rgb(235, 195, 64);
-  }
-.userCoinsIcon{
-    margin: -2px 3px 0 5px;
-    height: 100%;
-    width: 18px;
 }
-
-.userProfileIcon{
-    margin: 0 10px 0 10px;
-    height: 3vh;
-    width: 3vh;
-    color: #1e2124;
-}
-
-.userProfileIcon:hover{
-    fill: #17a2b8;
-    cursor: pointer;
-}
-
-.logoDiv{
-    fill:  rgb(235, 195, 64);
-    color :rgb(221, 175, 25);
-}
-
-.logoDiv:hover{
-    color: rgb(235, 195, 64) !important;
-}
-
-.coinContainer{
-    margin: 0 20px 0 20px;
-}
-
-.coinsText{
-    margin: 0 5px 0 0px;
-}
-
-.login-button .logout-button .register-button{
-    margin: 0 5px 0 0px;
-}
-
-.mainLogo{
-    margin: 0 10px 0 10px;
-}
-
-.footer{
-    margin-top: 10%;
-    padding: 1rem;
-    color:aliceblue;
-    background-color: #aa001e;
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-  }
-
-  .navbar-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .navbar-admin {
-    list-style-type: none;
-    margin-left:  80%;
-    padding: 0;
-  }

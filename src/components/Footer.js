@@ -1,3 +1,10 @@
+/* 
+==========================================
+ Author and Co-Authors: Faiyaz Rahman
+ Last updated: 27 SEP 2021 9:42 PM
+==========================================
+*/
+
 import React from "react";
 import { version } from "../config";
 
