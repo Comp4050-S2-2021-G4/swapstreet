@@ -2,6 +2,11 @@
 
 [SwapStreet Client App](https://swapstreetclient.herokuapp.com/)
 
+# frontend-server deployed on heroku
+# back-end-server running locally 
+
+##future implementation will include deployment of back-end-server deployment on heroku
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
