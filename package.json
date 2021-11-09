@@ -35,7 +35,7 @@
     "server": "node backend/server.js",
     "client": "npm start --prefix client",
     "start": "concurrently \"npm run client\" \"npm run server\"",
-    "heroku-postbuild": "npm install --prefix client && npm run bulid --prefix client && npm start"
+    "heroku-postbuild": "npm install --prefix client && npm run bulid --prefix client"
   },
   "eslintConfig": {
     "extends": [
