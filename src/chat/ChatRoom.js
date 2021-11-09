@@ -7,7 +7,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {useCollectionData} from 'react-firebase-hooks/firestore';
 
-import {getMessages, getMessagesCollection} from './chat';
+import {getMessagesCollection} from './chat';
 import './chat.css'
 import './chat'
 

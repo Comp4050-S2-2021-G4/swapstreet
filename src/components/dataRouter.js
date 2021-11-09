@@ -24,8 +24,6 @@ import Register from '../user/Register';
 import Login from '../user/Login';
 import PrivateRoute from '../auth/PrivateRoute'
 import { isAuthenticated } from "../auth/index";
-import { API, secret } from '../config';
-// import admin from 'firebase-admin';
 import ChatRoom from '../chat/ChatRoom'
 import Conversation from '../chat/Conversation';
 
@@ -37,7 +35,7 @@ class dataRouter extends Component {
 
         if (isAuthenticated()) {
             const {
-                user: { _id, name, email, address, balance, about, role, firebaseUser }
+                user: { _id, name, email, balance, firebaseUser }
             } = isAuthenticated();
             this.state = {
                 location: null,
@@ -65,7 +63,7 @@ class dataRouter extends Component {
     componentDidMount() {
         this.updateJobs()
     }
-  //`${API}/getJobs${secret}`
+
     updateJobs() {
         fetch('http://localhost:3200/jobs')
             .then(resp => resp.json())
@@ -82,8 +80,6 @@ class dataRouter extends Component {
         console.log(e);
         this.setState({ location: e })
     }
-
-    /* */
 
     render() {
         return (
@@ -112,7 +108,7 @@ class dataRouter extends Component {
 
 
                         <Route exact path="/job" render={(props) => <JobPage {...props} userID={this.state.userID} name={this.state.name} firebaseUser={this.state.firebaseUser}/>} />
-                        <Route exact path="/messages" render={(props) => <Conversation firebaseUser={this.state.firebaseUser} username ={this.state.name} />} />
+                        <Route exact path="/messages" render={() => <Conversation firebaseUser={this.state.firebaseUser} username ={this.state.name} />} />
                         <Route exact path="/messages/:messageId" render={(props) => <ChatRoom messageId={props.match.params.messageId} username ={this.state.name} />} />
 
                         <Route path="/">

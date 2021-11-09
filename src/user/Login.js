@@ -8,7 +8,6 @@ import React, {useState} from 'react';
 import Layout from '../components/Layout'
 import {Redirect} from 'react-router-dom'
 import { login, authenticate, isAuthenticated } from '../auth/index';
-import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
 init("user_9f6fIArfxnA0Lmtfo0XIN");
 

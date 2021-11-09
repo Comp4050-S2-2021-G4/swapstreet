@@ -1,8 +1,5 @@
-
-import React, { Component } from 'react';
+import React from 'react';
 import './userProfile.css';
-// @ts-ignore
-//import profilePic from '../../resources/userProfile/default-user.jpg'
 import "./sideBar.css"
 import './sideBarNav.css'
 import "./userInfo.css"
@@ -34,7 +31,7 @@ const Profile = () => {
                 <div className="card">
                     <div className="card-userProfile">
                         <div className="d-flex flex-column align-items-center text-center">
-                            <img src={profilePic} alt="Admin" class="rounded-circle" style={{ width: "40%", height: "50%" }} />
+                            <img src={profilePic} alt="Admin" className="rounded-circle" style={{ width: "40%", height: "50%" }} />
                             <div className="card-body">
                                 <h5 className="card-title">{name}</h5>
                             </div>

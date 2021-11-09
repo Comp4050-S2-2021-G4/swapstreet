@@ -199,7 +199,7 @@ markAsCompleted(event) {
         const posterName = this.state.job.posterName;
         const doesConversationExist = await chat.doesChatConversationExist(userId, jobPosterId);
         console.log(`jobPage#chatToJobPoster:198`, doesConversationExist);
-        let messageId = ''
+        let messageId
         if (doesConversationExist.length) {
             messageId = doesConversationExist[0].id
         } else {
@@ -217,22 +217,15 @@ markAsCompleted(event) {
   //  && job.userID === this.state.userID && this.state.chosenName !== null
   render() {
       const job = this.props.location.state.job
-      const seller = job.seller
-  //    console.log("get the state pleaseeee ", (this.state.seller));
- //     console.log("state =  ", job.userID);
-      var blah = this.state.userID.$oid === job.userID
-  //    console.log("state =  ", blah);
-      console.log("Hello there I am back state userID", seller)
-      console.log('userId:', this.props.userID.$oid, '\tjobPosterId:', job.userID);
-      // console.log("Job status print here ", job.jobStatus);
+      const isJobPoster = this.state.userID.$oid === job.userID
       return (
             <div className="container">
                     <link rel="icon" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <div className="card">
-                    <div class="row no-gutters">
+                    <div className="row no-gutters">
                         <div className="col-md-4">
                             <img className="jobImage card-img-top"
-                                />
+                                 alt={''}/>
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
@@ -241,15 +234,15 @@ markAsCompleted(event) {
                                         <h3 className="card-title">
                                             {job.title}
                                         </h3>
-                                        <div class = "card border-warning mb-2">
+                                        <div className = "card border-warning mb-2">
                                         <div className = "jobcard">
                                         <h5 className="card-subtitle mb-2 text-muted">
                                         <p className="card-header"> Job Location</p>
                                         </h5>
                                         <h6>
-                                             <i class="glyphicon glyphicon-map-marker"></i> {job.location}
+                                             <i className="glyphicon glyphicon-map-marker"/> {job.location}
                                         </h6>
-                                        <br></br>
+                                        <br/>
                                         <h5 className="card-subtitle mb-2 text-muted">
                                         <p className="card-header"> Job Price</p>
                                         </h5>
@@ -262,14 +255,14 @@ markAsCompleted(event) {
                                         <h6>
                                         {job.description}
                                         </h6>
-                                        <br></br>
+                                        <br/>
                                         <h5 className="card-subtitle mb-2 text-muted">      
                                         <p className="card-header"> Job Status</p>     
                                         </h5>  
                                         <h6>
                                         <p className="card-text">
-                                            {job.jobStatus == 1 && "Listed Job" || job.jobStatus == 2 && "Applied" ||
-                                            job.jobStatus == 3 && "Active" || job.jobStatus == 4 && "Completed"
+                                            {(job.jobStatus === 1 && "Listed Job") || (job.jobStatus === 2 && "Applied") ||
+                                            (job.jobStatus === 3 && "Active") || (job.jobStatus === 4 && "Completed")
                                             }
                                         </p>
                                         </h6> 
@@ -277,11 +270,11 @@ markAsCompleted(event) {
                                              <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Seller Details</p>     
                                              </h5>  
-                                            <h6 className="card-text">{"Listing by: "+ this.state.seller.name}</h6> <br></br>
+                                            <h6 className="card-text">{"Listing by: "+ this.state.seller.name}</h6> <br/>
                                             <h5 className="card-subtitle mb-2 text-muted">      
                                               <p className="card-header"> Ratings</p> </h5>
                                             <div className="ratingContainer">
-                                                <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="20px" height="20px" viewBox="0 0 16 16" className="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                                 </svg>
                                                 <h6 className="sellerRating text-muted"> {this.state.rating}</h6>
@@ -297,7 +290,7 @@ markAsCompleted(event) {
                     </div>
 
 
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
                     <Link to={this.props.location.state.prevLocation}>
                         <button className="btn btn-danger btn-lg active">
@@ -305,7 +298,7 @@ markAsCompleted(event) {
                         </button>
                     </Link>
 
-                    {job.userID === this.state.userID && job.jobStatus !== 3 && job.jobStatus !== 4 || <Link to={{pathname: "/edit", state: {job: job}}}>
+                    {(job.userID === this.state.userID) && (job.jobStatus !== 3) && (job.jobStatus !== 4) || <Link to={{pathname: "/edit", state: {job: job}}}>
                         <button className="btn btn-primary btn-lg active">
                             Edit
                         </button>
@@ -329,18 +322,18 @@ markAsCompleted(event) {
                 </div>
                 
                 
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
                 
-                {job.jobStatus === 2 && blah == true && 
-                <div class="card border-dark mb-3 dash-card">
-                        <div class="card-body text-dark dash-card-body">
-                            <h5 class="card-title">{this.state.chosenUserDetails.name} Has Applied for this Job</h5>
-                            <p class="card-text">Email: {this.state.chosenUserDetails.email}</p>
-                            <p class="card-text">Rating: {this.state.chosenUserDetails.rating}</p>
-                            <img className="chosenImage card-img-top" src={this.state.chosenPicture} />
+                {job.jobStatus === 2 && isJobPoster === true &&
+                <div className="card border-dark mb-3 dash-card">
+                        <div className="card-body text-dark dash-card-body">
+                            <h5 className="card-title">{this.state.chosenUserDetails.name} Has Applied for this Job</h5>
+                            <p className="card-text">Email: {this.state.chosenUserDetails.email}</p>
+                            <p className="card-text">Rating: {this.state.chosenUserDetails.rating}</p>
+                            <img className="chosenImage card-img-top" src={this.state.chosenPicture}  alt={''}/>
                         </div>
-                        <div class="card-footer bg-transparent border-dark">
+                        <div className="card-footer bg-transparent border-dark">
 
                         <Link onClick={e => {this.acceptChosenUser(e)}}>
                             <button className="btn btn-success btn-lg active">

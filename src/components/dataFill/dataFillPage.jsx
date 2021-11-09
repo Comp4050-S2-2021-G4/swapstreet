@@ -9,7 +9,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
 const axios = require('axios').default;
 
 class jobDataFill extends Component {
@@ -39,16 +38,9 @@ class jobDataFill extends Component {
         this.state.type === "/add" ? this.updateVariables() : this.newJob()
     }
 
-
-    // let price = req.query.price;
-    // let location = req.query.location;
-
     submitData(event) {
         // Might cause an Error
-        //console.log(this.jobStatus.value);
         event.preventDefault(); 
-        console.log("inside");
-        console.log(this.state.userID.$oid);
         const newJob = {
                 userID : this.state.userID.$oid,
                 title : this.title.value,
@@ -61,9 +53,7 @@ class jobDataFill extends Component {
             console.log(newJob);
 
         axios.post('http://localhost:3200/jobs/add', newJob)
-            .then( res => {
-                console.log("works")
-                console.log(this.state.userID);
+            .then( _ => {
                 window.location.href = "/";
             })
             .catch(e => {
@@ -77,24 +67,7 @@ class jobDataFill extends Component {
     }
 
     updateVariables(){
-        var job = this.props.location.state.job;
-      //  this.replaceID = job._id;
-      //  this.jobStatus.value = job.jobStatus;
-        // this.chosenUserID.value = job.chosenUserID;
-        // this.title.value = job.title;
-        // this.desc.value = job.description;
-        // this.price.value = job.price;
-        // this.location.value = job.location;
     }
-
-
-    /*
-
-                    {this.props.location.pathname == "/edit" && <div className="form-group">
-                        <label>Edit The Job</label>
-                        <input type="text" className="form-control" id="inputType" ref={this.inputType = "Edit"} placeholder="Enter User ID" disabled value=""/>
-                    </div>}
-                    */
 
     render() {
         return (

@@ -1,7 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import "./changeInfo.css"
-import { Link, Redirect } from "react-router-dom";
-import { isAuthenticated } from "../../auth/index";
 import { update} from "../../auth/index"
 
 
@@ -9,7 +7,6 @@ const ChangeInfo = ({id, name}) => {
 
   console.log("ID = ", {id});
   console.log("Session Storage ", sessionStorage.getItem('Name'));
-  // const newName = sessionStorage.getItem('name');
 
     const initialState = {
       query: sessionStorage.getItem('Email'),
@@ -42,15 +39,7 @@ const ChangeInfo = ({id, name}) => {
       
   }
   
-  const {query, userId, newName, email, address, password, jobs, rating, role, balance, success, error } = formInfo;
-
-    const formHandler = (event) => {
-      console.log("Form submitted: ")
-      // event.preventDefault()
-      console.log("Form submitted: ", formInfo)
-      setFormInfo(initialState)
-    }
-
+  const {query, userId, newName, email, address, password, jobs, rating, role, balance, } = formInfo;
     const clickSubmit = event => {
       // prevent browser from reloading
       console.log("Form submitted: ", formInfo)
@@ -89,7 +78,7 @@ const ChangeInfo = ({id, name}) => {
           </div>
           <div className="card-body">
             <h5>Hello {name},</h5>
-          <form classname="addressform" onSubmit={clickSubmit}>
+          <form className="addressform" onSubmit={clickSubmit}>
             <div className="form-group">
               <label htmlFor="email" >New Email address</label>
               <input type="email" className="form-control" name="email" onChange={updateField} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>

@@ -19,12 +19,12 @@ class activeListings extends Component {
         let jobList = this.props.jobs.map(job => {
             return (
                 <Link className="job" to={{pathname: "/job", state: {job: job, prevLocation : "/dashboard"}}}>
-                    <div class="card border-dark mb-3 dash-card">
-                        <div class="card-body text-dark dash-card-body">
-                            <h5 class="card-title">{job.title}</h5>
-                            <p class="card-text">{job.description}</p>
+                    <div className="card border-dark mb-3 dash-card">
+                        <div className="card-body text-dark dash-card-body">
+                            <h5 className="card-title">{job.title}</h5>
+                            <p className="card-text">{job.description}</p>
                         </div>
-                        <div class="card-footer bg-transparent border-dark">
+                        <div className="card-footer bg-transparent border-dark">
                             <p className="jobLocation">Location: {job.location}</p>
                             <p className="jobPrice">Cost: {job.price}</p>
                             
@@ -42,7 +42,7 @@ class activeListings extends Component {
             <div id="accordion">
                 <div className="" id="headingTwo">
                     <h3 className="text-left btn-link mb-0 py-1" data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="false" aria-controls="collapseTwo">
+                        aria-controls="collapseTwo">
                         Your Active Listings
                     </h3>
                 </div>

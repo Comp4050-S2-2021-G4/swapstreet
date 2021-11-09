@@ -7,14 +7,13 @@
 ==========================================
 */
 
-import React, { Component, useState } from '../../../node_modules/react';
+import React, { Component } from '../../../node_modules/react';
 import { Link } from "react-router-dom";
 import './homePage.css';
 import { isAuthenticated } from "./../../auth/index"
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import { Jumbotron } from "react-bootstrap";
-import jobImg from "../../Assets/works.png"
 
 class HomePage extends Component {
   constructor(props) {
@@ -34,9 +33,9 @@ class HomePage extends Component {
     const queryResult = e.target.value;
 
     if (e === "") {
-      this.state = {
+      this.setState({
         searchResults: this.props.jobs
-      };
+      });
       return;
     }
 
@@ -59,9 +58,9 @@ class HomePage extends Component {
 
   render() {
     if (this.state.searchResults.length === 0) {
-      this.state = {
+      this.setState({
         searchResults: this.props.jobs
-      };
+      });
     }
     const array1 = [1]
     let jobsHeader = array1.map(_ => {
@@ -73,9 +72,9 @@ class HomePage extends Component {
               <h1> Jobs </h1>
             </div>
             <div className="form-outline">
-              <div class="form-group w-75">
+              <div className="form-group w-75">
                 <br />
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                <input className="form-control" type="search" placeholder="Search" aria-label="Search"
                   id="Search" onChange={this.searchData}
                 />
 
@@ -105,18 +104,18 @@ class HomePage extends Component {
                 <h5> We help connect you closer to your neighbourhood </h5>
                 <h5> Join our community now! </h5>
               </div>
-              <br></br>
+              <br/>
               <div className="button-register">
-                <a class="btn btn-warning" href="/register" role="button" style={{ left: "100px" }}>Become a Swapstreet Member</a>
+                <a className="btn btn-warning" href="/register" role="button" style={{ left: "100px" }}>Become a Swapstreet Member</a>
               </div>
             </div>
           </Jumbotron>
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="card border-warning mb-3">
-                <div class="card-body1">
-                  <h4 class="card-title">Locations</h4>
-                  <p class="card-text">Currently hosting in the following locations.</p>
+          <div className="row">
+            <div className="col-sm-3">
+              <div className="card border-warning mb-3">
+                <div className="card-body1">
+                  <h4 className="card-title">Locations</h4>
+                  <p className="card-text">Currently hosting in the following locations.</p>
                   <ul>
                     <li>Sydney </li>
                     <li>Melbourne </li>
@@ -125,11 +124,11 @@ class HomePage extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-sm-3">
-              <div class="card border-warning mb-3">
-                <div class="card-body2">
-                  <h4 class="card-title">Services</h4>
-                  <p class="card-text"> The services we offer range from .</p>
+            <div className="col-sm-3">
+              <div className="card border-warning mb-3">
+                <div className="card-body2">
+                  <h4 className="card-title">Services</h4>
+                  <p className="card-text"> The services we offer range from .</p>
                   <ul>
                     <li> Garderning </li>
                     <li> Plumbing </li>
@@ -138,22 +137,22 @@ class HomePage extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-sm-3">
-              <div class="card border-warning mb-3">
-                <div class="card-body3">
-                  <h4 class="card-title">Coins </h4>
-                  <p class="card-text">Coins are exchanged for the services offered.</p>
+            <div className="col-sm-3">
+              <div className="card border-warning mb-3">
+                <div className="card-body3">
+                  <h4 className="card-title">Coins </h4>
+                  <p className="card-text">Coins are exchanged for the services offered.</p>
                   <p>
                     Offer services and collect coins.
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-sm-3">
-              <div class="card border-warning mb-3">
-                <div class="card-body2">
-                  <h4 class="card-title">Join Our Community</h4>
-                  <p class="card-text"> Register now! .</p>
+            <div className="col-sm-3">
+              <div className="card border-warning mb-3">
+                <div className="card-body2">
+                  <h4 className="card-title">Join Our Community</h4>
+                  <p className="card-text"> Register now! .</p>
                 </div>
               </div>
             </div>
@@ -171,7 +170,7 @@ class HomePage extends Component {
     })
 
     let jobList = this.state.searchResults.map(job => {
-      return (job.userID != this.props.userID && job.jobStatus !== 4 &&
+      return (job.userID !== this.props.userID && job.jobStatus !== 4 &&
         <div className="jobs-display">
           <div className="job-card card bg-light">
             <Link className="job" to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}>
