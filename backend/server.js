@@ -28,6 +28,11 @@ const port = process.env.PORT || 3200;
 
 // Start the Server
 app.use(cors());
+app.get('*', (req, res) => {
+    const resolve = path.resolve(__dirname, "client", "build", "index.html");
+    console.log(`server#:43`, resolve);
+    res.sendFile(resolve)
+})
 app.use(express.json());
 
 //app.use('/auth', require("./routes/auth"));
@@ -38,11 +43,6 @@ app.use('/', jobsRouter);
 app.use('/:jobID', jobsRouter);
 
 app.use(express.static('client/build'))
-app.get('*', (req, res) => {
-    const resolve = path.resolve(__dirname, "client", "build", "index.html");
-    console.log(`server#:43`, resolve);
-    res.sendFile(resolve)
-})
 
 app.listen(port, ()=>{
     console.log(`Server running on port: ${port}`);
