@@ -32,10 +32,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "node backend/server.js",
     "server": "node backend/server.js",
     "client": "npm start --prefix client",
-    "app": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
     "extends": [
