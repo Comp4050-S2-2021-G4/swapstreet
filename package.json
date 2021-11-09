@@ -34,7 +34,8 @@
   "scripts": {
     "server": "node backend/server.js",
     "client": "npm start --prefix client",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "npm install --prefix client && npm run bulid --prefix client"
   },
   "eslintConfig": {
     "extends": [
