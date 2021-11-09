@@ -13,7 +13,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const jobsRouter = require('./routes/jobs')
 const usersRouter = require('./routes/users')
-require('dotenv').config();
+require('dotenv').config({ path: 'backend/.env'});
 
 // Connecting to MongoDB
 const uri = process.env.ATLAS_URI;
