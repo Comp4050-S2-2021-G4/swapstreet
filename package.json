@@ -13,6 +13,7 @@
     "axios": "^0.23.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.6.0",
+    "concurrently": "^6.3.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "emailjs": "^3.6.0",
@@ -31,10 +32,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node backend/server.js",
+    "server": "node backend/server.js",
+    "client": "npm start --prefix client",
+    "app": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
     "extends": [
