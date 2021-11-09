@@ -6,6 +6,7 @@
   "dependencies": {
     "@firebase/app": "^0.7.4",
     "@firebase/auth": "^0.18.3",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

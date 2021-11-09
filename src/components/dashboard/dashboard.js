@@ -57,12 +57,12 @@ class dashboard extends Component {
                             
                         </div>
                         <div class="col-lg">
-                            <Link to={{pathname: "/add", state: {prevLocation : "/dashboard"}}}><button className="btn btn-success btn-lg active">Create A New Job</button></Link>
+                            <Link to={{pathname: "/add", state: {prevLocation : "/dashboard"}}}><button className="btn btn-outline-primary btn-lg active">Create A New Job</button></Link>
                             <Info uID = {this.props.userID}/>
                             <changeInfo />
                             <CurrentJobs jobs={myJobs} userID={this.props.userID}/>
-                            <ActiveListings jobs={activeJobs} userID={this.props.userID}/>
-                            <History jobs={pastJobs} userID={this.props.userID}/>
+                            <ActiveListings jobs={myJobs} userID={this.props.userID}/>
+                            <History jobs={myJobs} userID={this.props.userID}/>
                         </div>
                         <div class="col-">
                             

@@ -32,10 +32,22 @@ class history extends Component {
             );
         })
         return (
-            <div className="container">
-                <h3 className="text-left py-3 ">Your Past Jobs</h3>
-                <div className="row">
-                    {jobList}
+            <div className="accordion">
+                <div className="" id="headingThree">
+                    <h3 className="text-left mb-0 btn-link py-1" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">
+                        Your Past Jobs
+                    </h3>
+                </div>
+                <div id="collapseThree" className="collapse" aria-labelledby="headingThree"
+                     data-parent="#accordion">
+                    <div className="card-body pastJobs">
+                        <div className="container">
+                            <div className="row">
+                                {jobList}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

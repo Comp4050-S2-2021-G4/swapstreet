@@ -39,8 +39,6 @@ class dataRouter extends Component {
             const {
                 user: { _id, name, email, address, balance, about, role, firebaseUser }
             } = isAuthenticated();
-            console.log(`dataRouter#constructor:44`, isAuthenticated());
-
             this.state = {
                 location: null,
                 userID: _id,
@@ -51,6 +49,7 @@ class dataRouter extends Component {
                 firebaseUser,
                 messageId: sessionStorage.getItem('messageId')
             };
+
         } else {
             this.state = {
                 location: null,
@@ -105,14 +104,14 @@ class dataRouter extends Component {
                         <Route path='/register' exact component={Register} />
                         <PrivateRoute component={UserProfile} path="/profile" exact />
 
-                        <Route exact path="/add" render={(props) => <JobDataFill {...props} userID={this.state.userID} firebaseUser={this.state.firebaseUser} />} />
+                        <Route exact path="/add" render={(props) => <JobDataFill {...props} userID={this.state.userID} name={this.state.name} firebaseUser={this.state.firebaseUser} />} />
 
                         <Route exact path="/edit" render={(props) => <JobDataFill {...props} userID={this.state.userID} />} />
 
                         <PrivateRoute component={Dashboard} path="/dashboard" jobs={this.state.jobs} userID={this.state.userID} exact />
 
 
-                        <Route exact path="/job" render={(props) => <JobPage {...props} userID={this.state.userID} firebaseUser={this.state.firebaseUser}/>} />
+                        <Route exact path="/job" render={(props) => <JobPage {...props} userID={this.state.userID} name={this.state.name} firebaseUser={this.state.firebaseUser}/>} />
                         <Route exact path="/messages" render={(props) => <Conversation firebaseUser={this.state.firebaseUser} username ={this.state.name} />} />
                         <Route exact path="/messages/:messageId" render={(props) => <ChatRoom messageId={props.match.params.messageId} username ={this.state.name} />} />
 

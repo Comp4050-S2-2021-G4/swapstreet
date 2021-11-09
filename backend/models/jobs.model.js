@@ -25,6 +25,10 @@ const jobsSchema = new Schema({
     firebaseUserId: {
         type: String,
         required: true
+    },
+    posterName: {
+        type: String,
+        required: true
     }
     
 },{versionKey : false}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import ChatMessage from '../chat/ChatMessage'
 import {useRef, useState} from 'react';
 
@@ -19,7 +19,8 @@ function ChatRoom(props) {
         .collection('messages')
 
     const [messages] = useCollectionData(
-        messagesQuery,
+        messagesQuery
+            .orderBy('createdAt', 'desc'),
         {
             snapshotListenOptions: { includeMetadataChanges: true },
             idField: 'id'
@@ -27,6 +28,10 @@ function ChatRoom(props) {
     )
 
     const auth = firebase.auth()
+
+    useEffect(() => {
+        dummy.current.scrollIntoView({ behavior: 'smooth' })
+    })
 
     const sendMessage = async (e) => {
         e.preventDefault()
@@ -50,7 +55,7 @@ function ChatRoom(props) {
 
     return (<>
         <main>
-            {messages && messages.reverse().map(msg => {
+            {messages && messages.map(msg => {
                 msg.messageType = msg.uid === auth.currentUser.uid ? 'sent' : 'received'
                 return <ChatMessage key={msg.id} message={msg} />
             })}
@@ -58,11 +63,11 @@ function ChatRoom(props) {
             <span ref={dummy}/>
         </main>
 
-        <form className='messageForm' onSubmit={sendMessage}>
+        <form className='messageForm input-group-sm' onSubmit={sendMessage}>
 
             <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
-            <button type="submit" disabled={!formValue}>🕊️</button>
+            <button className='sendMessage' type="submit" disabled={!formValue}>🕊️</button>
 
         </form>
     </>)
